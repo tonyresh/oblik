@@ -1,0 +1,52 @@
+[
+  {
+    "id": "user-1",
+    "email": "tonyreshua@gmail.com",
+    "name": "Антон (Адміністратор)",
+    "roleId": "admin",
+    "addedAt": "2026-09-25T08:00:00.000Z",
+    "notes": "Основний обліковий запис адміністратора системи",
+    "avatarColor": "#3b82f6",
+    "password": "admin"
+  },
+  {
+    "id": "user-2",
+    "email": "admin@skud.local",
+    "name": "Системний Адміністратор",
+    "roleId": "admin",
+    "addedAt": "2026-09-25T08:00:00.000Z",
+    "notes": "Головний інженер СКУД",
+    "avatarColor": "#8b5cf6",
+    "password": "admin"
+  },
+  {
+    "id": "user-3",
+    "email": "security@skud.local",
+    "name": "Черговий Служби Безпеки",
+    "roleId": "security",
+    "addedAt": "2026-09-25T08:15:00.000Z",
+    "notes": "Пост чергового охорони КПП-1",
+    "avatarColor": "#ef4444",
+    "password": "admin"
+  },
+  {
+    "id": "user-4",
+    "email": "operator@skud.local",
+    "name": "Оператор КПП (Реєстрація)",
+    "roleId": "manager",
+    "addedAt": "2026-09-25T08:30:00.000Z",
+    "notes": "Диспетчер реєстрації відвідувачів",
+    "avatarColor": "#10b981",
+    "password": "admin"
+  },
+  {
+    "id": "user-5",
+    "email": "auditor@skud.local",
+    "name": "Інспектор аналітики та звітів",
+    "roleId": "auditor",
+    "addedAt": "2026-09-25T09:00:00.000Z",
+    "notes": "Контроль та формування зведених звітів",
+    "avatarColor": "#f59e0b",
+    "password": "admin"
+  }
+]

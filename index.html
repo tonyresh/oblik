@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="uk" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Система Учёта (СКУД)</title>
+    <meta name="description" content="Браузерная система учёта посещения сотрудников и работы пункта охраны." />
+    <meta property="og:title" content="Система Учёта (СКУД)" />
+    <meta property="og:description" content="Браузерная система учёта посещения сотрудников и работы пункта охраны." />
+    <script>
+      (function() {
+        try {
+          if (!localStorage.getItem('theme_default_set')) {
+            localStorage.setItem('theme_default_set', 'true');
+            localStorage.setItem('theme', 'dark');
+          }
+          const theme = localStorage.getItem('theme') || 'dark';
+          const root = document.documentElement;
+          root.classList.remove('dark', 'theme-military', 'theme-emerald', 'theme-nordic', 'theme-amber');
+          if (theme === 'dark') {
+            root.classList.add('dark');
+          } else if (theme === 'military') {
+            root.classList.add('dark', 'theme-military');
+          } else if (theme === 'emerald') {
+            root.classList.add('dark', 'theme-emerald');
+          } else if (theme === 'nordic') {
+            root.classList.add('dark', 'theme-nordic');
+          } else if (theme === 'amber') {
+            root.classList.add('dark', 'theme-amber');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

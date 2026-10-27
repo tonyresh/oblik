@@ -1,0 +1,10 @@
+{
+  "name": "Система Учёта 2",
+  "description": "Браузерная система учёта посещения сотрудников и работы пункта охраны.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
