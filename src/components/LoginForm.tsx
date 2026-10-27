@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../store/AuthContext';
+import { useData } from '../store/DataContext';
 import { useToast } from '../store/ToastContext';
 import { Logo } from './Logo';
 import {
@@ -20,6 +21,7 @@ import {
 
 export default function LoginForm() {
   const { login, authorizedUsers, requestNewPassword, superadminEmails } = useAuth();
+  const { reloadAuthoritativeDatabase } = useData();
   const { showToast } = useToast();
 
   const [email, setEmail] = useState('');
@@ -87,24 +89,44 @@ export default function LoginForm() {
         body: JSON.stringify({ email: email.trim(), password })
       }).catch(() => null);
 
+      let loggedInUser = null;
+
       if (serverRes && serverRes.ok) {
         const json = await serverRes.json();
         if (json.success) {
           const result = login(email.trim(), password);
           if (result.success) {
-            showToast(result.message, 'success');
-            return;
+            loggedInUser = result.user;
           }
         }
       }
 
-      // 2. Client fallback
-      const result = login(email.trim(), password);
-      if (!result.success) {
-        setError(result.message);
-        showToast(result.message, 'error');
-      } else {
-        showToast(result.message, 'success');
+      if (!loggedInUser) {
+        // 2. Client fallback
+        const result = login(email.trim(), password);
+        if (!result.success) {
+          setError(result.message);
+          showToast(result.message, 'error');
+          return;
+        }
+        loggedInUser = result.user;
+      }
+
+      if (loggedInUser) {
+        // For administrators, load latest authoritative database immediately
+        const isAdmin = loggedInUser.roleId === 'admin' ||
+          superadminEmails.some(se => se.toLowerCase() === loggedInUser.email.toLowerCase()) ||
+          loggedInUser.email.toLowerCase() === 'admin@skud.local';
+
+        if (isAdmin) {
+          try {
+            await reloadAuthoritativeDatabase(true);
+            showToast('Актуальну базу даних завантажено із сервера', 'info');
+          } catch (loadErr) {
+            console.error('Error reloading database for admin:', loadErr);
+          }
+        }
+        showToast('Успішний вхід до системи', 'success');
       }
     } finally {
       setLoading(false);

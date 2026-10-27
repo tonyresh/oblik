@@ -8,6 +8,7 @@ export interface SyncMessage {
 type InitHandler = (state: any) => void;
 type UpdateHandler = (key: string, data: any, updatedBy: string) => void;
 type PatchHandler = (patch: Record<string, any>, updatedBy: string) => void;
+type EventHandler = (eventType: string, eventData: any, updatedBy: string) => void;
 type StatusHandler = (status: SyncStatus) => void;
 type PresenceHandler = (count: number) => void;
 
@@ -23,6 +24,7 @@ class RealtimeSyncService {
   private initHandlers = new Set<InitHandler>();
   private updateHandlers = new Set<UpdateHandler>();
   private patchHandlers = new Set<PatchHandler>();
+  private eventHandlers = new Set<EventHandler>();
   private statusHandlers = new Set<StatusHandler>();
   private presenceHandlers = new Set<PresenceHandler>();
 
@@ -91,6 +93,9 @@ class RealtimeSyncService {
           userEmail: this.currentUserEmail
         });
 
+        // Request initial authoritative server state
+        this.requestAuthoritativeState();
+
         // Start ping heartbeat
         if (this.pingInterval) clearInterval(this.pingInterval);
         this.pingInterval = setInterval(() => {
@@ -116,7 +121,6 @@ class RealtimeSyncService {
 
       this.ws.onerror = (err) => {
         console.warn('[RealtimeSync] Socket notice:', err);
-        // onclose will trigger next
       };
     } catch (e) {
       console.error('[RealtimeSync] Connection error:', e);
@@ -151,6 +155,14 @@ class RealtimeSyncService {
         }
         break;
 
+      case 'sync:event':
+        if (msg.eventType) {
+          this.eventHandlers.forEach(h => {
+            try { h(msg.eventType, msg.eventData, msg.updatedBy); } catch (e) { console.error('Event handler error:', e); }
+          });
+        }
+        break;
+
       case 'presence':
         if (typeof msg.count === 'number') {
           this.onlineCount = Math.max(1, msg.count);
@@ -161,12 +173,18 @@ class RealtimeSyncService {
         break;
 
       case 'pong':
-        // Heartbeat confirmed
         break;
 
       default:
         break;
     }
+  }
+
+  public requestAuthoritativeState() {
+    this.send({
+      type: 'request_state',
+      clientId: this.clientId
+    });
   }
 
   public sendUpdate(key: string, data: any) {
@@ -179,13 +197,31 @@ class RealtimeSyncService {
 
     const sentOverWs = this.send(payload);
 
-    // If WebSocket is not currently connected, use REST fallback
     if (!sentOverWs) {
       fetch('/api/state/update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ key, data, clientId: this.clientId })
       }).catch(err => console.warn('[RealtimeSync] REST update fallback failed:', err));
+    }
+  }
+
+  public sendEvent(eventType: string, eventData: any) {
+    const payload = {
+      type: 'event',
+      eventType,
+      eventData,
+      clientId: this.clientId
+    };
+
+    const sentOverWs = this.send(payload);
+
+    if (!sentOverWs) {
+      fetch('/api/events/broadcast', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventType, eventData, clientId: this.clientId })
+      }).catch(err => console.warn('[RealtimeSync] REST event broadcast fallback failed:', err));
     }
   }
 
@@ -226,7 +262,10 @@ class RealtimeSyncService {
 
   public async fetchStateViaHttp(): Promise<any | null> {
     try {
-      const res = await fetch('/api/state');
+      const res = await fetch(`/api/state?_t=${Date.now()}`, {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache, no-store' }
+      });
       if (res.ok) {
         const json = await res.json();
         if (json.success && json.data) {
@@ -294,6 +333,11 @@ class RealtimeSyncService {
   public onPatch(handler: PatchHandler): () => void {
     this.patchHandlers.add(handler);
     return () => this.patchHandlers.delete(handler);
+  }
+
+  public onEvent(handler: EventHandler): () => void {
+    this.eventHandlers.add(handler);
+    return () => this.eventHandlers.delete(handler);
   }
 
   public onStatusChange(handler: StatusHandler): () => void {

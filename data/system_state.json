@@ -1,6 +1,3880 @@
 {
-  "visitors": [],
-  "guards": [],
+  "visitors": [
+    {
+      "id": "1778194183032",
+      "name": "Меркотун Анатолій Володимирович",
+      "category": "Полковник",
+      "group": "Командування полку",
+      "status": "out",
+      "totalTimeMinutes": 1798,
+      "color": "#ef4444",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778200266766",
+      "logs": [
+        {
+          "in": "2026-09-23T05:54:44.130Z",
+          "out": "2026-09-24T01:50:30.022Z"
+        },
+        {
+          "in": "2026-09-24T02:01:02.647Z",
+          "out": "2026-09-24T04:35:31.933Z"
+        }
+      ],
+      "callsign": "Passat",
+      "isSpecial": true
+    },
+    {
+      "id": "1778262677504",
+      "name": "Бєлєнков Артем Віталійович",
+      "category": "Підполковник",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778200266766",
+      "group": "Командування полку",
+      "status": "out",
+      "totalTimeMinutes": 2135,
+      "color": "#ef4444",
+      "logs": [
+        {
+          "in": "2026-09-23T22:52:56.972Z",
+          "out": "2026-09-24T01:51:38.139Z"
+        },
+        {
+          "in": "2026-09-24T01:51:47.662Z",
+          "out": "2026-09-24T04:35:29.879Z"
+        }
+      ],
+      "callsign": "Білий",
+      "isSpecial": true,
+      "customIconId": "icon-1790203906764"
+    },
+    {
+      "id": "1778307553571",
+      "name": "Стусь Сергій Миколайович",
+      "category": "Підполковник",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 666,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778307651140",
+      "name": "Манлай Ярослав Григорович",
+      "category": "Капітан",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778307746252",
+      "name": "Іліка Андрій Вікторович",
+      "category": "Капітан",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778307793689",
+      "name": "Шубенко Сергій Володимирович",
+      "category": "Майор",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 5907,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778307819883",
+      "name": "Василенко Богдан Олегович",
+      "category": "Капітан",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778307849393",
+      "name": "Руденко Ігор Анатолійович",
+      "category": "Майор",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778307876638",
+      "name": "Врублевський Михайло Олегович",
+      "category": "Капітан",
+      "locationId": "2cfldqhrl",
+      "location": "К-2",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 683,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778307925667",
+      "name": "Бельський Владислав Олександрович",
+      "category": "Капітан",
+      "locationId": "2cfldqhrl",
+      "location": "К-2",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 635,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-24T04:35:23.143Z",
+          "out": "2026-09-24T04:35:24.722Z"
+        }
+      ],
+      "isSpecial": false
+    },
+    {
+      "id": "1778307968779",
+      "name": "Газенко Олексій Валерійович",
+      "category": "Капітан",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 614,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308018341",
+      "name": "Стасевич Олексій Валерійович",
+      "category": "Капітан",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 5264,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308055061",
+      "name": "Федоров Антон Олександрович",
+      "category": "Капітан",
+      "locationId": "blanjfryb",
+      "location": "413",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 5938,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308150346",
+      "name": "Муц Володимир Степанович",
+      "category": "Майор",
+      "locationId": "blanjfryb",
+      "location": "413",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778308193128",
+      "name": "Бондар Костянтин Володимирович",
+      "category": "Старший лейтенант",
+      "locationId": "blanjfryb",
+      "location": "413",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778308281160",
+      "name": "Кас'яненко Андрій Ростиславович",
+      "category": "Капітан",
+      "locationId": "e5s1we2pq",
+      "location": "429 обр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778308306428",
+      "name": "Кудін Микола Миколайович",
+      "category": "Старший лейтенант",
+      "locationId": "8t3hcrhdp",
+      "location": "1 ошп",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 190689,
+      "color": "#f59e0b",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308335986",
+      "name": "Патрус В'ячеслав Васильович",
+      "category": "Лейтенант",
+      "locationId": "l1v10q1co",
+      "location": "5 ошбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 195891,
+      "color": "#f59e0b",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308364718",
+      "name": "Бинюк Богдан Петрович",
+      "category": "Майор",
+      "locationId": "l1v10q1co",
+      "location": "5 ошбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778308398919",
+      "name": "Корх Богдан Вікторович",
+      "category": "Лейтенант",
+      "locationId": "l92t2ux4w",
+      "location": "61 омбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "in",
+      "totalTimeMinutes": 681,
+      "color": "#f59e0b",
+      "logs": [
+        {
+          "in": "2026-09-24T05:42:24.953Z"
+        }
+      ],
+      "isSpecial": false,
+      "lastEntry": "2026-09-24T05:42:24.953Z"
+    },
+    {
+      "id": "1778308449637",
+      "name": "Грищенко Олег Іванович",
+      "category": "Майор",
+      "locationId": "tnu1dgdlj",
+      "location": "118 омбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 193389,
+      "color": "#f59e0b",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308476026",
+      "name": "Фролов Тарас Леонідович",
+      "category": "Майор",
+      "locationId": "vc768ynge",
+      "location": "142 омбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 196664,
+      "color": "#f59e0b",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308506750",
+      "name": "Середюк Ігор Валерійович",
+      "category": "Підполковник",
+      "locationId": "dsuqpr6vs",
+      "location": "154 омбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 190688,
+      "color": "#f59e0b",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308564173",
+      "name": "Грищенко Артем Миколайович",
+      "category": "Солдат",
+      "locationId": "husrndpjj",
+      "location": "225 ошп",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 2691,
+      "color": "#f59e0b",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778308604282",
+      "name": "Перебийніс Андрій Станіславович",
+      "category": "Капітан",
+      "locationId": "husrndpjj",
+      "location": "225 ошп",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778309118089",
+      "name": "Розінкнвич Володимир Васильович",
+      "category": "Старший лейтенант",
+      "locationId": "husrndpjj",
+      "location": "225 ошп",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778309181900",
+      "name": "Щерба Євгеній Вікторович",
+      "category": "Молодший сержант",
+      "locationId": "husrndpjj",
+      "location": "225 ошп",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 782,
+      "color": "#f59e0b",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778309256120",
+      "name": "Кириченко Віктор Володимирович",
+      "category": "Старший лейтенант",
+      "locationId": "599zgmp9e",
+      "location": "260 обр ТРО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778309295028",
+      "name": "Синячова Валентина Юріївна",
+      "category": "Солдат",
+      "locationId": "599zgmp9e",
+      "location": "260 обр ТРО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778309320304",
+      "name": "Латій Руслан Юрійович",
+      "category": "Старший солдат",
+      "locationId": "599zgmp9e",
+      "location": "260 обр ТРО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "in",
+      "totalTimeMinutes": 4022,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:40:02.590Z",
+          "out": "2026-09-24T05:33:08.214Z"
+        },
+        {
+          "in": "2026-09-24T05:33:08.742Z"
+        }
+      ],
+      "lastEntry": "2026-09-24T05:33:08.742Z",
+      "isSpecial": false
+    },
+    {
+      "id": "1778309346104",
+      "name": "Мітін Дмитро Сергійович",
+      "category": "Молодший сержант",
+      "locationId": "599zgmp9e",
+      "location": "260 обр ТРО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 3296,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778309373698",
+      "name": "Журавльов Микита Вікторович",
+      "category": "Солдат",
+      "locationId": "599zgmp9e",
+      "location": "260 обр ТРО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 638,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778309404440",
+      "name": "Авраменко Олександр Миколайович",
+      "category": "Молодший сержант",
+      "locationId": "1790144271329",
+      "location": "122 ТРО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 1357,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:58:25.578Z",
+          "out": "2026-09-24T04:35:33.650Z"
+        }
+      ],
+      "isSpecial": false
+    },
+    {
+      "id": "1778309442700",
+      "name": "Мельник Руслан Мирославович",
+      "category": "Капітан",
+      "locationId": "599zgmp9e",
+      "location": "260 обр ТРО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 3184,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778309468451",
+      "name": "Березовський Денис Миколайович",
+      "category": "Старший лейтенант",
+      "locationId": "599zgmp9e",
+      "location": "260 обр ТРО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 780,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778309495960",
+      "name": "Вальчук Артем Олегович",
+      "category": "Капітан",
+      "locationId": "e5s1we2pq",
+      "location": "429 обр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 660,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778309537436",
+      "name": "Мальований Юрій Миколайович",
+      "category": "Старший лейтенант",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778309566400",
+      "name": "Поліщук Юрій Володимирович",
+      "category": "Молодший сержант",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778309682222",
+      "name": "Рухер Юрій Володимирович",
+      "category": "Полковник",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778309762142",
+      "name": "Яворський В'ячеслав Валерійович",
+      "category": "Підполковник",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778310245264",
+      "name": "Замлілий В'ячеслав Михайлович",
+      "category": "Підполковник",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778200266766",
+      "group": "Командування полку",
+      "status": "out",
+      "totalTimeMinutes": 1330,
+      "color": "#ef4444",
+      "callsign": "Німець",
+      "logs": [
+        {
+          "in": "2026-09-23T06:24:54.610Z",
+          "out": "2026-09-24T01:52:01.415Z"
+        },
+        {
+          "in": "2026-09-24T01:52:09.044Z",
+          "out": "2026-09-24T04:35:30.522Z"
+        }
+      ],
+      "isSpecial": true
+    },
+    {
+      "id": "1778310566964",
+      "name": "Сокуренко Станіслав Петрович",
+      "category": "Старший солдат",
+      "locationId": "Рота охорони",
+      "location": "Рота охорони",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "out",
+      "totalTimeMinutes": 192955,
+      "color": "#06b6d4",
+      "logs": []
+    },
+    {
+      "id": "1778310594697",
+      "name": "Малиновський Ярослав Віталійович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "out",
+      "totalTimeMinutes": 198131,
+      "color": "#06b6d4",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778310651265",
+      "name": "Кузнєцов Антон Юрійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "out",
+      "totalTimeMinutes": 192955,
+      "color": "#06b6d4",
+      "logs": [],
+      "callsign": "Тоні",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1778311296790",
+      "name": "Забєлін Микола Миколайович",
+      "category": "Підполковник",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311347101",
+      "name": "Соловей Сергій Володимирович",
+      "category": "Старший лейтенант",
+      "locationId": "fowft3ivp",
+      "location": "17 ак",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311374954",
+      "name": "Вержиковський Олексій",
+      "category": "Старший лейтенант",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311399447",
+      "name": "Лизогуб Максим Вікторович",
+      "category": "Капітан",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311423307",
+      "name": "Гориславець Артем Михайлович",
+      "category": "Майор",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311451804",
+      "name": "Шпакович Дмитро Сергійович",
+      "category": "Старший лейтенант",
+      "locationId": "blanjfryb",
+      "location": "413",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311476923",
+      "name": "Діденко Владислав Васильович",
+      "category": "Капітан",
+      "locationId": "blanjfryb",
+      "location": "413",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311503520",
+      "name": "Карась Євген Васильович",
+      "category": "Майор",
+      "locationId": "blanjfryb",
+      "location": "413",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311537101",
+      "name": "Хрустицький Віталій",
+      "category": "Капітан",
+      "locationId": "736wjwndd",
+      "location": "414",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311564524",
+      "name": "Нагребельний Андрій Володимирович",
+      "category": "Капітан",
+      "locationId": "736wjwndd",
+      "location": "414",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311606075",
+      "name": "Джулай Василь Васильович",
+      "category": "Молодший лейтенант",
+      "locationId": "736wjwndd",
+      "location": "414",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311657756",
+      "name": "Пжземирський Євген Олегович",
+      "category": "Капітан",
+      "locationId": "736wjwndd",
+      "location": "414",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311683883",
+      "name": "Шмагайло Антон Сергійович",
+      "category": "Капітан",
+      "locationId": "e5s1we2pq",
+      "location": "429 обр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311763464",
+      "name": "Кулик Роман Вікторович",
+      "category": "Майор",
+      "locationId": "2cfldqhrl",
+      "location": "К-2",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778311794825",
+      "name": "Воропай Євген Ігорович",
+      "category": "Старший лейтенант",
+      "locationId": "2cfldqhrl",
+      "location": "К-2",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312081229",
+      "name": "Катридж Дмитро Олександрович",
+      "category": "Майор",
+      "locationId": "i6izf1ie1",
+      "location": "Фенікс",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312106340",
+      "name": "Копер Андрій Вікторович",
+      "category": "Старший солдат",
+      "locationId": "i6izf1ie1",
+      "location": "Фенікс",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312136223",
+      "name": "Рудюк Сергій Сергійович",
+      "category": "Капітан",
+      "locationId": "yvvim7lp2",
+      "location": "144 ОЦ СПО",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312251692",
+      "name": "Матвієнко Андрій Сергійович",
+      "category": "Старший лейтенант",
+      "locationId": "2vlce1kai",
+      "location": "27 обр НГУ",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312290739",
+      "name": "Санфіров Сергій Олександрович",
+      "category": "Старший солдат",
+      "locationId": "2vlce1kai",
+      "location": "27 обр НГУ",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312381609",
+      "name": "Мельник Сергій Юрійович",
+      "category": "Старший лейтенант",
+      "locationId": "2wuh4anza",
+      "location": "69 осцеп",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312489191",
+      "name": "Михайлюк Тарас Вікторович",
+      "category": "Капітан",
+      "locationId": "n4bn9t5lf",
+      "location": "108 обр тро",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312545528",
+      "name": "Домарацький Максим Андрійович",
+      "category": "Старший лейтенант",
+      "locationId": "736wjwndd",
+      "location": "414",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312603103",
+      "name": "Стахов Святослав Ігорович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312651247",
+      "name": "Довгий Олександр Михайлович",
+      "category": "Майор",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312686705",
+      "name": "Саджинський Назарій Ярославович",
+      "category": "Старший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312743403",
+      "name": "Чупрін Данило Святославович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312767049",
+      "name": "Кондратенко Андрій Васильович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778312923065",
+      "name": "Абрамовський Роман Романович",
+      "category": "Старший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778200266766",
+      "group": "Командування полку",
+      "status": "out",
+      "totalTimeMinutes": 450,
+      "color": "#ef4444",
+      "logs": [
+        {
+          "in": "2026-09-23T05:09:10.763Z",
+          "out": "2026-09-23T05:22:14.862Z"
+        },
+        {
+          "in": "2026-09-23T22:46:48.142Z"
+        },
+        {
+          "in": "2026-09-23T22:46:48.142Z",
+          "out": "2026-09-23T22:47:24.578Z"
+        },
+        {
+          "in": "2026-09-23T22:52:32.247Z",
+          "out": "2026-09-24T04:35:29.175Z"
+        }
+      ],
+      "callsign": "Рим",
+      "isSpecial": true,
+      "customIconId": "icon-1790203906764"
+    },
+    {
+      "id": "1778312980604",
+      "name": "Лактіонов Павло Володимирович",
+      "category": "Підполковник",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778200266766",
+      "group": "Командування полку",
+      "status": "out",
+      "totalTimeMinutes": 176,
+      "color": "#ef4444",
+      "logs": []
+    },
+    {
+      "id": "1778313041679",
+      "name": "Скалун Сергій Олександрович",
+      "category": "Підполковник",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778692631236",
+      "group": "Управління",
+      "status": "out",
+      "totalTimeMinutes": 1083,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T06:25:00.694Z"
+        },
+        {
+          "in": "2026-09-23T06:25:00.694Z",
+          "out": "2026-09-23T21:53:53.963Z"
+        },
+        {
+          "in": "2026-09-24T02:01:48.554Z",
+          "out": "2026-09-24T04:37:44.669Z"
+        }
+      ],
+      "callsign": "Скалун",
+      "isSpecial": false
+    },
+    {
+      "id": "1778313109162",
+      "name": "Козаченко Дмитро Володимирович",
+      "category": "Майор",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778692631236",
+      "group": "Управління",
+      "status": "in",
+      "totalTimeMinutes": 4929,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T04:54:08.888Z",
+          "out": "2026-09-23T05:22:17.015Z"
+        },
+        {
+          "in": "2026-09-23T05:54:39.099Z"
+        },
+        {
+          "in": "2026-09-23T05:54:39.099Z",
+          "out": "2026-09-23T21:54:03.061Z"
+        },
+        {
+          "in": "2026-09-24T01:56:36.728Z"
+        }
+      ],
+      "callsign": "Эфиоп",
+      "isSpecial": false,
+      "lastEntry": "2026-09-24T01:56:36.728Z"
+    },
+    {
+      "id": "1778314051044",
+      "name": "Харченко Максим Михайлович",
+      "category": "Майор",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314117554",
+      "name": "Явтушенко Максим Михайлович",
+      "category": "Молодший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 1777,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:26:14.121Z",
+          "out": "2026-09-24T04:37:41.978Z"
+        }
+      ],
+      "callsign": "Дача"
+    },
+    {
+      "id": "1778314155353",
+      "name": "Липа Павло Михайлович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314187302",
+      "name": "Лихачов Сергій Володимирович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314214757",
+      "name": "Марєнкова Олена Євгенівна",
+      "category": "Старший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 759,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314267215",
+      "name": "Мартинов Антон Петрович",
+      "category": "Молодший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 9,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314293672",
+      "name": "Масич Олександр Михайлович",
+      "category": "Лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "lastEntry": "2026-09-23T05:55:14.522Z",
+      "logs": [
+        {
+          "in": "2026-09-23T05:55:14.522Z"
+        }
+      ]
+    },
+    {
+      "id": "1778314323215",
+      "name": "Матвієнко Сергій Андрійович",
+      "category": "Старший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314348683",
+      "name": "Муравська Олена Юріївна",
+      "category": "Молодший сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 760,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314371306",
+      "name": "Назарчук Роман Олегович",
+      "category": "Молодший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 704,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314405965",
+      "name": "Нікопоренко Тетяна Анатоліївна",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 1344,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T06:11:46.656Z",
+          "out": "2026-09-24T04:36:22.139Z"
+        },
+        {
+          "in": "2026-09-24T04:36:22.512Z",
+          "out": "2026-09-24T04:36:23.127Z"
+        }
+      ]
+    },
+    {
+      "id": "1778314430293",
+      "name": "Новак Роман Ігорович",
+      "category": "Майор",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 2004,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:28:52.248Z",
+          "out": "2026-09-24T04:36:23.705Z"
+        },
+        {
+          "in": "2026-09-24T05:33:20.561Z"
+        }
+      ],
+      "lastEntry": "2026-09-24T05:33:20.561Z"
+    },
+    {
+      "id": "1778314462954",
+      "name": "Петренко Андрій Васильович",
+      "category": "Старший сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 132,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314483145",
+      "name": "Петренко Павло Павлович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314507973",
+      "name": "Піх Євген Володимирович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "lastEntry": "2026-09-23T06:13:25.255Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:13:25.255Z"
+        }
+      ]
+    },
+    {
+      "id": "1778314535397",
+      "name": "Піщулін Антон Сергійович",
+      "category": "Старший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314560317",
+      "name": "Повєрін Антон Олександрович",
+      "category": "Молодший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 612,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T06:13:44.069Z"
+        }
+      ],
+      "lastEntry": "2026-09-23T06:13:44.069Z"
+    },
+    {
+      "id": "1778314598757",
+      "name": "Політаєв Олександр Валентинович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314623050",
+      "name": "Попов Артем Олегович",
+      "category": "Старший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 133,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314645712",
+      "name": "Пугасов Сергій Вікторович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778314751239",
+      "name": "Радченко Сергій Вікторович",
+      "category": "Майор",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 191478,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314777743",
+      "name": "Решетняк Сергій Михайлович",
+      "category": "Молодший сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 7,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314804466",
+      "name": "Ростецький Сергій Володимирович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 191481,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778314831777",
+      "name": "Рутковський Олександр Сергійович",
+      "category": "Молодший сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314856158",
+      "name": "Рябичев Олег Олегович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 191230,
+      "color": "",
+      "lastEntry": "2026-09-23T06:03:03.010Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:03:03.010Z"
+        }
+      ]
+    },
+    {
+      "id": "1778314890752",
+      "name": "Свистов Владислав Володимирович",
+      "category": "Молодший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 2019,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:26:20.631Z",
+          "out": "2026-09-24T04:36:35.593Z"
+        },
+        {
+          "in": "2026-09-24T05:39:36.537Z"
+        }
+      ],
+      "lastEntry": "2026-09-24T05:39:36.537Z"
+    },
+    {
+      "id": "1778314916565",
+      "name": "Серняк Олександр Олександрович",
+      "category": "Капітан",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314950431",
+      "name": "Симчич Іван Мирославович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778314985583",
+      "name": "Сокульський Андрій Володимирович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 192161,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:55:09.581Z",
+          "out": "2026-09-24T04:37:06.918Z"
+        }
+      ]
+    },
+    {
+      "id": "1778315011973",
+      "name": "Сологуб Дмитро Вікторович ",
+      "category": "Сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "lastEntry": "2026-09-24T04:44:32.114Z",
+      "logs": [
+        {
+          "in": "2026-09-24T04:44:32.114Z"
+        }
+      ]
+    },
+    {
+      "id": "1778315068044",
+      "name": "Стоцький Михайло Анатолійович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 671,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:26:07.519Z"
+        }
+      ],
+      "lastEntry": "2026-09-23T05:26:07.519Z"
+    },
+    {
+      "id": "1778315101154",
+      "name": "Стрюченко Віталій Олександрович",
+      "category": "Молодший сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778315126421",
+      "name": "Тарасюк Тарас Федорович",
+      "category": "Сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "lastEntry": "2026-09-23T06:14:33.988Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:14:33.988Z"
+        }
+      ]
+    },
+    {
+      "id": "1778315188208",
+      "name": "Ткачук Максим Геннадійович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778315255380",
+      "name": "Федосєєв Дмитро Миколайович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778315284410",
+      "name": "Фесак Іван Васильович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778315336302",
+      "name": "Філіппов Олександр Андрійович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778315359027",
+      "name": "Фурман Дмитро Анатолійович",
+      "category": "Капітан",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778317883932",
+      "name": "Авраменко Олексій Миколайович",
+      "category": "Сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 1360,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:55:01.177Z",
+          "out": "2026-09-24T04:35:34.788Z"
+        }
+      ],
+      "isSpecial": false,
+      "customIconId": "icon-1790177507059"
+    },
+    {
+      "id": "1778317919883",
+      "name": "Безвербний Сергій Миколайович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 5281,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778317957742",
+      "name": "Бицань Євгеній Олексійович",
+      "category": "Капітан",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 459,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-24T01:54:49.741Z"
+        }
+      ],
+      "callsign": "Сон",
+      "lastEntry": "2026-09-24T01:54:49.741Z"
+    },
+    {
+      "id": "1778318011621",
+      "name": "Бобер Олександр Юрійович",
+      "category": "Майор",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 609,
+      "color": "",
+      "logs": [],
+      "callsign": "Бобер"
+    },
+    {
+      "id": "1778318058596",
+      "name": "Бойко Данило Ігорович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778318091722",
+      "name": "Бойко Володимир Андрійович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 624,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778318134053",
+      "name": "Борщук Олександр Віталійович",
+      "category": "Лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 771,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778318171745",
+      "name": "Вавриш Владислав Романович",
+      "category": "Старший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 32,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T04:48:07.090Z",
+          "out": "2026-09-23T04:48:07.783Z"
+        },
+        {
+          "in": "2026-09-23T04:48:26.650Z",
+          "out": "2026-09-23T04:48:44.114Z"
+        },
+        {
+          "in": "2026-09-23T04:48:44.838Z",
+          "out": "2026-09-23T05:03:33.687Z"
+        },
+        {
+          "in": "2026-09-23T05:03:59.233Z",
+          "out": "2026-09-23T05:22:16.272Z"
+        }
+      ],
+      "isSpecial": false
+    },
+    {
+      "id": "1778318219198",
+      "name": "Василюк Олексій Валерійович",
+      "category": "Молодший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 5252,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778318240246",
+      "name": "Войтенко Богдан Миколайович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778318271404",
+      "name": "Гнидюк Ярослав Анатолійович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T06:08:33.779Z"
+        }
+      ],
+      "lastEntry": "2026-09-23T06:08:33.779Z"
+    },
+    {
+      "id": "1778318315280",
+      "name": "Грицак Віктор Андрійович",
+      "category": "Старший сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778318343180",
+      "name": "Гуназа Олександр Сергійович",
+      "category": "Сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778318371643",
+      "name": "Дахно Ігор Сергійович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778318402398",
+      "name": "Дитиненко Роман Віталійович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778318431608",
+      "name": "Дутчак Юрій Анатолійович",
+      "category": "Молодший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778318460096",
+      "name": "Заліський Богдан Олександрович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 618,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778318489761",
+      "name": "Золотько Олександр Олександрович",
+      "category": "Старший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 758,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778318537468",
+      "name": "Зражевський Дмитро Володимирович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778327158739",
+      "name": "Каландирець Артем Ігорович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 2591,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778327192302",
+      "name": "Каленіченко Ілля Васильович",
+      "category": "Майор",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 631,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:54:49.472Z"
+        }
+      ],
+      "lastEntry": "2026-09-23T05:54:49.472Z"
+    },
+    {
+      "id": "1778327228237",
+      "name": "Кляцкін Костянтин Олександрович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778327261267",
+      "name": "Кніренко Антон Геннадійович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778327290631",
+      "name": "Ковалець Ярослав Валентинович",
+      "category": "Капітан",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "callsign": "Соловей",
+      "isSpecial": false
+    },
+    {
+      "id": "1778327327990",
+      "name": "Корніленко Віталій Володимирович",
+      "category": "Старший солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778327362741",
+      "name": "Косинський Артем Анатолійович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778327398196",
+      "name": "Купрієнко Андрій Олегович",
+      "category": "Старший сержант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 680,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778327421941",
+      "name": "Кучер Роман Володимирович",
+      "category": "Молодший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778327481009",
+      "name": "Кушнір Віталій Володимирович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778327554545",
+      "name": "Лепеха Віктор Володимирович",
+      "category": "Капітан",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 628,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778327689513",
+      "name": "Ушаков Артем Сергійович",
+      "category": "Молодший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778327727107",
+      "name": "Ісаєв Герман Володимирович",
+      "category": "Лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778200266766",
+      "group": "Командування полку",
+      "status": "out",
+      "totalTimeMinutes": 1373,
+      "color": "",
+      "logs": [
+        {
+          "in": "2026-09-23T05:42:01.024Z",
+          "out": "2026-09-24T04:35:31.212Z"
+        }
+      ],
+      "callsign": "Фармацевт",
+      "isSpecial": true
+    },
+    {
+      "id": "1778327793355",
+      "name": "Ісламов Вріндаван Алікович",
+      "category": "Майор",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778327821077",
+      "name": "Сєнцов Олег Геннадійович",
+      "category": "Капітан",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1778327852938",
+      "name": "Ставнічук Віталій Володимирович",
+      "category": "Молодший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778327876553",
+      "name": "Вальчук Артем Олексійович",
+      "category": "Капітан",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 188176,
+      "color": "",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778647688015",
+      "name": "Тєрєхов Олександр",
+      "callsign": "Мольфар",
+      "category": "Солдат",
+      "locationId": "Рота охорони",
+      "location": "Рота охорони",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "out",
+      "totalTimeMinutes": 27,
+      "color": "#06b6d4",
+      "logs": []
+    },
+    {
+      "id": "1778647769862",
+      "name": "Решетняк Олександр Володимирович",
+      "category": "Головний сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "out",
+      "totalTimeMinutes": 29,
+      "color": "#06b6d4",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778651411627",
+      "name": "Павлючков Єгор Олександрович",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 191491,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778653014662",
+      "name": "Бравко Поліна Сергійовна",
+      "category": "Солдат",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 602,
+      "color": "",
+      "logs": []
+    },
+    {
+      "id": "1778667265470",
+      "name": "Чорний Олексій Юрійович",
+      "callsign": "Чорний",
+      "category": "Підполковник",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778200266766",
+      "group": "Командування полку",
+      "status": "out",
+      "totalTimeMinutes": 238,
+      "color": "#ef4444",
+      "logs": [
+        {
+          "in": "2026-09-24T01:57:47.338Z",
+          "out": "2026-09-24T04:36:42.803Z"
+        }
+      ]
+    },
+    {
+      "id": "1778680244871",
+      "name": "Савенко Ігор Геннадійович",
+      "category": "Капітан",
+      "locationId": "l1v10q1co",
+      "location": "5 ошбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 190711,
+      "color": "#f59e0b",
+      "logs": [],
+      "isSpecial": false
+    },
+    {
+      "id": "1778693154663",
+      "name": "Лушпа Ярослав Юрійович",
+      "category": "Старший лейтенант",
+      "locationId": "01i990z16",
+      "location": "ДССЗЗІ",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778693256532",
+      "name": "Колянчук Дмитро Анатолійович",
+      "category": "Капітан",
+      "locationId": "01i990z16",
+      "location": "ДССЗЗІ",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778693287737",
+      "name": "Фомін Сергій Викторович",
+      "category": "Старший лейтенант",
+      "locationId": "01i990z16",
+      "location": "ДССЗЗІ",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1778693375113",
+      "name": "Жуков Сергій Леонідович",
+      "category": "Старший лейтенант",
+      "locationId": "412",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": ""
+    },
+    {
+      "id": "1790141070215",
+      "name": "Трубєцкой Андрій Сергійович",
+      "category": "Майор",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-24T05:30:28.182Z",
+      "logs": [
+        {
+          "in": "2026-09-24T05:30:28.182Z"
+        }
+      ],
+      "callsign": "Денс"
+    },
+    {
+      "id": "1790141250403",
+      "name": "Щербатюк Олег Миколайович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "out",
+      "totalTimeMinutes": 1385,
+      "color": "#3b82f6",
+      "isSpecial": false,
+      "logs": [
+        {
+          "in": "2026-09-23T05:31:06.959Z",
+          "out": "2026-09-24T04:36:47.140Z"
+        }
+      ],
+      "callsign": "Колобок",
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790141301448",
+      "name": "Андрєєв Ярослав Олександрович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "out",
+      "totalTimeMinutes": 1384,
+      "color": "#3b82f6",
+      "isSpecial": false,
+      "logs": [
+        {
+          "in": "2026-09-23T05:31:01.200Z",
+          "out": "2026-09-24T04:35:37.295Z"
+        }
+      ],
+      "customIconId": "icon-1790217361687",
+      "callsign": "Кот"
+    },
+    {
+      "id": "1790141608855",
+      "name": "Дзюбик Ігор Богданович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T05:34:05.882Z",
+      "logs": [
+        {
+          "in": "2026-09-23T05:34:05.882Z"
+        }
+      ]
+    },
+    {
+      "id": "1790141632339",
+      "name": "Аленбергер Максим Віталійович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 1222,
+      "color": "",
+      "isSpecial": false,
+      "logs": [
+        {
+          "in": "2026-09-23T05:34:00.917Z",
+          "out": "2026-09-24T01:56:19.724Z"
+        },
+        {
+          "in": "2026-09-24T05:40:20.339Z",
+          "out": "2026-09-24T05:40:21.448Z"
+        }
+      ]
+    },
+    {
+      "id": "1790141739110",
+      "name": "Блащук Максим Олександрович",
+      "category": "Солдат",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1790142160696",
+      "name": "Макухін Роман Олександрович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 1374,
+      "color": "",
+      "isSpecial": false,
+      "logs": [
+        {
+          "in": "2026-09-23T05:42:48.152Z",
+          "out": "2026-09-24T04:37:09.123Z"
+        }
+      ]
+    },
+    {
+      "id": "1790142957824",
+      "name": "Бровко Поліна Сергійовна",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T05:56:06.314Z",
+      "logs": [
+        {
+          "in": "2026-09-23T05:56:06.314Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143035172",
+      "name": "Максименко Євгеній Олегович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 1374,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-24T04:51:28.887Z",
+      "logs": [
+        {
+          "in": "2026-09-23T05:57:25.258Z",
+          "out": "2026-09-24T04:51:27.622Z"
+        },
+        {
+          "in": "2026-09-24T04:51:28.887Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143146636",
+      "name": "Носаль Володимир Анатолійович",
+      "category": "Майор",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T05:59:55.458Z",
+      "logs": [
+        {
+          "in": "2026-09-23T05:59:55.458Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143182945",
+      "name": "Салоєдов Дмитро Вадимович",
+      "category": "Капітан",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "in",
+      "totalTimeMinutes": 1380,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-24T05:00:26.463Z",
+      "logs": [
+        {
+          "in": "2026-09-23T05:59:51.265Z",
+          "out": "2026-09-24T05:00:25.790Z"
+        },
+        {
+          "in": "2026-09-24T05:00:26.463Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143248462",
+      "name": "Кузнєцов Андрій Констянтинович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 1356,
+      "color": "",
+      "isSpecial": false,
+      "logs": [
+        {
+          "in": "2026-09-23T06:00:55.768Z",
+          "out": "2026-09-24T04:37:04.316Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143309741",
+      "name": "Щукін Євген Борисович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T06:15:03.305Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:15:03.305Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143530725",
+      "name": "Земрох Дмитро Ігоревич",
+      "category": "Солдат",
+      "locationId": "tnu1dgdlj",
+      "location": "118 омбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T06:06:56.165Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:06:56.165Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143601420",
+      "name": "Кожушина Людмила Ігорівна",
+      "category": "Старший солдат",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T06:06:50.685Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:06:50.685Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143693823",
+      "name": "Волоський Гліб Артемович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T06:08:39.791Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:08:39.791Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143766820",
+      "name": "Законь Артур Артурович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T06:09:35.108Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:09:35.108Z"
+        }
+      ]
+    },
+    {
+      "id": "1790143989636",
+      "name": "Піндюрін Дмитро Сергійович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T06:13:29.757Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:13:29.757Z"
+        }
+      ]
+    },
+    {
+      "id": "1790144059923",
+      "name": "Шаріков Сергій Юрійович",
+      "category": "Лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-23T06:14:24.871Z",
+      "logs": [
+        {
+          "in": "2026-09-23T06:14:24.871Z"
+        }
+      ]
+    },
+    {
+      "id": "1790217656349",
+      "name": "Гонтарюк Володимир Володимирович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687",
+      "lastEntry": "2026-09-24T02:42:06.257Z",
+      "logs": [
+        {
+          "in": "2026-09-24T02:42:06.257Z"
+        }
+      ],
+      "callsign": "Тюлєнь"
+    },
+    {
+      "id": "1790217677816",
+      "name": "Остапенко Дмитро Ігорович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687",
+      "lastEntry": "2026-09-24T02:42:23.889Z",
+      "logs": [
+        {
+          "in": "2026-09-24T02:42:23.889Z"
+        }
+      ],
+      "callsign": "Агроном"
+    },
+    {
+      "id": "1790217707607",
+      "name": "Ксьонзик Олександр Сергійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687",
+      "lastEntry": "2026-09-24T02:41:57.963Z",
+      "logs": [
+        {
+          "in": "2026-09-24T02:41:57.963Z"
+        }
+      ],
+      "callsign": "Ксьонз"
+    },
+    {
+      "id": "1790225959459",
+      "name": "Іманов Джавіт Худаш-агли",
+      "category": "Старший сержант",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217391690",
+      "lastEntry": "2026-09-24T04:59:36.338Z",
+      "logs": [
+        {
+          "in": "2026-09-24T04:59:36.338Z"
+        }
+      ]
+    },
+    {
+      "id": "1790226228537",
+      "name": "Бурлака Ілля Юрійович",
+      "category": "Солдат",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790218291845"
+    },
+    {
+      "id": "1790226320056",
+      "name": "Грибук Володимир Юрійович",
+      "category": "Молодший сержант",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790218291845"
+    },
+    {
+      "id": "1790226445913",
+      "name": "Іщенко Роман Ігорович",
+      "category": "Солдат",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217391690"
+    },
+    {
+      "id": "1790226498067",
+      "name": "Коваленко Сергій Олексійович",
+      "category": "Старший лейтенант",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217391690"
+    },
+    {
+      "id": "1790226560726",
+      "name": "Кожушина Максим Богданович",
+      "category": "Лейтенант",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217391690"
+    },
+    {
+      "id": "1790226673467",
+      "name": "Колосова Дар'я Вікторівна",
+      "category": "Молодший лейтенант",
+      "locationId": "blanjfryb",
+      "location": "413",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790222986344"
+    },
+    {
+      "id": "1790226805700",
+      "name": "Леоненко Віталій Володимирович",
+      "category": "Капітан",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217391690"
+    },
+    {
+      "id": "1790226968380",
+      "name": "Люта Дар'я Леонідівна",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false
+    },
+    {
+      "id": "1790227167944",
+      "name": "Мілевський-Чіквашвілі Микита Зурабович",
+      "category": "Молодший сержант",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790218291845"
+    },
+    {
+      "id": "1790227261367",
+      "name": "Потапов Михайло Альбертович",
+      "category": "Солдат",
+      "locationId": "e5s1we2pq",
+      "location": "429 обр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790218409851"
+    },
+    {
+      "id": "1790227317193",
+      "name": "Семко В'ячеслав Русланович",
+      "category": "Сержант",
+      "locationId": "e5s1we2pq",
+      "location": "429 обр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790218409851"
+    },
+    {
+      "id": "1790227378900",
+      "name": "Томляк Кирило Олександрович",
+      "category": "Старший сержант",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790218291845"
+    },
+    {
+      "id": "1790227450272",
+      "name": "Храмов Євген Анатолійович (ПОВІДОМЛЯТИ ОЧ)",
+      "category": "Молодший сержант",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217391690"
+    },
+    {
+      "id": "1790227482653",
+      "name": "Чапалика Дмитро Володимирович",
+      "category": "Підполковник",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217391690"
+    },
+    {
+      "id": "1790227526919",
+      "name": "Чеберко Андрій Максимович",
+      "category": "Солдат",
+      "locationId": "gflh8emas",
+      "location": "411",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790218291845"
+    },
+    {
+      "id": "1790227580824",
+      "name": "Шаповалов Руслан Володимирович",
+      "category": "Старший сержант",
+      "locationId": "1790227616809",
+      "location": "92",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "lastEntry": "2026-09-24T05:28:44.599Z",
+      "logs": [
+        {
+          "in": "2026-09-24T05:28:44.599Z"
+        }
+      ]
+    },
+    {
+      "id": "1790227960324",
+      "name": "Щербина Максим Олександрович",
+      "category": "Молодший сержант",
+      "locationId": "vc768ynge",
+      "location": "142 омбр",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790223086415"
+    },
+    {
+      "id": "1790228148871",
+      "name": "Яскевич Валерій Вадимович (ПОВІДОМЛЯТИ ОЧ)",
+      "category": "Майор",
+      "locationId": "1790141688134",
+      "location": "7 КШР",
+      "groupId": "1790141768895",
+      "group": "Суміжники",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217391690"
+    },
+    {
+      "id": "1790228202852",
+      "name": "Богун Андрій Олександрович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687",
+      "lastEntry": "2026-09-24T05:36:59.967Z",
+      "logs": [
+        {
+          "in": "2026-09-24T05:36:59.967Z"
+        }
+      ]
+    },
+    {
+      "id": "1790228352154",
+      "name": "Самійленко Владислав Олегович",
+      "category": "Капітан",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "in",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687",
+      "lastEntry": "2026-09-24T05:39:24.861Z",
+      "logs": [
+        {
+          "in": "2026-09-24T05:39:24.861Z"
+        }
+      ]
+    },
+    {
+      "id": "1790285846843",
+      "name": "Абалмасов Данило Сергійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790285910359",
+      "name": "Богомаз Нікіта Дмитрович",
+      "category": "Старший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790285964561",
+      "name": "Вороненко Андрій Петрович",
+      "category": "Лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286007774",
+      "name": "Горбинко Іван Сергійович",
+      "category": "Молодший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286074740",
+      "name": "Гриців Дмитрій Ярославович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286132549",
+      "name": "Гутнік Олена Анатоліївна",
+      "category": "Сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286168731",
+      "name": "Давиденко Євгеній Вікторович",
+      "category": "Підполковник",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286205301",
+      "name": "Дегтяренко Юрій Сергійович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286257601",
+      "name": "Дзюбинський Ігор Анатолійович",
+      "category": "Молодший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286336715",
+      "name": "Долгун Сергій Олександрович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286373423",
+      "name": "Дяченко Андрій Миколайович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286410180",
+      "name": "Завгородній Ігор Олександрович",
+      "category": "Майор",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286441341",
+      "name": "Зайченко Євгеній Миколайович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286474142",
+      "name": "Зайчук Андрій Михайлович",
+      "category": "Майор",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286539293",
+      "name": "Калашніков Борис Олександрович",
+      "category": "Старший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286584753",
+      "name": "Кізімов Олексій Олександрович",
+      "category": "Капітан",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286636116",
+      "name": "Ковальський Олександр Євгенович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286730098",
+      "name": "Колесников Максим Миколайович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286762244",
+      "name": "Корнієнко Тарас Олегович",
+      "category": "Сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286786491",
+      "name": "Крилов Артем Олегович",
+      "category": "Старший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286835624",
+      "name": "Кушнір Максим Миколайович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286897240",
+      "name": "Ластовець Михайло Григорович",
+      "category": "Старший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286943785",
+      "name": "Левандовський Владислав Станіславович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790286974486",
+      "name": "Лисенко Анатолій Олексійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287007032",
+      "name": "Лобойко Всеволод Сергійович",
+      "category": "Молодший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287034665",
+      "name": "Магалецький Олег Володимирович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287114527",
+      "name": "Матвійчук Олексій Васильович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287158896",
+      "name": "Матковський Констянтин Володимирович",
+      "category": "Старший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287193019",
+      "name": "Мельниченко Еміль Віталійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287219718",
+      "name": "Мельничук Ігор Володимирович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287254170",
+      "name": "Меркулов Олександр Анатолійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287312544",
+      "name": "Мироненко Костянтин Сергійович",
+      "category": "Майор",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287352313",
+      "name": "Михайлін Олександр Євгенійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287379614",
+      "name": "Молодовський Руслан Анатолійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287426243",
+      "name": "Овчар Вадим Олександрович",
+      "category": "Лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287460927",
+      "name": "Олексенко Тарас Олексійович",
+      "category": "Сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287485183",
+      "name": "Пекарський Назар Миколайович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287510823",
+      "name": "Пивовар Дмитро Сергійович",
+      "category": "Молодший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287541463",
+      "name": "Піхтерьов Олександр Сергійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287591292",
+      "name": "Полянська Інна Юріївна",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287633313",
+      "name": "Рементов Віктор Романович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287694553",
+      "name": "Савич Максим Павлович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "g-migrated-security",
+      "group": "Рота охорони",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287728841",
+      "name": "Семенов Валентин Сергійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287764347",
+      "name": "Скачко Ілля Володимирович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287793828",
+      "name": "Славинський Денис Віталійович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287855453",
+      "name": "Солодушко Дмитро Петрович",
+      "category": "Старший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287902045",
+      "name": "Тарасов Кирило Сергійович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790287959319",
+      "name": "Тиндюк Олександр Сергійович",
+      "category": "Старший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790288032383",
+      "name": "Тунєгов Сергій Євгенійович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790288065773",
+      "name": "Федорів Павло Ярославович",
+      "category": "Лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790289769672",
+      "name": "Чайковська Катерина Олександрівна",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790289803420",
+      "name": "Чередник Артем Володимирович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790289830982",
+      "name": "Швед Ерік Андрійович",
+      "category": "Старший солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790290175726",
+      "name": "Штефан Юрій Михайлович",
+      "category": "Солдат",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790290217602",
+      "name": "Шульженко Антон В'ячеславович",
+      "category": "Молодший сержант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790290265204",
+      "name": "Ярмак Олександр Валентинович",
+      "category": "Старший лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    },
+    {
+      "id": "1790290295051",
+      "name": "Яснюк Ігор Миколайович",
+      "category": "Лейтенант",
+      "locationId": "mfotnzf4o",
+      "location": "412",
+      "groupId": "1778197973549",
+      "group": "Постійні 412",
+      "status": "out",
+      "totalTimeMinutes": 0,
+      "color": "",
+      "isSpecial": false,
+      "customIconId": "icon-1790217361687"
+    }
+  ],
+  "guards": [
+    {
+      "id": "1778195091017",
+      "name": "Доманський Микола"
+    }
+  ],
   "shifts": [
     {
       "id": "1778195105281",
@@ -384,18 +4258,39 @@
       "id": "17902035282070-0.7596388380154478",
       "guardId": "1778310651265",
       "startTime": "2026-09-23T22:45:28.207Z",
-      "restPeriods": []
+      "restPeriods": [],
+      "endTime": "2026-09-24T04:29:45.372Z"
     },
     {
       "id": "17902035282071-0.7325731141742156",
       "guardId": "1790141250403",
       "startTime": "2026-09-23T22:45:28.207Z",
-      "restPeriods": []
+      "restPeriods": [],
+      "endTime": "2026-09-24T04:29:45.372Z"
     },
     {
       "id": "17902035282072-0.5316202799908216",
       "guardId": "1790141301448",
       "startTime": "2026-09-23T22:45:28.207Z",
+      "restPeriods": [],
+      "endTime": "2026-09-24T04:29:45.372Z"
+    },
+    {
+      "id": "17902241891820-0.8044446631686962",
+      "guardId": "1790217656349",
+      "startTime": "2026-09-24T04:29:49.182Z",
+      "restPeriods": []
+    },
+    {
+      "id": "17902241891821-0.19845357006375797",
+      "guardId": "1790217677816",
+      "startTime": "2026-09-24T04:29:49.182Z",
+      "restPeriods": []
+    },
+    {
+      "id": "17902241891822-0.45797299516667234",
+      "guardId": "1790217707607",
+      "startTime": "2026-09-24T04:29:49.182Z",
       "restPeriods": []
     }
   ],
@@ -408,17 +4303,17 @@
         "1790141250403",
         "1790141301448"
       ],
-      "status": "active"
+      "status": "inactive"
     },
     {
       "id": "1790142399510",
       "name": "Зміна 2",
       "visitorIds": [
-        "1792564563564",
-        "1792564581767",
-        "1792564600686"
+        "1790217656349",
+        "1790217677816",
+        "1790217707607"
       ],
-      "status": "inactive"
+      "status": "active"
     }
   ],
   "categories": [
@@ -434,8 +4329,7 @@
     "Молодший лейтенант",
     "Старший лейтенант",
     "Зам Нач Корпусу",
-    "Старший сержант",
-    "Головний сержант"
+    "Старший сержант"
   ],
   "groups": [
     {
@@ -479,7 +4373,132 @@
       "showInVisitors": true
     }
   ],
-  "locations": [],
+  "locations": [
+    {
+      "id": "mfotnzf4o",
+      "name": "412",
+      "iconId": "icon-1790217361687"
+    },
+    {
+      "id": "blanjfryb",
+      "name": "413",
+      "iconId": "icon-1790222986344"
+    },
+    {
+      "id": "utzfnnmlh",
+      "name": "110 Омбр",
+      "iconId": "icon-1790217402953"
+    },
+    {
+      "id": "husrndpjj",
+      "name": "225 ошп",
+      "iconId": "icon-1790223032690"
+    },
+    {
+      "id": "tnu1dgdlj",
+      "name": "118 омбр",
+      "iconId": "icon-1790218121802"
+    },
+    {
+      "id": "l1v10q1co",
+      "name": "5 ошбр",
+      "iconId": "icon-1790218787146"
+    },
+    {
+      "id": "fowft3ivp",
+      "name": "17 ак",
+      "iconId": "icon-1790218082714"
+    },
+    {
+      "id": "2cfldqhrl",
+      "name": "К-2",
+      "iconId": "icon-1790217378217"
+    },
+    {
+      "id": "8t3hcrhdp",
+      "name": "1 ошп",
+      "iconId": "icon-1790218156179"
+    },
+    {
+      "id": "vc768ynge",
+      "name": "142 омбр",
+      "iconId": "icon-1790223086415"
+    },
+    {
+      "id": "dsuqpr6vs",
+      "name": "154 омбр",
+      "iconId": "icon-1790218506717"
+    },
+    {
+      "id": "l92t2ux4w",
+      "name": "61 омбр",
+      "iconId": "icon-1790218415487"
+    },
+    {
+      "id": "gflh8emas",
+      "name": "411",
+      "iconId": "icon-1790218291845"
+    },
+    {
+      "id": "2vlce1kai",
+      "name": "27 обр НГУ",
+      "iconId": "icon-1790218766650"
+    },
+    {
+      "id": "599zgmp9e",
+      "name": "260 обр ТРО",
+      "iconId": "icon-1790217402953"
+    },
+    {
+      "id": "e5s1we2pq",
+      "name": "429 обр",
+      "iconId": "icon-1790218409851"
+    },
+    {
+      "id": "736wjwndd",
+      "name": "414",
+      "iconId": "icon-1790218190343"
+    },
+    {
+      "id": "i6izf1ie1",
+      "name": "Фенікс",
+      "iconId": "icon-1790218437280"
+    },
+    {
+      "id": "yvvim7lp2",
+      "name": "144 ОЦ СПО",
+      "iconId": "icon-1790218616297"
+    },
+    {
+      "id": "2wuh4anza",
+      "name": "69 осцеп",
+      "iconId": "icon-1790218719583"
+    },
+    {
+      "id": "n4bn9t5lf",
+      "name": "108 обр тро",
+      "iconId": "icon-1790218565450"
+    },
+    {
+      "id": "01i990z16",
+      "name": "ДССЗЗІ",
+      "iconId": "icon-1790218674166"
+    },
+    {
+      "id": "1790141688134",
+      "name": "7 КШР",
+      "iconId": "icon-1790217391690"
+    },
+    {
+      "id": "1790144271329",
+      "name": "122 ТРО",
+      "iconId": "icon-1790218019109"
+    },
+    {
+      "id": "1790227616809",
+      "name": "92"
+    }
+  ],
   "dirtySkyEvents": [
     {
       "id": "1790138645156",
@@ -804,5 +4823,1694 @@
       "status": "pending"
     }
   ],
-  "lastUpdated": "2026-10-21T14:11:21.745Z"
+  "auditLogs": [
+    {
+      "id": "log-1793082185086-36c0r",
+      "timestamp": "2026-10-27T06:23:05.086Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-23-04-956Z.enc.json, Розмір: 3612.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082182604-2cov8",
+      "timestamp": "2026-10-27T06:23:02.604Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-23-02-476Z.enc.json, Розмір: 3612.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082180137-63sve",
+      "timestamp": "2026-10-27T06:23:00.137Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-59-998Z.enc.json, Розмір: 3611.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082177725-0rkij",
+      "timestamp": "2026-10-27T06:22:57.725Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-57-599Z.enc.json, Розмір: 3611.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082175223-q936h",
+      "timestamp": "2026-10-27T06:22:55.223Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-55-085Z.enc.json, Розмір: 3610.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082172696-lbcgu",
+      "timestamp": "2026-10-27T06:22:52.696Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-52-485Z.enc.json, Розмір: 3610.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082169974-7cctm",
+      "timestamp": "2026-10-27T06:22:49.974Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-49-847Z.enc.json, Розмір: 3609.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082167473-n1kl8",
+      "timestamp": "2026-10-27T06:22:47.473Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-47-284Z.enc.json, Розмір: 3609.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082164681-imb94",
+      "timestamp": "2026-10-27T06:22:44.681Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-44-491Z.enc.json, Розмір: 3608.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082162073-7wkkl",
+      "timestamp": "2026-10-27T06:22:42.073Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-41-831Z.enc.json, Розмір: 3608.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082159340-r8zcz",
+      "timestamp": "2026-10-27T06:22:39.340Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-39-163Z.enc.json, Розмір: 3607.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082156513-wjuh4",
+      "timestamp": "2026-10-27T06:22:36.513Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-36-388Z.enc.json, Розмір: 3607.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082153945-eqx49",
+      "timestamp": "2026-10-27T06:22:33.945Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-33-760Z.enc.json, Розмір: 3607.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082151247-jzxbn",
+      "timestamp": "2026-10-27T06:22:31.247Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-31-114Z.enc.json, Розмір: 3606.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082148645-y629n",
+      "timestamp": "2026-10-27T06:22:28.645Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-28-521Z.enc.json, Розмір: 3606.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082146066-y47mk",
+      "timestamp": "2026-10-27T06:22:26.066Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-25-936Z.enc.json, Розмір: 3605.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082142880-4ll7y",
+      "timestamp": "2026-10-27T06:22:22.880Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-22-737Z.enc.json, Розмір: 3605.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082140458-l3o7o",
+      "timestamp": "2026-10-27T06:22:20.458Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-20-331Z.enc.json, Розмір: 3604.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082137986-82r38",
+      "timestamp": "2026-10-27T06:22:17.986Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-17-790Z.enc.json, Розмір: 3604.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082135341-wmxz5",
+      "timestamp": "2026-10-27T06:22:15.341Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-15-144Z.enc.json, Розмір: 3603.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082132678-yjqxd",
+      "timestamp": "2026-10-27T06:22:12.678Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-12-476Z.enc.json, Розмір: 3603.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082129862-l3xga",
+      "timestamp": "2026-10-27T06:22:09.862Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-09-573Z.enc.json, Розмір: 3602.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082127044-nf2gc",
+      "timestamp": "2026-10-27T06:22:07.044Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-06-793Z.enc.json, Розмір: 3602.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082124181-d4hx8",
+      "timestamp": "2026-10-27T06:22:04.181Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-04-027Z.enc.json, Розмір: 3602.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082121364-wgxai",
+      "timestamp": "2026-10-27T06:22:01.364Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-22-01-146Z.enc.json, Розмір: 3601.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082118797-eodnm",
+      "timestamp": "2026-10-27T06:21:58.797Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-58-650Z.enc.json, Розмір: 3601.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082116189-rnu6n",
+      "timestamp": "2026-10-27T06:21:56.189Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-56-026Z.enc.json, Розмір: 3600.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082113733-y0ezk",
+      "timestamp": "2026-10-27T06:21:53.733Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-53-527Z.enc.json, Розмір: 3600.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082110851-8xrmy",
+      "timestamp": "2026-10-27T06:21:50.851Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-50-649Z.enc.json, Розмір: 3599.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082108180-rcl9a",
+      "timestamp": "2026-10-27T06:21:48.180Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-47-971Z.enc.json, Розмір: 3599.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082105465-v56yx",
+      "timestamp": "2026-10-27T06:21:45.465Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-45-275Z.enc.json, Розмір: 3598.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082102697-g67oj",
+      "timestamp": "2026-10-27T06:21:42.697Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-42-534Z.enc.json, Розмір: 3598.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082100066-92z20",
+      "timestamp": "2026-10-27T06:21:40.066Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-39-832Z.enc.json, Розмір: 3598.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082097406-qpov7",
+      "timestamp": "2026-10-27T06:21:37.406Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-37-280Z.enc.json, Розмір: 3597.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082094901-p7etd",
+      "timestamp": "2026-10-27T06:21:34.901Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-34-778Z.enc.json, Розмір: 3597.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082092459-bi6vl",
+      "timestamp": "2026-10-27T06:21:32.459Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-32-325Z.enc.json, Розмір: 3596.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082090007-1mnwd",
+      "timestamp": "2026-10-27T06:21:30.007Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-29-853Z.enc.json, Розмір: 3596.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082089493-in9ki",
+      "timestamp": "2026-10-27T06:21:29.493Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-29-364Z.enc.json, Розмір: 3595.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082089012-kq1zl",
+      "timestamp": "2026-10-27T06:21:29.012Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-28-886Z.enc.json, Розмір: 3595.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082088500-ls4lx",
+      "timestamp": "2026-10-27T06:21:28.500Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-28-371Z.enc.json, Розмір: 3594.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082087138-bwqca",
+      "timestamp": "2026-10-27T06:21:27.138Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-27-014Z.enc.json, Розмір: 3594.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082086648-0qqca",
+      "timestamp": "2026-10-27T06:21:26.648Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-26-524Z.enc.json, Розмір: 3594.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082086145-cxbxs",
+      "timestamp": "2026-10-27T06:21:26.145Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-25-998Z.enc.json, Розмір: 3593.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082085169-hrj59",
+      "timestamp": "2026-10-27T06:21:25.169Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-25-027Z.enc.json, Розмір: 3593.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082083391-ul78b",
+      "timestamp": "2026-10-27T06:21:23.391Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-23-260Z.enc.json, Розмір: 3592.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082082880-l5ul9",
+      "timestamp": "2026-10-27T06:21:22.880Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-22-731Z.enc.json, Розмір: 3592.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082080353-00od4",
+      "timestamp": "2026-10-27T06:21:20.353Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-20-219Z.enc.json, Розмір: 3591.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082079393-j9dbm",
+      "timestamp": "2026-10-27T06:21:19.393Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-19-256Z.enc.json, Розмір: 3591.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082076850-i5nz5",
+      "timestamp": "2026-10-27T06:21:16.851Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-16-725Z.enc.json, Розмір: 3590.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082074308-meejo",
+      "timestamp": "2026-10-27T06:21:14.308Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-14-175Z.enc.json, Розмір: 3590.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082071707-bac3f",
+      "timestamp": "2026-10-27T06:21:11.707Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-11-585Z.enc.json, Розмір: 3589.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082069233-gx6ia",
+      "timestamp": "2026-10-27T06:21:09.233Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-09-113Z.enc.json, Розмір: 3589.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082068723-cftrd",
+      "timestamp": "2026-10-27T06:21:08.723Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-08-582Z.enc.json, Розмір: 3588.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082065593-0fbgw",
+      "timestamp": "2026-10-27T06:21:05.593Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-05-463Z.enc.json, Розмір: 3588.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082062875-igpcx",
+      "timestamp": "2026-10-27T06:21:02.875Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-02-740Z.enc.json, Розмір: 3588.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082060382-01xro",
+      "timestamp": "2026-10-27T06:21:00.382Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-21-00-242Z.enc.json, Розмір: 3587.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082056844-44e2i",
+      "timestamp": "2026-10-27T06:20:56.844Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-56-717Z.enc.json, Розмір: 3587.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082054408-6n035",
+      "timestamp": "2026-10-27T06:20:54.408Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-54-281Z.enc.json, Розмір: 3586.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082053783-sau2t",
+      "timestamp": "2026-10-27T06:20:53.783Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-53-653Z.enc.json, Розмір: 3586.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082051352-vpklz",
+      "timestamp": "2026-10-27T06:20:51.352Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-51-221Z.enc.json, Розмір: 3585.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082048905-kl583",
+      "timestamp": "2026-10-27T06:20:48.905Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-48-778Z.enc.json, Розмір: 3585.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082046455-xajhi",
+      "timestamp": "2026-10-27T06:20:46.455Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-46-331Z.enc.json, Розмір: 3584.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082043902-q2q87",
+      "timestamp": "2026-10-27T06:20:43.902Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-43-774Z.enc.json, Розмір: 3584.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082041416-jufpj",
+      "timestamp": "2026-10-27T06:20:41.416Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-41-279Z.enc.json, Розмір: 3583.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082038730-1vjo3",
+      "timestamp": "2026-10-27T06:20:38.730Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-38-589Z.enc.json, Розмір: 3583.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082036214-oliub",
+      "timestamp": "2026-10-27T06:20:36.214Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-36-087Z.enc.json, Розмір: 3583.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082033740-h3b9k",
+      "timestamp": "2026-10-27T06:20:33.740Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-33-612Z.enc.json, Розмір: 3582.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082033167-amd7v",
+      "timestamp": "2026-10-27T06:20:33.167Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-33-034Z.enc.json, Розмір: 3582.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082031297-zzm45",
+      "timestamp": "2026-10-27T06:20:31.297Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-31-172Z.enc.json, Розмір: 3581.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082028822-e0qh7",
+      "timestamp": "2026-10-27T06:20:28.822Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-28-695Z.enc.json, Розмір: 3581.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082027945-3wzgt",
+      "timestamp": "2026-10-27T06:20:27.945Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-27-795Z.enc.json, Розмір: 3580.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082025412-guqi4",
+      "timestamp": "2026-10-27T06:20:25.412Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-25-285Z.enc.json, Розмір: 3580.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082022952-r031y",
+      "timestamp": "2026-10-27T06:20:22.952Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-22-816Z.enc.json, Розмір: 3579.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082021837-irnvs",
+      "timestamp": "2026-10-27T06:20:21.837Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-21-714Z.enc.json, Розмір: 3579.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082019197-g76ju",
+      "timestamp": "2026-10-27T06:20:19.197Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-19-070Z.enc.json, Розмір: 3578.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082016761-7ka3w",
+      "timestamp": "2026-10-27T06:20:16.761Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-16-636Z.enc.json, Розмір: 3578.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082015883-pirsi",
+      "timestamp": "2026-10-27T06:20:15.883Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-15-737Z.enc.json, Розмір: 3578.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082013450-z1ibe",
+      "timestamp": "2026-10-27T06:20:13.450Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-13-324Z.enc.json, Розмір: 3577.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082012958-xm4xi",
+      "timestamp": "2026-10-27T06:20:12.958Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-12-803Z.enc.json, Розмір: 3577.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082010476-3m16a",
+      "timestamp": "2026-10-27T06:20:10.476Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-10-353Z.enc.json, Розмір: 3576.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082009968-vzfcr",
+      "timestamp": "2026-10-27T06:20:09.968Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-09-824Z.enc.json, Розмір: 3576.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082008700-zl5ic",
+      "timestamp": "2026-10-27T06:20:08.700Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-08-568Z.enc.json, Розмір: 3575.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082007481-m78sh",
+      "timestamp": "2026-10-27T06:20:07.481Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-07-353Z.enc.json, Розмір: 3575.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082005052-4pvmo",
+      "timestamp": "2026-10-27T06:20:05.052Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-04-929Z.enc.json, Розмір: 3574.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082004167-n5wep",
+      "timestamp": "2026-10-27T06:20:04.167Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-04-039Z.enc.json, Розмір: 3574.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082001594-ci0dt",
+      "timestamp": "2026-10-27T06:20:01.594Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-01-469Z.enc.json, Розмір: 3573.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793082001125-4b1vf",
+      "timestamp": "2026-10-27T06:20:01.125Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-20-01-002Z.enc.json, Розмір: 3573.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081998532-gue2u",
+      "timestamp": "2026-10-27T06:19:58.532Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-58-404Z.enc.json, Розмір: 3573.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081998032-ktwhd",
+      "timestamp": "2026-10-27T06:19:58.032Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-57-892Z.enc.json, Розмір: 3572.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081995530-n91r9",
+      "timestamp": "2026-10-27T06:19:55.530Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-55-399Z.enc.json, Розмір: 3572.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081995058-4ix0b",
+      "timestamp": "2026-10-27T06:19:55.058Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-54-924Z.enc.json, Розмір: 3571.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081992049-2crc1",
+      "timestamp": "2026-10-27T06:19:52.049Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-51-907Z.enc.json, Розмір: 3571.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081989519-twxeo",
+      "timestamp": "2026-10-27T06:19:49.519Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-49-378Z.enc.json, Розмір: 3570.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081988910-0oudt",
+      "timestamp": "2026-10-27T06:19:48.910Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-48-741Z.enc.json, Розмір: 3570.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081986484-bmgqa",
+      "timestamp": "2026-10-27T06:19:46.484Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-46-364Z.enc.json, Розмір: 3569.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081984063-s3t17",
+      "timestamp": "2026-10-27T06:19:44.063Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-43-932Z.enc.json, Розмір: 3569.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081983560-jzlqx",
+      "timestamp": "2026-10-27T06:19:43.560Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-43-439Z.enc.json, Розмір: 3569.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081981106-dn0pl",
+      "timestamp": "2026-10-27T06:19:41.106Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-40-913Z.enc.json, Розмір: 3568.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081978551-pxau1",
+      "timestamp": "2026-10-27T06:19:38.551Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-38-424Z.enc.json, Розмір: 3568.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081976109-ke6u2",
+      "timestamp": "2026-10-27T06:19:36.109Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-35-989Z.enc.json, Розмір: 3567.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081973563-8bdl9",
+      "timestamp": "2026-10-27T06:19:33.563Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-33-436Z.enc.json, Розмір: 3567.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081970971-sqag9",
+      "timestamp": "2026-10-27T06:19:30.971Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-30-825Z.enc.json, Розмір: 3566.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081968482-quhcg",
+      "timestamp": "2026-10-27T06:19:28.482Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-28-353Z.enc.json, Розмір: 3566.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081966020-eqrp9",
+      "timestamp": "2026-10-27T06:19:26.020Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-25-896Z.enc.json, Розмір: 3565.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081963576-aegf2",
+      "timestamp": "2026-10-27T06:19:23.576Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-23-449Z.enc.json, Розмір: 3565.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081961118-78s21",
+      "timestamp": "2026-10-27T06:19:21.118Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-20-992Z.enc.json, Розмір: 3564.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081960210-v23vs",
+      "timestamp": "2026-10-27T06:19:20.210Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-20-076Z.enc.json, Розмір: 3564.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081958396-nj1tk",
+      "timestamp": "2026-10-27T06:19:18.396Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-18-242Z.enc.json, Розмір: 3564.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081957453-f8thl",
+      "timestamp": "2026-10-27T06:19:17.453Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-17-304Z.enc.json, Розмір: 3563.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081955732-uw5u6",
+      "timestamp": "2026-10-27T06:19:15.732Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-15-608Z.enc.json, Розмір: 3563.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081953280-es61x",
+      "timestamp": "2026-10-27T06:19:13.280Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-13-149Z.enc.json, Розмір: 3562.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081950747-lz9hb",
+      "timestamp": "2026-10-27T06:19:10.747Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-10-611Z.enc.json, Розмір: 3562.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081949870-f8vj7",
+      "timestamp": "2026-10-27T06:19:09.870Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-09-741Z.enc.json, Розмір: 3561.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081948131-jgh19",
+      "timestamp": "2026-10-27T06:19:08.131Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-08-003Z.enc.json, Розмір: 3561.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081945534-kaj3l",
+      "timestamp": "2026-10-27T06:19:05.534Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-05-413Z.enc.json, Розмір: 3560.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081943105-s95b4",
+      "timestamp": "2026-10-27T06:19:03.105Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-02-973Z.enc.json, Розмір: 3560.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081940592-m7m8y",
+      "timestamp": "2026-10-27T06:19:00.592Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-19-00-467Z.enc.json, Розмір: 3559.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081938138-yp491",
+      "timestamp": "2026-10-27T06:18:58.138Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-57-982Z.enc.json, Розмір: 3559.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081935618-slfin",
+      "timestamp": "2026-10-27T06:18:55.618Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-55-480Z.enc.json, Розмір: 3559.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081932958-wyulq",
+      "timestamp": "2026-10-27T06:18:52.958Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-52-826Z.enc.json, Розмір: 3558.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081930472-mqlgo",
+      "timestamp": "2026-10-27T06:18:50.473Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-50-348Z.enc.json, Розмір: 3558.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081927986-7s1q4",
+      "timestamp": "2026-10-27T06:18:47.986Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-47-834Z.enc.json, Розмір: 3557.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081927083-7ehx5",
+      "timestamp": "2026-10-27T06:18:47.083Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-46-953Z.enc.json, Розмір: 3557.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081924641-umfdd",
+      "timestamp": "2026-10-27T06:18:44.641Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-44-521Z.enc.json, Розмір: 3556.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081923520-zlskk",
+      "timestamp": "2026-10-27T06:18:43.520Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-43-394Z.enc.json, Розмір: 3556.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081920966-po41o",
+      "timestamp": "2026-10-27T06:18:40.966Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-40-837Z.enc.json, Розмір: 3555.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081919890-ylj3t",
+      "timestamp": "2026-10-27T06:18:39.890Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-39-759Z.enc.json, Розмір: 3555.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081918340-4hgmv",
+      "timestamp": "2026-10-27T06:18:38.340Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-38-212Z.enc.json, Розмір: 3554.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081915796-0lyzw",
+      "timestamp": "2026-10-27T06:18:35.796Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-35-668Z.enc.json, Розмір: 3554.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081915271-9c4ve",
+      "timestamp": "2026-10-27T06:18:35.271Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-35-148Z.enc.json, Розмір: 3554.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081912681-qcaoy",
+      "timestamp": "2026-10-27T06:18:32.681Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-32-543Z.enc.json, Розмір: 3553.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081911608-lmpr5",
+      "timestamp": "2026-10-27T06:18:31.608Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-31-475Z.enc.json, Розмір: 3553.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081909067-6s4ia",
+      "timestamp": "2026-10-27T06:18:29.067Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-28-891Z.enc.json, Розмір: 3552.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081908330-uvdu3",
+      "timestamp": "2026-10-27T06:18:28.330Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-28-161Z.enc.json, Розмір: 3552.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081905722-uzktq",
+      "timestamp": "2026-10-27T06:18:25.722Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-25-602Z.enc.json, Розмір: 3551.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081905242-py56w",
+      "timestamp": "2026-10-27T06:18:25.242Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-25-108Z.enc.json, Розмір: 3551.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081902722-535vc",
+      "timestamp": "2026-10-27T06:18:22.722Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-22-602Z.enc.json, Розмір: 3550.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081902217-qikl0",
+      "timestamp": "2026-10-27T06:18:22.217Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-22-087Z.enc.json, Розмір: 3550.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081899785-kfvpi",
+      "timestamp": "2026-10-27T06:18:19.785Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-19-655Z.enc.json, Розмір: 3549.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081898749-onz4u",
+      "timestamp": "2026-10-27T06:18:18.749Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-18-617Z.enc.json, Розмір: 3549.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081896310-fieat",
+      "timestamp": "2026-10-27T06:18:16.310Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-16-177Z.enc.json, Розмір: 3549.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081893844-k7xm6",
+      "timestamp": "2026-10-27T06:18:13.844Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-13-718Z.enc.json, Розмір: 3548.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081893329-1af8i",
+      "timestamp": "2026-10-27T06:18:13.329Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-13-190Z.enc.json, Розмір: 3548.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081890792-6qw0q",
+      "timestamp": "2026-10-27T06:18:10.792Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-10-663Z.enc.json, Розмір: 3547.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081889896-47md0",
+      "timestamp": "2026-10-27T06:18:09.896Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-09-776Z.enc.json, Розмір: 3547.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081887373-b0ek7",
+      "timestamp": "2026-10-27T06:18:07.373Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-07-244Z.enc.json, Розмір: 3546.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081884694-mzjdr",
+      "timestamp": "2026-10-27T06:18:04.694Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-04-569Z.enc.json, Розмір: 3546.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081884129-23cvd",
+      "timestamp": "2026-10-27T06:18:04.129Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-03-998Z.enc.json, Розмір: 3545.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081881687-1pkwm",
+      "timestamp": "2026-10-27T06:18:01.687Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-01-561Z.enc.json, Розмір: 3545.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081881088-3c3jh",
+      "timestamp": "2026-10-27T06:18:01.088Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-18-00-923Z.enc.json, Розмір: 3544.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081878657-w558p",
+      "timestamp": "2026-10-27T06:17:58.657Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-58-528Z.enc.json, Розмір: 3544.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081877440-dfz7m",
+      "timestamp": "2026-10-27T06:17:57.440Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-57-315Z.enc.json, Розмір: 3544.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081874928-uflxr",
+      "timestamp": "2026-10-27T06:17:54.928Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-54-807Z.enc.json, Розмір: 3543.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081873941-fikpp",
+      "timestamp": "2026-10-27T06:17:53.941Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-53-794Z.enc.json, Розмір: 3543.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081872411-s08yc",
+      "timestamp": "2026-10-27T06:17:52.411Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-52-285Z.enc.json, Розмір: 3542.7 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081869843-puzrj",
+      "timestamp": "2026-10-27T06:17:49.843Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-49-713Z.enc.json, Розмір: 3542.2 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081868947-obegk",
+      "timestamp": "2026-10-27T06:17:48.947Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-48-798Z.enc.json, Розмір: 3541.8 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081866307-hyde0",
+      "timestamp": "2026-10-27T06:17:46.307Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-46-176Z.enc.json, Розмір: 3541.3 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081863787-0uxi9",
+      "timestamp": "2026-10-27T06:17:43.787Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-43-656Z.enc.json, Розмір: 3540.9 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081863281-k56zn",
+      "timestamp": "2026-10-27T06:17:43.281Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-43-156Z.enc.json, Розмір: 3540.4 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081860684-senoe",
+      "timestamp": "2026-10-27T06:17:40.684Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-40-551Z.enc.json, Розмір: 3540.0 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081859633-dhofk",
+      "timestamp": "2026-10-27T06:17:39.633Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-39-497Z.enc.json, Розмір: 3539.5 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081857165-9vaiw",
+      "timestamp": "2026-10-27T06:17:37.165Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-37-038Z.enc.json, Розмір: 3539.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081856675-cf175",
+      "timestamp": "2026-10-27T06:17:36.675Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-36-555Z.enc.json, Розмір: 3538.6 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081853853-ud0ka",
+      "timestamp": "2026-10-27T06:17:33.853Z",
+      "action": "Створено зашифрований бекап",
+      "category": "backup",
+      "userEmail": "system",
+      "userName": "Система",
+      "details": "Файл: backup_db_2026-10-27T06-17-33-712Z.enc.json, Розмір: 3538.1 КБ, Алгоритм: AES-256-GCM",
+      "status": "success"
+    },
+    {
+      "id": "log-1793081843234-u2f7e",
+      "timestamp": "2026-10-27T06:17:23.234Z",
+      "action": "Система запущена",
+      "category": "system",
+      "userEmail": "system@server",
+      "userName": "Сервер СКУД",
+      "details": "База завантажена. Захищено AES-256-GCM. Записів відвідувачів: 0",
+      "status": "success"
+    }
+  ],
+  "stopList": [],
+  "checkpoints": [
+    {
+      "id": "kpp-1",
+      "name": "КПП-1 (Головний вхід)",
+      "location": "Центральні ворота",
+      "status": "active",
+      "assignedGuards": [],
+      "lastActivity": "2026-10-27T06:17:22.901Z"
+    },
+    {
+      "id": "kpp-2",
+      "name": "КПП-2 (Транспортний пункт)",
+      "location": "В'їзд транспорту",
+      "status": "active",
+      "assignedGuards": [],
+      "lastActivity": "2026-10-27T06:17:22.901Z"
+    },
+    {
+      "id": "kpp-3",
+      "name": "КПП-3 (Службовий прохід)",
+      "location": "Північний сектор",
+      "status": "standby",
+      "assignedGuards": [],
+      "lastActivity": "2026-10-27T06:17:22.901Z"
+    }
+  ],
+  "lastUpdated": "2026-10-27T06:23:04.653Z"
 }

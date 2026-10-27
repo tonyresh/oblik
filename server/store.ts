@@ -1,5 +1,7 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
+import AdmZip from 'adm-zip';
 import { dbCrypto } from './crypto';
 
 export interface PasswordResetRequest {
@@ -196,18 +198,40 @@ class StateStore {
   private dataDir: string;
   private encStateFilePath: string;
   private legacyStateFilePath: string;
+  public readonly iconsDir: string;
+  public readonly archivesDir: string;
   private saveTimeout: NodeJS.Timeout | null = null;
 
   constructor() {
-    this.dataDir = path.join(process.cwd(), 'data');
+    const cwdDataDir = path.join(process.cwd(), 'data');
+    const rootDataDir = path.resolve('/app/applet/data');
+    this.dataDir = fs.existsSync(cwdDataDir) ? cwdDataDir : (fs.existsSync(rootDataDir) ? rootDataDir : cwdDataDir);
     this.encStateFilePath = path.join(this.dataDir, 'system_state.enc');
     this.legacyStateFilePath = path.join(this.dataDir, 'system_state.json');
+    this.iconsDir = path.join(this.dataDir, 'icons');
+    this.archivesDir = path.join(this.dataDir, 'archives');
 
     if (!fs.existsSync(this.dataDir)) {
       try {
         fs.mkdirSync(this.dataDir, { recursive: true });
       } catch (err) {
         console.error('Failed to create data directory:', err);
+      }
+    }
+
+    if (!fs.existsSync(this.iconsDir)) {
+      try {
+        fs.mkdirSync(this.iconsDir, { recursive: true });
+      } catch (err) {
+        console.error('Failed to create icons directory:', err);
+      }
+    }
+
+    if (!fs.existsSync(this.archivesDir)) {
+      try {
+        fs.mkdirSync(this.archivesDir, { recursive: true });
+      } catch (err) {
+        console.error('Failed to create archives directory:', err);
       }
     }
 
@@ -247,6 +271,26 @@ class StateStore {
         console.log(`[Store] Migrating legacy unencrypted state to AES-256-GCM encrypted database...`);
       } catch (e) {
         console.error('[Store] Error reading legacy system_state.json:', e);
+      }
+    }
+
+    // 3. Fallback to latest auto backup if primary files had errors
+    if (!parsed) {
+      const backupsDir = path.join(this.dataDir, 'backups');
+      const latestEncBackup = path.join(backupsDir, 'latest_auto_backup.enc.json');
+      const latestJsonBackup = path.join(backupsDir, 'latest_auto_backup.json');
+
+      if (fs.existsSync(latestEncBackup)) {
+        try {
+          parsed = dbCrypto.readEncryptedFile(latestEncBackup);
+          if (parsed) console.log('[Store] Recovered state from latest_auto_backup.enc.json');
+        } catch (e) {}
+      }
+      if (!parsed && fs.existsSync(latestJsonBackup)) {
+        try {
+          parsed = JSON.parse(fs.readFileSync(latestJsonBackup, 'utf8'));
+          if (parsed) console.log('[Store] Recovered state from latest_auto_backup.json');
+        } catch (e) {}
       }
     }
 
@@ -340,7 +384,18 @@ class StateStore {
     return this.state;
   }
 
+  /**
+   * Updates a top-level key with zeroing protection:
+   * Rejects empty array updates from unhydrated clients if the server already has populated data.
+   */
   public updateKey<K extends keyof ServerState>(key: K, value: ServerState[K]): ServerState {
+    if (Array.isArray(value) && value.length === 0) {
+      const current = this.state[key];
+      if (Array.isArray(current) && current.length > 0) {
+        console.warn(`[Store] Blocked database zeroing: rejected empty array update for "${String(key)}" (server has ${current.length} records)`);
+        return this.state;
+      }
+    }
     this.state[key] = value;
     this.state.lastUpdated = new Date().toISOString();
     this.scheduleSave();
@@ -348,33 +403,109 @@ class StateStore {
   }
 
   public patch(partial: Partial<ServerState>): ServerState {
-    Object.assign(this.state, partial);
+    for (const [key, value] of Object.entries(partial)) {
+      if (Array.isArray(value) && value.length === 0) {
+        const current = (this.state as any)[key];
+        if (Array.isArray(current) && current.length > 0) {
+          console.warn(`[Store] Blocked zeroing in patch: rejected empty array for "${key}" (server has ${current.length} records)`);
+          continue;
+        }
+      }
+      (this.state as any)[key] = value;
+    }
     this.state.lastUpdated = new Date().toISOString();
     this.scheduleSave();
     return this.state;
   }
 
+  /**
+   * Handle real-time discrete events (Dirty Sky, Duty Events, Visitor Check-in/out, etc.)
+   */
+  public handleServerEvent(eventType: string, eventData: any): void {
+    const now = new Date().toISOString();
+    switch (eventType) {
+      case 'dirty_sky:start': {
+        if (!Array.isArray(this.state.dirtySkyEvents)) this.state.dirtySkyEvents = [];
+        const newEvent = eventData && eventData.id ? eventData : { id: Date.now().toString(), startTime: now };
+        // Check if already open
+        const alreadyActive = this.state.dirtySkyEvents.some(e => !e.endTime);
+        if (!alreadyActive) {
+          this.state.dirtySkyEvents.push(newEvent);
+          this.state.lastUpdated = now;
+          this.scheduleSave();
+          this.addAuditLog({
+            action: 'Режим Брудне небо УВІМКНЕНО',
+            category: 'security',
+            userEmail: eventData?.userEmail || 'system',
+            userName: eventData?.userName || 'Оператор',
+            details: 'Активовано режим тривоги «Брудне небо» (синхронізовано для всіх операторів)',
+            status: 'error'
+          });
+        }
+        break;
+      }
+      case 'dirty_sky:end': {
+        if (Array.isArray(this.state.dirtySkyEvents)) {
+          const lastEvent = this.state.dirtySkyEvents[this.state.dirtySkyEvents.length - 1];
+          if (lastEvent && !lastEvent.endTime) {
+            lastEvent.endTime = eventData?.endTime || now;
+            this.state.lastUpdated = now;
+            this.scheduleSave();
+            this.addAuditLog({
+              action: 'Режим Брудне небо ВИМКНЕНО',
+              category: 'security',
+              userEmail: eventData?.userEmail || 'system',
+              userName: eventData?.userName || 'Оператор',
+              details: 'Завершено режим тривоги «Брудне небо» (синхронізовано для всіх операторів)',
+              status: 'success'
+            });
+          }
+        }
+        break;
+      }
+      case 'duty:add': {
+        if (!Array.isArray(this.state.dutyEvents)) this.state.dutyEvents = [];
+        const dutyEvt = eventData && eventData.id ? eventData : {
+          id: Date.now().toString() + '-' + Math.random().toString(36).substr(2, 6),
+          shiftId: 'default',
+          shiftName: 'Чергування',
+          type: 'start',
+          timestamp: now
+        };
+        this.state.dutyEvents.push(dutyEvt);
+        this.state.lastUpdated = now;
+        this.scheduleSave();
+        break;
+      }
+      case 'visitor:status': {
+        if (eventData?.visitorId && Array.isArray(this.state.visitors)) {
+          const v = this.state.visitors.find((item: any) => item.id === eventData.visitorId);
+          if (v) {
+            v.status = eventData.status;
+            if (Array.isArray(eventData.logs)) v.logs = eventData.logs;
+            if (eventData.lastEntry !== undefined) v.lastEntry = eventData.lastEntry;
+            if (typeof eventData.totalTimeMinutes === 'number') v.totalTimeMinutes = eventData.totalTimeMinutes;
+            this.state.lastUpdated = now;
+            this.scheduleSave();
+          }
+        }
+        break;
+      }
+      default:
+        console.log(`[Store] Processed real-time event: ${eventType}`);
+    }
+  }
+
   public seedIfEmpty(clientData: Partial<ServerState>): boolean {
     let seeded = false;
 
-    if (this.state.visitors.length === 0 && Array.isArray(clientData.visitors) && clientData.visitors.length > 0) {
-      this.state.visitors = clientData.visitors;
-      seeded = true;
-    }
-
-    if (this.state.customIcons.length === 0 && Array.isArray(clientData.customIcons) && clientData.customIcons.length > 0) {
-      this.state.customIcons = clientData.customIcons;
-      seeded = true;
-    }
-
-    if (this.state.dutyEvents.length === 0 && Array.isArray(clientData.dutyEvents) && clientData.dutyEvents.length > 0) {
-      this.state.dutyEvents = clientData.dutyEvents;
-      seeded = true;
-    }
-
-    if (this.state.dirtySkyEvents.length === 0 && Array.isArray(clientData.dirtySkyEvents) && clientData.dirtySkyEvents.length > 0) {
-      this.state.dirtySkyEvents = clientData.dirtySkyEvents;
-      seeded = true;
+    for (const key of ['visitors', 'guards', 'shifts', 'securityShifts', 'categories', 'groups', 'locations', 'customIcons', 'dutyEvents', 'dirtySkyEvents'] as const) {
+      const current = this.state[key];
+      const incoming = clientData[key];
+      if (Array.isArray(current) && current.length === 0 && Array.isArray(incoming) && incoming.length > 0) {
+        (this.state as any)[key] = incoming;
+        seeded = true;
+      }
     }
 
     if (seeded) {
@@ -395,7 +526,16 @@ class StateStore {
     algorithm: string;
   } {
     if (payload && typeof payload === 'object') {
-      Object.assign(this.state, payload);
+      for (const [key, value] of Object.entries(payload)) {
+        if (Array.isArray(value) && value.length === 0) {
+          const current = (this.state as any)[key];
+          if (Array.isArray(current) && current.length > 0) {
+            console.warn(`[Store] Blocked zeroing in createBackupSnapshot: skipped empty array for "${key}"`);
+            continue;
+          }
+        }
+        (this.state as any)[key] = value;
+      }
     }
     this.state.lastUpdated = new Date().toISOString();
     this.saveStateImmediately(this.state);
@@ -666,6 +806,292 @@ class StateStore {
       return Array.from(new Set(admins.map((u: any) => u.email)));
     }
     return ['tonyreshua@gmail.com'];
+  }
+
+  public saveCustomIcon(iconData: { id?: string; name: string; data: string; category?: string; targetId?: string }) {
+    const id = iconData.id || `icon-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+    const category = (iconData.category || 'general') as 'brigade' | 'user' | 'general';
+    let filename = `${id}.png`;
+    let url = `/api/icons/${filename}`;
+
+    // If data is a base64 image, save binary file to iconsDir
+    if (iconData.data && iconData.data.startsWith('data:')) {
+      const match = iconData.data.match(/^data:image\/([a-zA-Z0-9+]+);base64,(.+)$/);
+      if (match) {
+        const ext = match[1] === 'svg+xml' ? 'svg' : match[1];
+        filename = `${id}.${ext}`;
+        url = `/api/icons/${filename}`;
+        const buffer = Buffer.from(match[2], 'base64');
+        fs.writeFileSync(path.join(this.iconsDir, filename), buffer);
+      }
+    }
+
+    const iconItem = {
+      id,
+      name: iconData.name,
+      filename,
+      url,
+      data: iconData.data,
+      category,
+      targetId: iconData.targetId,
+      updatedAt: new Date().toISOString()
+    };
+
+    if (!Array.isArray(this.state.customIcons)) {
+      this.state.customIcons = [];
+    }
+
+    // Replace if exists with same id or targetId
+    this.state.customIcons = this.state.customIcons.filter(
+      i => i.id !== id && (!iconData.targetId || i.targetId !== iconData.targetId || i.category !== category)
+    );
+    this.state.customIcons.unshift(iconItem);
+
+    // If targetId is provided, update brigade location or user avatar in state
+    if (category === 'brigade' && iconData.targetId && Array.isArray(this.state.locations)) {
+      const loc = this.state.locations.find((l: any) => l.id === iconData.targetId);
+      if (loc) {
+        loc.iconUrl = url;
+      }
+    } else if (category === 'user' && iconData.targetId && Array.isArray(this.state.authorizedUsers)) {
+      const u = this.state.authorizedUsers.find((usr: any) => usr.id === iconData.targetId || usr.email.toLowerCase() === iconData.targetId?.toLowerCase());
+      if (u) {
+        u.avatar = url;
+      }
+    }
+
+    this.state.lastUpdated = new Date().toISOString();
+    this.scheduleSave();
+    return iconItem;
+  }
+
+  public deleteCustomIcon(id: string): boolean {
+    if (!Array.isArray(this.state.customIcons)) return false;
+    const icon = this.state.customIcons.find(i => i.id === id);
+    if (!icon) return false;
+
+    if (icon.filename) {
+      const filePath = path.join(this.iconsDir, icon.filename);
+      if (fs.existsSync(filePath)) {
+        try { fs.unlinkSync(filePath); } catch (e) {}
+      }
+    }
+
+    this.state.customIcons = this.state.customIcons.filter(i => i.id !== id);
+    this.state.lastUpdated = new Date().toISOString();
+    this.scheduleSave();
+    return true;
+  }
+
+  public createFullSystemArchive(creatorEmail?: string, creatorName?: string) {
+    const timestamp = new Date().toISOString();
+    const dateFormatted = timestamp.replace(/[:.]/g, '-');
+    const filename = `system_archive_${dateFormatted}.zip`;
+    const zipPath = path.join(this.archivesDir, filename);
+
+    const zip = new AdmZip();
+
+    // 1. Add encrypted state file
+    if (fs.existsSync(this.encStateFilePath)) {
+      zip.addLocalFile(this.encStateFilePath, '', 'system_state.enc');
+    } else {
+      const encPayload = dbCrypto.encrypt(this.state);
+      zip.addFile('system_state.enc', Buffer.from(JSON.stringify(encPayload, null, 2), 'utf8'));
+    }
+
+    // 2. Add unencrypted JSON state snapshot for transparency/audit
+    zip.addFile('system_state.json', Buffer.from(JSON.stringify(this.state, null, 2), 'utf8'));
+
+    // 3. Add icons folder if exists
+    if (fs.existsSync(this.iconsDir)) {
+      const iconFiles = fs.readdirSync(this.iconsDir);
+      for (const f of iconFiles) {
+        const fullIconPath = path.join(this.iconsDir, f);
+        if (fs.statSync(fullIconPath).isFile()) {
+          zip.addLocalFile(fullIconPath, 'icons');
+        }
+      }
+    }
+
+    // 4. Manifest with metadata and SHA-256
+    const manifest = {
+      archiveVersion: '2.0.0',
+      timestamp,
+      createdDate: new Date().toLocaleString('uk-UA'),
+      creatorEmail: creatorEmail || 'admin@skud.local',
+      creatorName: creatorName || 'Адміністратор',
+      encryption: 'AES-256-GCM',
+      stats: {
+        visitors: this.state.visitors?.length || 0,
+        locations: this.state.locations?.length || 0,
+        authorizedUsers: this.state.authorizedUsers?.length || 0,
+        customIcons: this.state.customIcons?.length || 0,
+        shifts: this.state.shifts?.length || 0,
+        dirtySkyEvents: this.state.dirtySkyEvents?.length || 0,
+        dutyEvents: this.state.dutyEvents?.length || 0
+      }
+    };
+    zip.addFile('manifest.json', Buffer.from(JSON.stringify(manifest, null, 2), 'utf8'));
+
+    zip.writeZip(zipPath);
+
+    const stats = fs.statSync(zipPath);
+    const fileBuf = fs.readFileSync(zipPath);
+    const sha256 = crypto.createHash('sha256').update(fileBuf).digest('hex');
+
+    this.addAuditLog({
+      action: 'Створено повний архів системи',
+      category: 'backup',
+      userEmail: creatorEmail || 'system',
+      userName: creatorName || 'Адміністратор',
+      details: `Файл: ${filename}, розмір: ${(stats.size / 1024).toFixed(1)} КБ, записів: ${manifest.stats.visitors}`,
+      status: 'success'
+    });
+
+    return {
+      filename,
+      size: stats.size,
+      timestamp,
+      creatorEmail,
+      creatorName,
+      sha256,
+      stats: manifest.stats
+    };
+  }
+
+  public getServerArchives(): any[] {
+    if (!fs.existsSync(this.archivesDir)) return [];
+    try {
+      const files = fs.readdirSync(this.archivesDir).filter(f => f.endsWith('.zip'));
+      const archives = files.map(filename => {
+        const filePath = path.join(this.archivesDir, filename);
+        const stats = fs.statSync(filePath);
+        let manifest: any = null;
+        let sha256 = '';
+
+        try {
+          const zip = new AdmZip(filePath);
+          const manifestEntry = zip.getEntry('manifest.json');
+          if (manifestEntry) {
+            manifest = JSON.parse(zip.readAsText(manifestEntry));
+          }
+          const buf = fs.readFileSync(filePath);
+          sha256 = crypto.createHash('sha256').update(buf).digest('hex');
+        } catch (e) {}
+
+        return {
+          filename,
+          size: stats.size,
+          timestamp: manifest?.timestamp || stats.mtime.toISOString(),
+          creatorEmail: manifest?.creatorEmail,
+          creatorName: manifest?.creatorName,
+          sha256,
+          stats: manifest?.stats || {
+            visitors: 0,
+            locations: 0,
+            authorizedUsers: 0,
+            customIcons: 0
+          }
+        };
+      });
+
+      return archives.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    } catch (e) {
+      console.error('[Store] Error listing server archives:', e);
+      return [];
+    }
+  }
+
+  public restoreFromFullArchive(filename: string): ServerState | null {
+    const cleanName = path.basename(filename);
+    const filePath = path.join(this.archivesDir, cleanName);
+    if (!fs.existsSync(filePath)) return null;
+
+    try {
+      const zip = new AdmZip(filePath);
+      let loadedState: ServerState | null = null;
+
+      // 1. Try reading system_state.enc first
+      const encEntry = zip.getEntry('system_state.enc');
+      if (encEntry) {
+        try {
+          const raw = zip.readAsText(encEntry);
+          const payload = JSON.parse(raw);
+          loadedState = dbCrypto.decrypt(payload);
+        } catch (e) {
+          console.error('[Store] Error decrypting system_state.enc from archive:', e);
+        }
+      }
+
+      // 2. Fallback to system_state.json
+      if (!loadedState) {
+        const jsonEntry = zip.getEntry('system_state.json');
+        if (jsonEntry) {
+          const raw = zip.readAsText(jsonEntry);
+          loadedState = JSON.parse(raw);
+        }
+      }
+
+      if (!loadedState) return null;
+
+      // 3. Extract icons if present
+      const iconEntries = zip.getEntries().filter(e => e.entryName.startsWith('icons/') && !e.isDirectory);
+      for (const entry of iconEntries) {
+        const targetPath = path.join(this.iconsDir, path.basename(entry.entryName));
+        fs.writeFileSync(targetPath, entry.getData());
+      }
+
+      // 4. Update memory state and persist
+      this.state = {
+        visitors: Array.isArray(loadedState.visitors) ? loadedState.visitors : [],
+        guards: Array.isArray(loadedState.guards) ? loadedState.guards : [],
+        shifts: Array.isArray(loadedState.shifts) ? loadedState.shifts : [],
+        securityShifts: Array.isArray(loadedState.securityShifts) && loadedState.securityShifts.length > 0 ? loadedState.securityShifts : DEFAULT_SECURITY_SHIFTS,
+        categories: Array.isArray(loadedState.categories) && loadedState.categories.length > 0 ? loadedState.categories : DEFAULT_RANKS,
+        groups: Array.isArray(loadedState.groups) && loadedState.groups.length > 0 ? loadedState.groups : DEFAULT_GROUPS,
+        locations: Array.isArray(loadedState.locations) && loadedState.locations.length > 0 ? loadedState.locations : DEFAULT_LOCATIONS,
+        dirtySkyEvents: Array.isArray(loadedState.dirtySkyEvents) ? loadedState.dirtySkyEvents : [],
+        dutyEvents: Array.isArray(loadedState.dutyEvents) ? loadedState.dutyEvents : [],
+        customIcons: Array.isArray(loadedState.customIcons) ? loadedState.customIcons : [],
+        reportRetentionHours: typeof loadedState.reportRetentionHours === 'number' ? loadedState.reportRetentionHours : 1440,
+        authorizedUsers: Array.isArray(loadedState.authorizedUsers) && loadedState.authorizedUsers.length > 0 ? loadedState.authorizedUsers : this.state.authorizedUsers,
+        roles: Array.isArray(loadedState.roles) && loadedState.roles.length > 0 ? loadedState.roles : DEFAULT_ROLES,
+        passwordRequests: Array.isArray(loadedState.passwordRequests) ? loadedState.passwordRequests : [],
+        auditLogs: Array.isArray(loadedState.auditLogs) ? loadedState.auditLogs : [],
+        stopList: Array.isArray(loadedState.stopList) ? loadedState.stopList : [],
+        checkpoints: Array.isArray(loadedState.checkpoints) && loadedState.checkpoints.length > 0 ? loadedState.checkpoints : DEFAULT_CHECKPOINTS,
+        lastUpdated: new Date().toISOString()
+      };
+      this.saveStateImmediately(this.state);
+
+      this.addAuditLog({
+        action: 'Відновлення з повного архіву',
+        category: 'backup',
+        userEmail: 'admin@skud.local',
+        userName: 'Адміністратор',
+        details: `Успішно відновлено з архіву: ${cleanName}. Відвідувачів: ${this.state.visitors.length}`,
+        status: 'warning'
+      });
+
+      return this.state;
+    } catch (e) {
+      console.error('[Store] Failed to restore from archive:', e);
+      return null;
+    }
+  }
+
+  public deleteServerArchive(filename: string): boolean {
+    const cleanName = path.basename(filename);
+    const filePath = path.join(this.archivesDir, cleanName);
+    if (fs.existsSync(filePath)) {
+      try {
+        fs.unlinkSync(filePath);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+    return false;
   }
 
   public verifyDatabaseIntegrity(): { valid: boolean; details: string; error?: string } {

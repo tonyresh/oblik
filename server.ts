@@ -183,6 +183,48 @@ async function startServer() {
     res.status(400).json({ error: 'Invalid data' });
   });
 
+  // REST broadcast endpoint for real-time discrete events
+  app.post("/api/events/broadcast", (req, res) => {
+    try {
+      const { eventType, eventData, clientId } = req.body;
+      if (!eventType) {
+        return res.status(400).json({ error: 'Missing eventType' });
+      }
+
+      store.handleServerEvent(eventType, eventData);
+
+      broadcast({
+        type: 'sync:event',
+        eventType,
+        eventData,
+        updatedBy: clientId || 'api',
+        timestamp: new Date().toISOString()
+      });
+
+      if (eventType.startsWith('dirty_sky')) {
+        broadcast({
+          type: 'sync:update',
+          key: 'dirtySkyEvents',
+          data: store.getState().dirtySkyEvents,
+          updatedBy: clientId || 'api',
+          timestamp: new Date().toISOString()
+        });
+      } else if (eventType === 'duty:add') {
+        broadcast({
+          type: 'sync:update',
+          key: 'dutyEvents',
+          data: store.getState().dutyEvents,
+          updatedBy: clientId || 'api',
+          timestamp: new Date().toISOString()
+        });
+      }
+
+      res.json({ success: true, lastUpdated: store.getState().lastUpdated });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
   // Encryption status and verification endpoints
   app.get("/api/encryption/status", (_req, res) => {
     const status = dbCrypto.getStatus();
@@ -272,6 +314,185 @@ async function startServer() {
       });
     } catch (err: any) {
       console.error('[Backup] Restore error:', err);
+      res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  // Serve static icon files
+  app.get("/api/icons/:filename", (req, res) => {
+    const filename = path.basename(req.params.filename);
+    const filePath = path.join(store.iconsDir, filename);
+    if (fs.existsSync(filePath)) {
+      res.sendFile(filePath);
+    } else {
+      res.status(404).send('Icon not found');
+    }
+  });
+
+  // Save icon to server (brigade, user avatar, or general)
+  app.post("/api/icons", (req, res) => {
+    try {
+      const { id, name, data, category, targetId } = req.body;
+      if (!data) {
+        return res.status(400).json({ success: false, error: 'Дані іконки відсутні' });
+      }
+
+      const icon = store.saveCustomIcon({ id, name, data, category, targetId });
+
+      // Broadcast update to all connected clients
+      broadcast({
+        type: 'sync:update',
+        key: 'customIcons',
+        data: store.getState().customIcons,
+        updatedBy: 'server',
+        timestamp: new Date().toISOString()
+      });
+
+      if (category === 'brigade') {
+        broadcast({
+          type: 'sync:update',
+          key: 'locations',
+          data: store.getState().locations,
+          updatedBy: 'server',
+          timestamp: new Date().toISOString()
+        });
+      } else if (category === 'user') {
+        broadcast({
+          type: 'sync:update',
+          key: 'authorizedUsers',
+          data: store.getState().authorizedUsers,
+          updatedBy: 'server',
+          timestamp: new Date().toISOString()
+        });
+      }
+
+      res.json({ success: true, icon });
+    } catch (err: any) {
+      console.error('[Icon] Upload error:', err);
+      res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  // Get all custom icons
+  app.get("/api/icons", (_req, res) => {
+    try {
+      res.json({
+        success: true,
+        icons: store.getState().customIcons || []
+      });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  // Delete custom icon
+  app.delete("/api/icons/:id", (req, res) => {
+    try {
+      const { id } = req.params;
+      const success = store.deleteCustomIcon(id);
+      if (success) {
+        broadcast({
+          type: 'sync:update',
+          key: 'customIcons',
+          data: store.getState().customIcons,
+          updatedBy: 'server',
+          timestamp: new Date().toISOString()
+        });
+        res.json({ success: true, message: 'Іконку успішно видалено' });
+      } else {
+        res.status(404).json({ success: false, error: 'Іконку не знайдено' });
+      }
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  // Create full system archive on the server (.zip)
+  app.post("/api/backup/server-archive", (req, res) => {
+    try {
+      const { creatorEmail, creatorName } = req.body;
+      const archive = store.createFullSystemArchive(creatorEmail, creatorName);
+      res.json({
+        success: true,
+        message: `Повний архів системи успішно сформовано на сервері: ${archive.filename}`,
+        archive
+      });
+    } catch (err: any) {
+      console.error('[Backup] Server archive error:', err);
+      res.status(500).json({ success: false, error: err.message || 'Помилка створення архіву' });
+    }
+  });
+
+  // List all server archives
+  app.get("/api/backup/server-archives", (_req, res) => {
+    try {
+      const archives = store.getServerArchives();
+      res.json({ success: true, archives });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  // Download full archive file (.zip)
+  app.get("/api/backup/download-archive/:filename", (req, res) => {
+    try {
+      const filename = path.basename(req.params.filename);
+      const filePath = path.join(store.archivesDir, filename);
+
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ success: false, error: 'Архівний файл не знайдено на сервері' });
+      }
+
+      res.setHeader('Content-Type', 'application/zip');
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+      const fileStream = fs.createReadStream(filePath);
+      fileStream.pipe(res);
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  // Restore entire system from a server archive
+  app.post("/api/backup/restore-server-archive", (req, res) => {
+    try {
+      const { filename } = req.body;
+      if (!filename) {
+        return res.status(400).json({ success: false, error: 'Filename is required' });
+      }
+
+      const restoredState = store.restoreFromFullArchive(filename);
+      if (!restoredState) {
+        return res.status(400).json({ success: false, error: 'Не вдалося відновити систему з вказаного архіву' });
+      }
+
+      broadcast({
+        type: 'sync:init',
+        data: restoredState,
+        serverTime: new Date().toISOString()
+      });
+
+      res.json({
+        success: true,
+        message: `Систему успішно відновлено з повного архіву: ${filename}`,
+        state: restoredState
+      });
+    } catch (err: any) {
+      console.error('[Backup] Restore archive error:', err);
+      res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  // Delete archive file from server
+  app.delete("/api/backup/server-archive/:filename", (req, res) => {
+    try {
+      const filename = path.basename(req.params.filename);
+      const success = store.deleteServerArchive(filename);
+      if (success) {
+        res.json({ success: true, message: `Архів ${filename} успішно видалено з сервера` });
+      } else {
+        res.status(404).json({ success: false, error: 'Архівний файл не знайдено' });
+      }
+    } catch (err: any) {
       res.status(500).json({ success: false, error: err.message });
     }
   });

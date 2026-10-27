@@ -10,24 +10,43 @@
     <script>
       (function() {
         try {
-          if (!localStorage.getItem('theme_default_set')) {
-            localStorage.setItem('theme_default_set', 'true');
-            localStorage.setItem('theme', 'dark');
+          let theme = 'dark';
+          let fontSize = 'medium';
+
+          // Try loading preference of the currently active user
+          const rawUser = localStorage.getItem('checkpoint_current_user');
+          if (rawUser) {
+            try {
+              const u = JSON.parse(rawUser);
+              if (u && u.id) {
+                const userPref = localStorage.getItem('skud_pref_' + u.id);
+                if (userPref) {
+                  const p = JSON.parse(userPref);
+                  if (p.theme) theme = p.theme;
+                  if (p.fontSize) fontSize = p.fontSize;
+                } else {
+                  if (u.theme) theme = u.theme;
+                  if (u.fontSize) fontSize = u.fontSize;
+                }
+              }
+            } catch (e) {}
+          } else {
+            theme = localStorage.getItem('theme') || 'dark';
+            fontSize = localStorage.getItem('fontSize') || 'medium';
           }
-          const theme = localStorage.getItem('theme') || 'dark';
+
           const root = document.documentElement;
-          root.classList.remove('dark', 'theme-military', 'theme-emerald', 'theme-nordic', 'theme-amber');
+          root.classList.remove('dark');
           if (theme === 'dark') {
             root.classList.add('dark');
-          } else if (theme === 'military') {
-            root.classList.add('dark', 'theme-military');
-          } else if (theme === 'emerald') {
-            root.classList.add('dark', 'theme-emerald');
-          } else if (theme === 'nordic') {
-            root.classList.add('dark', 'theme-nordic');
-          } else if (theme === 'amber') {
-            root.classList.add('dark', 'theme-amber');
           }
+          root.setAttribute('data-theme', theme);
+
+          let size = '16px';
+          if (fontSize === 'small') size = '14px';
+          else if (fontSize === 'large') size = '18px';
+          root.style.fontSize = size;
+          root.setAttribute('data-font-size', fontSize);
         } catch (e) {}
       })();
     </script>

@@ -134,7 +134,30 @@ export interface AuthorizedUser {
   addedAt: string;
   notes?: string;
   avatarColor?: string;
+  avatarUrl?: string; // Custom uploaded avatar icon/photo saved on server
+  customIconId?: string;
   password?: string;
+  theme?: 'light' | 'dark';
+  fontSize?: 'small' | 'medium' | 'large';
+}
+
+export interface ServerArchive {
+  filename: string;
+  timestamp: string;
+  size: number;
+  stats?: {
+    visitors: number;
+    guards: number;
+    shifts: number;
+    locations: number;
+    groups: number;
+    customIcons: number;
+    authorizedUsers: number;
+    roles: number;
+    auditLogs?: number;
+  };
+  sha256?: string;
+  manifest?: any;
 }
 
 export interface PasswordResetRequest {

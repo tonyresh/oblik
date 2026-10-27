@@ -679,10 +679,14 @@ export default function RolesAndAccess() {
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex items-center gap-2.5 min-w-0">
                           <div
-                            className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white text-xs shrink-0 shadow-xs"
+                            className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white text-xs shrink-0 shadow-xs overflow-hidden"
                             style={{ backgroundColor: user.avatarColor || '#3b82f6' }}
                           >
-                            {user.name.slice(0, 1).toUpperCase()}
+                            {user.avatarUrl ? (
+                              <img src={user.avatarUrl} alt={user.name} className="w-full h-full object-cover" />
+                            ) : (
+                              user.name.slice(0, 1).toUpperCase()
+                            )}
                           </div>
                           <div className="min-w-0">
                             <div className="flex items-center gap-1.5 flex-wrap">
@@ -836,10 +840,14 @@ export default function RolesAndAccess() {
                           <td className="py-3 px-4">
                             <div className="flex items-center gap-3">
                               <div
-                                className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-xs shrink-0 shadow-xs"
+                                className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-xs shrink-0 shadow-xs overflow-hidden"
                                 style={{ backgroundColor: user.avatarColor || '#3b82f6' }}
                               >
-                                {user.name.slice(0, 1).toUpperCase()}
+                                {user.avatarUrl ? (
+                                  <img src={user.avatarUrl} alt={user.name} className="w-full h-full object-cover" />
+                                ) : (
+                                  user.name.slice(0, 1).toUpperCase()
+                                )}
                               </div>
                               <div>
                                 <span className="font-bold text-foreground flex items-center gap-1.5">

@@ -108,6 +108,59 @@ export function setupWebSocket(httpServer: HttpServer) {
             break;
           }
 
+          case 'event': {
+            const { eventType, eventData, clientId: senderId } = message;
+            if (eventType) {
+              store.handleServerEvent(eventType, eventData);
+              // Broadcast event simultaneously to all connected clients
+              broadcast({
+                type: 'sync:event',
+                eventType,
+                eventData,
+                updatedBy: senderId || clientInfo.id,
+                timestamp: new Date().toISOString()
+              });
+
+              // Keep state collections synchronized across all users
+              if (eventType.startsWith('dirty_sky')) {
+                broadcast({
+                  type: 'sync:update',
+                  key: 'dirtySkyEvents',
+                  data: store.getState().dirtySkyEvents,
+                  updatedBy: senderId || clientInfo.id,
+                  timestamp: new Date().toISOString()
+                });
+              } else if (eventType === 'duty:add') {
+                broadcast({
+                  type: 'sync:update',
+                  key: 'dutyEvents',
+                  data: store.getState().dutyEvents,
+                  updatedBy: senderId || clientInfo.id,
+                  timestamp: new Date().toISOString()
+                });
+              } else if (eventType === 'visitor:status') {
+                broadcast({
+                  type: 'sync:update',
+                  key: 'visitors',
+                  data: store.getState().visitors,
+                  updatedBy: senderId || clientInfo.id,
+                  timestamp: new Date().toISOString()
+                });
+              }
+            }
+            break;
+          }
+
+          case 'request_state': {
+            safeSend(ws, {
+              type: 'sync:init',
+              data: store.getState(),
+              serverTime: new Date().toISOString(),
+              clientId: clientInfo.id
+            });
+            break;
+          }
+
           case 'ping':
             safeSend(ws, { type: 'pong', timestamp: Date.now() });
             break;

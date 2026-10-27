@@ -251,14 +251,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!providedPassword) {
       return {
         success: false,
-        message: 'Будь ласка, введіть пароль для входу. (За замовчуванням пароль суперадміністратора: admin)'
+        message: 'Будь ласка, введіть пароль для входу.'
       };
     }
 
     if (providedPassword !== expectedPassword) {
       return {
         success: false,
-        message: 'Невірний пароль! Перевірте правильність введеного пароля (за замовчуванням: admin).'
+        message: 'Невірний пароль! Перевірте правильність введеного пароля.'
       };
     }
 

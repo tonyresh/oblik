@@ -35,16 +35,16 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <ToastProvider>
-        <AuthProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <ToastProvider>
           <DataProvider>
             <BrowserRouter>
               <AppContent />
             </BrowserRouter>
           </DataProvider>
-        </AuthProvider>
-      </ToastProvider>
-    </ThemeProvider>
+        </ToastProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

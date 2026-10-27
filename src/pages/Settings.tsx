@@ -4,8 +4,8 @@ import { useTheme } from '../store/ThemeContext';
 import { useData } from '../store/DataContext';
 import { useAuth } from '../store/AuthContext';
 import { useToast } from '../store/ToastContext';
-import { X, Check, Type, AppWindow, Database, Download, Upload, MapPin, Users, UserRound, Archive, Palette, LayoutDashboard, Bell, BellOff, Volume2, Clock, Pencil, Trash2, Sliders, Sun, Moon, ShieldCheck, BookOpen, Printer, CloudUpload, Server, HardDrive, RefreshCw, CheckCircle2, Lock, KeyRound, Shield, FileKey } from 'lucide-react';
-import { Visitor } from '../types';
+import { X, Check, Type, AppWindow, Database, Download, Upload, MapPin, Users, UserRound, Archive, Palette, LayoutDashboard, Bell, BellOff, Volume2, Clock, Pencil, Trash2, Sliders, Sun, Moon, ShieldCheck, BookOpen, Printer, CloudUpload, Server, HardDrive, RefreshCw, CheckCircle2, Lock, KeyRound, Shield, FileKey, Camera, FileArchive, FolderArchive } from 'lucide-react';
+import { Visitor, ServerArchive } from '../types';
 import VisitorManagement from '../components/VisitorManagement';
 import { Logo } from '../components/Logo';
 import UserManualView from '../components/UserManualView';
@@ -226,15 +226,22 @@ export default function Settings() {
     showToast(`Групу "${group?.name || ''}" видалено`, 'info');
   };
 
-  const { authorizedUsers, roles, currentUser } = useAuth();
+  const { authorizedUsers, roles, currentUser, updateAuthorizedUser } = useAuth();
   const [isUploadingToServer, setIsUploadingToServer] = useState(false);
   const [isRestoringServerBackup, setIsRestoringServerBackup] = useState<string | null>(null);
   const [serverBackups, setServerBackups] = useState<Array<{ filename: string; timestamp: string; size: number; totalVisitors: number }>>([]);
   const [lastServerBackupSuccess, setLastServerBackupSuccess] = useState<string | null>(null);
   const [isLoadingServerBackups, setIsLoadingServerBackups] = useState(false);
   const encFileInputRef = useRef<HTMLInputElement>(null);
+  const userAvatarInputRef = useRef<HTMLInputElement>(null);
   const [isVerifyingIntegrity, setIsVerifyingIntegrity] = useState(false);
   const [integrityResult, setIntegrityResult] = useState<{ valid: boolean; details: string } | null>(null);
+
+  // Server full archives state
+  const [serverArchives, setServerArchives] = useState<ServerArchive[]>([]);
+  const [isLoadingServerArchives, setIsLoadingServerArchives] = useState(false);
+  const [isCreatingServerArchive, setIsCreatingServerArchive] = useState(false);
+  const [isRestoringServerArchive, setIsRestoringServerArchive] = useState<string | null>(null);
 
   const handleVerifyIntegrity = async () => {
     setIsVerifyingIntegrity(true);
@@ -301,20 +308,152 @@ export default function Settings() {
     }
   }, []);
 
+  const fetchServerArchives = useCallback(async () => {
+    setIsLoadingServerArchives(true);
+    try {
+      const res = await fetch('/api/backup/server-archives');
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && Array.isArray(json.archives)) {
+          setServerArchives(json.archives);
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to fetch server archives:', e);
+    } finally {
+      setIsLoadingServerArchives(false);
+    }
+  }, []);
+
   useEffect(() => {
     if (activeTab === 'backup') {
       fetchServerBackups();
+      fetchServerArchives();
     }
-  }, [activeTab, fetchServerBackups]);
+  }, [activeTab, fetchServerBackups, fetchServerArchives]);
 
-  const handleToggleAutoUpload = async (enabled: boolean) => {
-    if (enabled === isAutoUploadEnabled) return;
-    setIsAutoUploadEnabled(enabled);
-    if (enabled) {
-      showToast('Автоматичне вивантаження на сервер увімкнено (ON)', 'success');
-      await triggerServerDatabaseSync();
-    } else {
-      showToast('Автоматичне вивантаження на сервер вимкнено (OFF)', 'info');
+  const handleCreateServerArchive = async () => {
+    setIsCreatingServerArchive(true);
+    try {
+      const res = await fetch('/api/backup/server-archive', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          creatorEmail: currentUser?.email,
+          creatorName: currentUser?.name
+        })
+      });
+      const json = await res.json();
+      if (res.ok && json.success) {
+        showToast(json.message || 'Повний архів системи успішно створено на сервері!', 'success');
+        fetchServerArchives();
+      } else {
+        throw new Error(json.error || 'Помилка створення архіву');
+      }
+    } catch (e: any) {
+      showToast(e.message || 'Не вдалося створити архів на сервері', 'error');
+    } finally {
+      setIsCreatingServerArchive(false);
+    }
+  };
+
+  const handleRestoreServerArchive = async (filename: string) => {
+    const confirmed = window.confirm(
+      `УВАГА! Ви дійсно бажаєте повністю відновити систему з архіву "${filename}"?\n\nВсі поточні дані (відвідувачі, пости, іконки) будуть відновлені даними з цього архіву.`
+    );
+    if (!confirmed) return;
+
+    setIsRestoringServerArchive(filename);
+    try {
+      const res = await fetch('/api/backup/restore-server-archive', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename })
+      });
+      const json = await res.json();
+      if (res.ok && json.success) {
+        showToast('Систему успішно відновлено з повного архіву!', 'success');
+      } else {
+        throw new Error(json.error || 'Помилка відновлення архіву');
+      }
+    } catch (e: any) {
+      showToast(e.message || 'Помилка при відновленні з архіву', 'error');
+    } finally {
+      setIsRestoringServerArchive(null);
+    }
+  };
+
+  const handleDeleteServerArchive = async (filename: string) => {
+    const confirmed = window.confirm(`Видалити архівний файл "${filename}" з сервера?`);
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`/api/backup/server-archive/${encodeURIComponent(filename)}`, {
+        method: 'DELETE'
+      });
+      const json = await res.json();
+      if (res.ok && json.success) {
+        showToast('Архів видалено з сервера', 'info');
+        setServerArchives(prev => prev.filter(a => a.filename !== filename));
+      } else {
+        throw new Error(json.error || 'Помилка видалення архіву');
+      }
+    } catch (e: any) {
+      showToast(e.message || 'Не вдалося видалити архів', 'error');
+    }
+  };
+
+  const handleUserAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !currentUser) return;
+
+    if (file.size > 1500000) { // 1.5MB limit
+      showToast('Файл фото занадто великий (макс 1.5 МБ)', 'error');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const base64 = event.target?.result as string;
+      try {
+        const res = await fetch('/api/icons', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: `avatar-${currentUser.id}-${file.name}`,
+            data: base64,
+            category: 'user',
+            targetId: currentUser.id
+          })
+        });
+        const json = await res.json();
+        if (json.success && json.icon) {
+          updateAuthorizedUser(currentUser.id, {
+            avatarUrl: json.icon.url || base64,
+            customIconId: json.icon.id
+          });
+          showToast('Іконку користувача успішно збережено на сервері!', 'success');
+        } else {
+          throw new Error(json.error || 'Помилка збереження');
+        }
+      } catch (err: any) {
+        showToast(err.message || 'Не вдалося зберегти іконку на сервері', 'error');
+      }
+    };
+    reader.readAsDataURL(file);
+    if (userAvatarInputRef.current) userAvatarInputRef.current.value = '';
+  };
+
+  const handleRefreshAuthoritativeDatabase = async () => {
+    try {
+      const ok = await dataContext.reloadAuthoritativeDatabase(true);
+      if (ok) {
+        showToast('Останню актуальну базу успішно завантажено із сервера!', 'success');
+      } else {
+        showToast('Не вдалося завантажити базу з сервера', 'error');
+      }
+    } catch {
+      showToast('Помилка завантаження бази', 'error');
     }
   };
 
@@ -583,34 +722,66 @@ export default function Settings() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 500000) { // 500kb limit
-      showToast('Файл занадто великий (макс 500КБ)', 'error');
+    if (file.size > 800000) { // 800kb limit
+      showToast('Файл занадто великий (макс 800 КБ)', 'error');
       return;
     }
 
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       const base64 = event.target?.result as string;
-      const newIcon = {
-        id: 'icon-' + Date.now(),
+      const tempId = 'icon-' + Date.now();
+      const localIcon = {
+        id: tempId,
         name: file.name,
         data: base64
       };
-      setCustomIcons(prev => [...prev, newIcon]);
-      showToast('Іконку бригади успішно завантажено', 'success');
+      setCustomIcons(prev => [...prev, localIcon]);
+
+      // Save icon permanently on server
+      try {
+        const res = await fetch('/api/icons', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: file.name,
+            data: base64,
+            category: 'brigade',
+            targetId: editingLocation?.id
+          })
+        });
+        const json = await res.json();
+        if (json.success && json.icon) {
+          setCustomIcons(prev => prev.map(ic => ic.id === tempId ? { ...ic, id: json.icon.id, url: json.icon.url } : ic));
+          if (editingLocation) {
+            setEditLocationIconId(json.icon.id);
+          } else {
+            setNewLocationIconId(json.icon.id);
+          }
+          showToast('Іконку бригади успішно збережено на сервері!', 'success');
+          return;
+        }
+      } catch (err) {
+        console.error('Failed to save brigade icon on server:', err);
+      }
+
+      showToast('Іконку бригади збережено локально', 'info');
       if (editingLocation) {
-        setEditLocationIconId(newIcon.id);
+        setEditLocationIconId(localIcon.id);
       } else {
-        setNewLocationIconId(newIcon.id);
+        setNewLocationIconId(localIcon.id);
       }
     };
     reader.readAsDataURL(file);
     if (iconInputRef.current) iconInputRef.current.value = '';
   };
 
-  const removeIcon = (id: string) => {
+  const removeIcon = async (id: string) => {
     setCustomIcons(prev => prev.filter(icon => icon.id !== id));
-    showToast('Іконку видалено', 'info');
+    try {
+      await fetch(`/api/icons/${id}`, { method: 'DELETE' });
+    } catch (e) {}
+    showToast('Іконку видалено з сервера', 'info');
   };
 
   const menuItems: { id: SettingsTab; label: string; icon: any; color: string }[] = [
@@ -1194,97 +1365,43 @@ export default function Settings() {
                       </button>
                     </div>
 
-                    {/* Automatic Database Sync to Server Status & ON/OFF Controls */}
-                    <div className={`p-4 rounded-2xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs ${
-                      isAutoUploadEnabled
-                        ? 'bg-gradient-to-r from-emerald-500/10 via-primary/5 to-card border-emerald-500/30 shadow-2xs'
-                        : 'bg-muted/30 border-border/60'
-                    }`}>
+                    {/* Real-time Server Event Synchronization & Admin Authoritative Sync Panel */}
+                    <div className="p-4 rounded-2xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs bg-gradient-to-r from-emerald-500/10 via-primary/5 to-card border-emerald-500/30 shadow-2xs">
                       <div className="flex items-start sm:items-center gap-3.5 min-w-0">
                         <div className="relative flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
-                          <div className={`w-3.5 h-3.5 rounded-full ${
-                            !isAutoUploadEnabled 
-                              ? 'bg-muted-foreground/40' 
-                              : isAutoUploading 
-                                ? 'bg-amber-500 animate-ping' 
-                                : 'bg-emerald-500'
-                          }`} />
-                          <div className={`w-2.5 h-2.5 rounded-full absolute ${
-                            !isAutoUploadEnabled 
-                              ? 'bg-muted-foreground/60' 
-                              : isAutoUploading 
-                                ? 'bg-amber-500' 
-                                : 'bg-emerald-500'
-                          }`} />
+                          <div className="w-3.5 h-3.5 rounded-full bg-emerald-500 animate-ping" />
+                          <div className="w-2.5 h-2.5 rounded-full absolute bg-emerald-500" />
                         </div>
                         <div>
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-bold text-foreground text-xs sm:text-sm">
-                              Автоматичне вивантаження на сервер:
+                              Синхронізація подій у реальному часі (WebSocket):
                             </span>
-                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                              !isAutoUploadEnabled
-                                ? 'bg-muted text-muted-foreground border border-border/80'
-                                : isAutoUploading 
-                                  ? 'bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30' 
-                                  : 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
-                            }`}>
-                              {!isAutoUploadEnabled ? 'ВИМКНЕНО (OFF)' : isAutoUploading ? 'Вивантаження...' : 'АКТИВНО (ON)'}
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                              АКТИВНО ДЛЯ ВСІХ КОРИСТУВАЧІВ
                             </span>
                           </div>
                           <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">
-                            {isAutoUploadEnabled
-                              ? 'Після будь-якої зміни в базі даних оновлена версія автоматично зберігається на сервері.'
-                              : 'Автоматичне збереження призупинено. Зміни зберігаються локально в браузері. Використовуйте кнопку «Вивантажити всю базу на сервер» для ручного збереження.'}
+                            Усі події (режим «Брудне небо», чергування, входи/виходи відвідувачів та статус постів) транслюються одночасно всім користувачам без затримок. Автоматичне фонове перезаписування бази вимкнено для захисту від обнулення.
                           </p>
+                          <div className="mt-1.5 flex items-center gap-2 text-[10px] font-semibold text-primary">
+                            <ShieldCheck className="w-3.5 h-3.5" />
+                            <span>При кожному вході адміністраторів підвантажується остання актуальна база даних із сервера.</span>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Controls and Last sync timestamp */}
-                      <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2.5 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/40">
-                        {/* ON / OFF Toggle Buttons */}
-                        <div className="inline-flex items-center p-1 rounded-xl bg-background border border-border shadow-xs select-none">
-                          <button
-                            type="button"
-                            onClick={() => handleToggleAutoUpload(true)}
-                            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
-                              isAutoUploadEnabled
-                                ? 'bg-emerald-500 text-white shadow-sm scale-100'
-                                : 'text-muted-foreground hover:text-foreground hover:bg-muted/70'
-                            }`}
-                            title="Увімкнути автоматичне вивантаження на сервер"
-                          >
-                            <Check className="w-3.5 h-3.5 stroke-[2.5]" />
-                            <span>ON</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleToggleAutoUpload(false)}
-                            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
-                              !isAutoUploadEnabled
-                                ? 'bg-destructive text-destructive-foreground shadow-sm scale-100'
-                                : 'text-muted-foreground hover:text-foreground hover:bg-muted/70'
-                            }`}
-                            title="Вимкнути автоматичне вивантаження на сервер"
-                          >
-                            <X className="w-3.5 h-3.5 stroke-[2.5]" />
-                            <span>OFF</span>
-                          </button>
-                        </div>
-
-                        {/* Last Sync Timestamp */}
-                        <div className="text-right">
-                          <span className="text-[10px] uppercase font-bold text-muted-foreground block">
-                            Останнє збереження:
-                          </span>
-                          <span className={`font-mono text-xs font-bold ${
-                            isAutoUploadEnabled ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground'
-                          }`}>
-                            {lastAutoBackupTime 
-                              ? lastAutoBackupTime.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) 
-                              : (lastServerBackupSuccess || 'При зміні даних')}
-                          </span>
-                        </div>
+                      {/* Manual Authoritative Database Refresh Button */}
+                      <div className="flex items-center gap-2 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/40">
+                        <button
+                          type="button"
+                          onClick={handleRefreshAuthoritativeDatabase}
+                          className="px-3.5 py-2 rounded-xl text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 transition-all flex items-center gap-2 shadow-sm cursor-pointer shrink-0"
+                          title="Примусово завантажити найсвіжішу базу даних із сервера"
+                        >
+                          <RefreshCw className="w-3.5 h-3.5" />
+                          <span>Оновити базу з сервера</span>
+                        </button>
                       </div>
                     </div>
 
@@ -1362,6 +1479,159 @@ export default function Settings() {
                               >
                                 {isRestoringServerBackup === b.filename ? 'Відновлення...' : 'Відновити'}
                               </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* 2. Full Server System Archive (.ZIP) */}
+                  <div className="p-5 bg-card rounded-2xl border border-indigo-500/30 shadow-xs space-y-4 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
+
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-500 shrink-0">
+                          <FolderArchive className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h3 className="text-sm font-bold text-foreground">
+                              Повний монолітний архів системи на сервері (.ZIP)
+                            </h3>
+                            <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                              БД + ІКОНКИ + МАНІФЕСТ
+                            </span>
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-0.5 max-w-2xl">
+                            Створює єдиний ZIP-архів на сервері. Включає повну зашифровану БД (AES-256-GCM), відкритий знімок JSON, усі збережені іконки бригад та фото користувачів (data/icons), знімки баз та підписаний маніфест з контрольними сумами SHA-256.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          type="button"
+                          onClick={fetchServerArchives}
+                          disabled={isLoadingServerArchives}
+                          title="Оновити список архівів на сервері"
+                          className="p-2 rounded-xl bg-secondary hover:bg-secondary/80 text-foreground border border-border/50 text-xs font-semibold cursor-pointer transition-all"
+                        >
+                          <RefreshCw className={`w-3.5 h-3.5 ${isLoadingServerArchives ? 'animate-spin' : ''}`} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleCreateServerArchive}
+                          disabled={isCreatingServerArchive}
+                          className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-sm text-xs font-bold transition-all cursor-pointer disabled:opacity-50"
+                        >
+                          {isCreatingServerArchive ? (
+                            <>
+                              <RefreshCw className="w-4 h-4 animate-spin" />
+                              <span>Створення архіву...</span>
+                            </>
+                          ) : (
+                            <>
+                              <FileArchive className="w-4 h-4" />
+                              <span>Створити повний архів (.ZIP)</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Archives list table / cards */}
+                    <div className="space-y-2 pt-1">
+                      <div className="flex items-center justify-between text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                        <span>Збережені повні архіви на сервері ({serverArchives.length})</span>
+                      </div>
+
+                      {serverArchives.length === 0 ? (
+                        <div className="py-6 text-center text-xs text-muted-foreground bg-muted/20 rounded-xl border border-dashed border-border/60 flex flex-col items-center justify-center gap-2">
+                          <FolderArchive className="w-8 h-8 text-muted-foreground/40" />
+                          <p>На сервері ще немає створених повних ZIP-архівів системи.</p>
+                          <button
+                            type="button"
+                            onClick={handleCreateServerArchive}
+                            disabled={isCreatingServerArchive}
+                            className="text-xs text-indigo-500 hover:underline font-semibold cursor-pointer"
+                          >
+                            + Створити перший повний архів прямо зараз
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+                          {serverArchives.map((archive) => (
+                            <div
+                              key={archive.filename}
+                              className="p-3 bg-muted/30 hover:bg-muted/50 border border-border/60 rounded-xl transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                            >
+                              <div className="min-w-0 space-y-1">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <FileArchive className="w-4 h-4 text-indigo-500 shrink-0" />
+                                  <span className="font-mono font-bold text-foreground truncate">{archive.filename}</span>
+                                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-indigo-500/15 text-indigo-500 border border-indigo-500/20">
+                                    {(archive.size / 1024).toFixed(1)} КБ
+                                  </span>
+                                  <span className="text-[10px] text-muted-foreground">
+                                    {new Date(archive.timestamp).toLocaleString('uk-UA')}
+                                  </span>
+                                </div>
+
+                                <div className="flex items-center gap-2 text-[10px] text-muted-foreground flex-wrap">
+                                  <span>Склад:</span>
+                                  <span className="px-1.5 py-0.5 rounded bg-background border border-border/40 font-semibold text-foreground">
+                                    відвідувачів: {archive.stats?.visitors ?? '—'}
+                                  </span>
+                                  <span className="px-1.5 py-0.5 rounded bg-background border border-border/40 font-semibold text-foreground">
+                                    бригад: {archive.stats?.locations ?? '—'}
+                                  </span>
+                                  <span className="px-1.5 py-0.5 rounded bg-background border border-border/40 font-semibold text-foreground">
+                                    користувачів: {archive.stats?.authorizedUsers ?? '—'}
+                                  </span>
+                                  <span className="px-1.5 py-0.5 rounded bg-background border border-border/40 font-semibold text-foreground">
+                                    іконок: {archive.stats?.customIcons ?? '—'}
+                                  </span>
+                                  {archive.sha256 && (
+                                    <span className="font-mono text-[9px] text-muted-foreground/80 truncate max-w-xs" title={`SHA256: ${archive.sha256}`}>
+                                      SHA: {archive.sha256.substring(0, 12)}...
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                                <a
+                                  href={`/api/backup/download-archive/${encodeURIComponent(archive.filename)}`}
+                                  download
+                                  className="px-2.5 py-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 font-bold text-[11px] flex items-center gap-1 transition-colors"
+                                  title="Завантажити архів на комп'ютер"
+                                >
+                                  <Download className="w-3.5 h-3.5" />
+                                  <span>Завантажити</span>
+                                </a>
+
+                                <button
+                                  type="button"
+                                  onClick={() => handleRestoreServerArchive(archive.filename)}
+                                  disabled={isRestoringServerArchive === archive.filename}
+                                  className="px-2.5 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold text-[11px] flex items-center gap-1 transition-colors cursor-pointer"
+                                  title="Відновити всю систему з цього архіву"
+                                >
+                                  <RefreshCw className={`w-3.5 h-3.5 ${isRestoringServerArchive === archive.filename ? 'animate-spin' : ''}`} />
+                                  <span>{isRestoringServerArchive === archive.filename ? 'Відновлення...' : 'Відновити'}</span>
+                                </button>
+
+                                <button
+                                  type="button"
+                                  onClick={() => handleDeleteServerArchive(archive.filename)}
+                                  className="p-1.5 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors cursor-pointer"
+                                  title="Видалити архів з сервера"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
                             </div>
                           ))}
                         </div>
@@ -1526,42 +1796,192 @@ export default function Settings() {
                     <p className="mt-2 text-xs text-muted-foreground opacity-70">Виберіть скільки карток відображати в одному рядку на великих екранах</p>
                   </div>
 
-                  <div>
-                    <label className="block text-[10px] uppercase tracking-wider font-bold text-muted-foreground mb-4">Розмір шрифту інтерфейсу</label>
-                    <div className="flex flex-wrap gap-3">
-                      {(['normal', 'large', 'xlarge'] as const).map(size => (
-                        <button
-                          key={size}
-                          onClick={() => setFontSize(size)}
-                          className={`px-8 py-3 rounded-xl text-sm font-medium transition-all ${
-                            fontSize === size 
-                              ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-[1.02]' 
-                              : 'bg-muted text-muted-foreground hover:bg-secondary/50 hover:text-foreground border border-border/50'
-                          }`}
+                  {/* User Profile Sync Banner */}
+                  <div className="p-4 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-center gap-3.5">
+                      <div className="relative group shrink-0">
+                        <div 
+                          className="w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-white shadow-sm overflow-hidden border border-border/50"
+                          style={{ backgroundColor: currentUser?.avatarColor || '#3b82f6' }}
                         >
-                          {size === 'normal' ? 'Стандартний' : size === 'large' ? 'Великий' : 'Дуже великий'}
+                          {currentUser?.avatarUrl ? (
+                            <img src={currentUser.avatarUrl} alt={currentUser?.name} className="w-full h-full object-cover" />
+                          ) : (
+                            <span className="text-base">{currentUser?.name?.slice(0, 1).toUpperCase() || 'U'}</span>
+                          )}
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => userAvatarInputRef.current?.click()}
+                          title="Завантажити власну іконку / фото на сервер"
+                          className="absolute -bottom-1 -right-1 p-1 rounded-lg bg-primary text-primary-foreground shadow-sm hover:scale-105 transition-all cursor-pointer"
+                        >
+                          <Camera className="w-3.5 h-3.5" />
                         </button>
-                      ))}
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-sm font-bold text-foreground">
+                            {currentUser?.name || 'Користувач'}
+                          </span>
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/20 text-primary">
+                            {currentUser?.email}
+                          </span>
+                          {currentUser?.avatarUrl && (
+                            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-md bg-emerald-500/15 text-emerald-500 border border-emerald-500/20">
+                              Іконка на сервері
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Вибрані параметри теми, розміру шрифту та іконка профілю зберігаються на сервері для вашого облікового запису.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 self-start sm:self-center">
+                      <button
+                        type="button"
+                        onClick={() => userAvatarInputRef.current?.click()}
+                        className="px-3 py-1.5 rounded-xl bg-secondary hover:bg-secondary/80 text-foreground text-xs font-semibold flex items-center gap-1.5 border border-border/50 transition-all cursor-pointer"
+                      >
+                        <Camera className="w-3.5 h-3.5" />
+                        <span>Змінити іконку</span>
+                      </button>
+                      <input 
+                        type="file" 
+                        ref={userAvatarInputRef} 
+                        onChange={handleUserAvatarUpload} 
+                        accept="image/*" 
+                        className="hidden" 
+                      />
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-bold shrink-0">
+                        <CheckCircle2 className="w-4 h-4" />
+                        <span>Збереження активне</span>
+                      </div>
                     </div>
                   </div>
 
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <label className="block text-[10px] uppercase tracking-wider font-bold text-muted-foreground">
-                        Тема оформлення системи (Світла / Темна)
-                      </label>
-                      <span className="text-[11px] text-muted-foreground">
-                        Виберіть світлу або темну тему інтерфейсу
+                  {/* Font Size Settings */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <label className="block text-[11px] uppercase tracking-wider font-bold text-muted-foreground">
+                          Розмір шрифту інтерфейсу (Маленький / Середній / Великий)
+                        </label>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Масштабує базовий розмір шрифту та елементів системи відповідно до ваших уподобань
+                        </p>
+                      </div>
+                      <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-muted text-foreground border border-border/60">
+                        {fontSize === 'small' ? 'Маленький (14px)' : fontSize === 'large' ? 'Великий (18px)' : 'Середній (16px)'}
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-2xl">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {[
+                        {
+                          id: 'small' as const,
+                          name: 'Маленький',
+                          sizeLabel: '14 px',
+                          desc: 'Компактний вигляд для огляду великої кількості записів на екрані',
+                          letterSize: 'text-sm'
+                        },
+                        {
+                          id: 'medium' as const,
+                          name: 'Середній',
+                          sizeLabel: '16 px',
+                          desc: 'Стандартний збалансований розмір для щоденної роботи на посту',
+                          letterSize: 'text-lg'
+                        },
+                        {
+                          id: 'large' as const,
+                          name: 'Великий',
+                          sizeLabel: '18 px',
+                          desc: 'Збільшений шрифт для легкої читабельності з відстані',
+                          letterSize: 'text-2xl'
+                        }
+                      ].map((item) => {
+                        const isCurrent = fontSize === item.id;
+                        return (
+                          <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => {
+                              setFontSize(item.id);
+                              showToast(`Розмір шрифту "${item.name}" збережено для ${currentUser?.name || 'вашого профілю'}`, 'info');
+                            }}
+                            className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between relative select-none ${
+                              isCurrent
+                                ? 'bg-primary/10 border-primary ring-2 ring-primary/30 shadow-md scale-[1.01]'
+                                : 'bg-card hover:bg-muted/40 border-border hover:border-border/80'
+                            }`}
+                          >
+                            <div className="flex items-start justify-between mb-3">
+                              <div className="flex items-center gap-2.5">
+                                <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold font-serif ${item.letterSize} ${
+                                  isCurrent ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
+                                }`}>
+                                  A
+                                </div>
+                                <div>
+                                  <div className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                                    <span>{item.name}</span>
+                                    {isCurrent && (
+                                      <span className="w-2 h-2 rounded-full bg-primary shrink-0 animate-pulse" />
+                                    )}
+                                  </div>
+                                  <span className="text-[11px] font-mono text-muted-foreground">
+                                    {item.sizeLabel}
+                                  </span>
+                                </div>
+                              </div>
+                              {isCurrent && (
+                                <span className="p-1 rounded-full bg-primary text-primary-foreground">
+                                  <Check className="w-3.5 h-3.5" />
+                                </span>
+                              )}
+                            </div>
+
+                            <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                              {item.desc}
+                            </p>
+
+                            <div className="mt-3 pt-2 border-t border-border/40 text-[11px] font-semibold text-right">
+                              <span className={isCurrent ? 'text-primary' : 'text-muted-foreground/70'}>
+                                {isCurrent ? '✓ Вибрано для вашого облікового запису' : 'Натисніть для вибору'}
+                              </span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Theme Switcher Settings */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <label className="block text-[11px] uppercase tracking-wider font-bold text-muted-foreground">
+                          Тема оформлення інтерфейсу (Світла / Темна)
+                        </label>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          Перемикання між світлим та темним оформленням із персональним закріпленням за користувачем
+                        </p>
+                      </div>
+                      <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-muted text-foreground border border-border/60">
+                        {theme === 'dark' ? 'Темна тема' : 'Світла тема'}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-3xl">
                       {[
                         {
                           id: 'light' as const,
                           name: 'Світла тема',
-                          badge: 'Класична',
-                          desc: 'Чистий світлий інтерфейс для денної зміни та яскравого освітлення',
+                          badge: 'Класична денна',
+                          desc: 'Чистий світлий інтерфейс для денної зміни та яскравого освітлення приміщення',
                           icon: Sun,
                           bg: '#ffffff',
                           card: '#f1f5f9',
@@ -1572,7 +1992,7 @@ export default function Settings() {
                           id: 'dark' as const,
                           name: 'Темна тема',
                           badge: 'За замовчуванням',
-                          desc: 'Глибока темна графітова палітра для роботи та чергування (встановлена за замовчуванням)',
+                          desc: 'Глибока темна графітова палітра для роботи та нічного чергування на пункті охорони',
                           icon: Moon,
                           bg: '#0b1120',
                           card: '#151f32',
@@ -1585,7 +2005,10 @@ export default function Settings() {
                         return (
                           <div
                             key={t.id}
-                            onClick={() => setTheme(t.id)}
+                            onClick={() => {
+                              setTheme(t.id);
+                              showToast(`Тему "${t.name}" збережено для ${currentUser?.name || 'вашого облікового запису'}`, 'info');
+                            }}
                             className={`relative rounded-2xl p-4 border transition-all cursor-pointer select-none flex flex-col justify-between ${
                               isCurrent
                                 ? 'bg-primary/10 border-primary ring-2 ring-primary/30 shadow-md scale-[1.01]'
@@ -1628,7 +2051,7 @@ export default function Settings() {
 
                             <div className="mt-3 pt-2.5 border-t border-border/40 flex items-center justify-between text-[11px] font-bold">
                               <span className={isCurrent ? 'text-primary' : 'text-muted-foreground'}>
-                                {isCurrent ? '✓ Активна тема' : 'Натисніть для вибору'}
+                                {isCurrent ? '✓ Активна тема користувача' : 'Натисніть для вибору'}
                               </span>
                               <span className="text-[10px] text-muted-foreground/60 uppercase font-mono">
                                 {t.id}
@@ -1637,6 +2060,24 @@ export default function Settings() {
                           </div>
                         );
                       })}
+                    </div>
+                  </div>
+
+                  {/* Live preview banner */}
+                  <div className="p-4 rounded-2xl border border-dashed border-border bg-card/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+                        <Palette className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-foreground">Попередній перегляд стилю інтерфейсу</div>
+                        <div className="text-xs text-muted-foreground">
+                          Тема: <strong className="text-foreground">{theme === 'dark' ? 'Темна' : 'Світла'}</strong> | Розмір шрифту: <strong className="text-foreground">{fontSize === 'small' ? 'Маленький (14px)' : fontSize === 'large' ? 'Великий (18px)' : 'Середній (16px)'}</strong>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-xs px-3 py-1.5 rounded-lg bg-secondary text-secondary-foreground font-mono">
+                      html[data-theme="{theme}"] font-size: {fontSize === 'small' ? '14px' : fontSize === 'large' ? '18px' : '16px'}
                     </div>
                   </div>
                 </div>

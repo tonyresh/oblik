@@ -6,6 +6,7 @@ import {
   AuditLogEntry, EncryptionStatus 
 } from '../types';
 import { realtimeSync, SyncStatus } from '../services/realtimeSync';
+import { useAuth } from './AuthContext';
 
 interface DataContextType {
   visitors: Visitor[];
@@ -44,6 +45,7 @@ interface DataContextType {
   isAutoUploadEnabled: boolean;
   setIsAutoUploadEnabled: (enabled: boolean) => void;
   triggerServerDatabaseSync: () => Promise<boolean>;
+  reloadAuthoritativeDatabase: (force?: boolean) => Promise<boolean>;
 
   // Security, Audit, Stop-List, Checkpoints & Encryption
   stopList: StopListItem[];
@@ -63,6 +65,9 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
+  const { currentUser } = useAuth();
+
+  // Core collections state
   const [visitors, setVisitors] = useState<Visitor[]>(() => {
     try {
       const saved = localStorage.getItem('visitors');
@@ -71,6 +76,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       return [];
     }
   });
+
   const [guards, setGuards] = useState<Guard[]>(() => {
     try {
       const saved = localStorage.getItem('guards');
@@ -79,6 +85,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       return [];
     }
   });
+
   const [shifts, setShifts] = useState<Shift[]>(() => {
     try {
       const saved = localStorage.getItem('shifts');
@@ -87,6 +94,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       return [];
     }
   });
+
   const [securityShifts, setSecurityShifts] = useState<SecurityShift[]>(() => {
     try {
       const saved = localStorage.getItem('securityShifts');
@@ -101,6 +109,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       ];
     }
   });
+
   const [categories, setCategoriesState] = useState<Category[]>(() => {
     const defaultRanks = ['Рядовий', 'Сержант', 'Лейтенант', 'Капітан', 'Майор', 'Полковник'];
     try {
@@ -124,6 +133,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       return Array.from(new Set(next.map(String).map(s => s.trim()).filter(Boolean)));
     });
   }, []);
+
   const [locations, setLocations] = useState<Location[]>(() => {
     try {
       const saved = localStorage.getItem('locations');
@@ -142,6 +152,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       { id: 'loc-4', name: 'Навчальна бригада' }
     ];
   });
+
   const [groups, setGroups] = useState<Group[]>(() => {
     try {
       const saved = localStorage.getItem('groups');
@@ -164,48 +175,13 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     ];
   });
 
-  // Migration: Move "Рота охорони" from locations to groups and de-duplicate
-  useEffect(() => {
-    // Migration from old location to group
-    const hasSecurityLocation = locations.some(loc => loc.name === 'Рота охорони');
-    if (hasSecurityLocation) {
-      setLocations(prev => prev.filter(loc => loc.name !== 'Рота охорони'));
-    }
-    
-    // Always check for duplicates and ensure Рота охорони exists
-    setGroups(prev => {
-      const seen = new Set();
-      const unique: Group[] = [];
-      
-      // First ensure core groups exist if missing
-      const coreGroups = [
-        { id: '1', name: 'Постійні відвідувачі', color: 'rgba(34, 197, 94, 0.1)' },
-        { id: '2', name: 'Тимчасові', color: 'rgba(59, 130, 246, 0.1)' },
-        { id: '3', name: 'Рота охорони', color: 'rgba(239, 68, 68, 0.1)' },
-      ];
-
-      // Use a combined list to filter
-      const allPossible = [...prev];
-      coreGroups.forEach(cg => {
-        if (!allPossible.some(g => g.name === cg.name)) {
-          allPossible.push(cg);
-        }
-      });
-
-      allPossible.forEach(g => {
-        if (!seen.has(g.name)) {
-          seen.add(g.name);
-          unique.push(g);
-        }
-      });
-
-      return unique.length === prev.length && prev.length > 0 ? prev : unique;
-    });
-  }, [locations]);
-
   const [dirtySkyEvents, setDirtySkyEvents] = useState<DirtySkyEvent[]>(() => {
-    const saved = localStorage.getItem('dirtySkyEvents');
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem('dirtySkyEvents');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
   });
 
   const [dutyEvents, setDutyEvents] = useState<DutyEvent[]>(() => {
@@ -217,17 +193,6 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
-  const addDutyEvent = useCallback((shiftId: string, shiftName: string, type: 'start' | 'end', timestamp?: string) => {
-    const newEvent: DutyEvent = {
-      id: Date.now().toString() + '-' + Math.random().toString(36).substr(2, 6),
-      shiftId,
-      shiftName,
-      type,
-      timestamp: timestamp || new Date().toISOString()
-    };
-    setDutyEvents(prev => [...prev, newEvent]);
-  }, []);
-
   const [customIcons, setCustomIcons] = useState<CustomIcon[]>(() => {
     try {
       const saved = localStorage.getItem('customIcons');
@@ -237,7 +202,6 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
-  // Enterprise Security State: Stop-List, Checkpoints, Audit & Encryption
   const [stopList, setStopList] = useState<StopListItem[]>(() => {
     try {
       const saved = localStorage.getItem('stopList');
@@ -284,6 +248,14 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [auditLogs, setAuditLogs] = useState<AuditLogEntry[]>([]);
   const [encryptionStatus, setEncryptionStatus] = useState<EncryptionStatus | null>(null);
 
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>(() => realtimeSync.getStatus());
+  const [onlineClientsCount, setOnlineClientsCount] = useState<number>(() => realtimeSync.getOnlineCount());
+
+  // Flags to prevent echo loops and zeroing out server data on initial mount
+  const isRemoteUpdateRef = useRef<Record<string, boolean>>({});
+  const isHydratedRef = useRef<boolean>(false);
+  const lastLoadedAdminUserIdRef = useRef<string | null>(null);
+
   const fetchEncryptionStatus = useCallback(async () => {
     try {
       const res = await fetch('/api/encryption/status');
@@ -314,6 +286,109 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  // Reload authoritative database from server
+  const reloadAuthoritativeDatabase = useCallback(async (isForced: boolean = false): Promise<boolean> => {
+    try {
+      console.log(`[DataContext] Loading authoritative database from server (forced: ${isForced})...`);
+      const serverState = await realtimeSync.fetchStateViaHttp();
+      if (!serverState) {
+        console.warn('[DataContext] Server returned empty state on reload');
+        return false;
+      }
+
+      if (Array.isArray(serverState.visitors)) {
+        isRemoteUpdateRef.current.visitors = true;
+        setVisitors(serverState.visitors);
+        localStorage.setItem('visitors', JSON.stringify(serverState.visitors));
+      }
+      if (Array.isArray(serverState.guards)) {
+        isRemoteUpdateRef.current.guards = true;
+        setGuards(serverState.guards);
+        localStorage.setItem('guards', JSON.stringify(serverState.guards));
+      }
+      if (Array.isArray(serverState.shifts)) {
+        isRemoteUpdateRef.current.shifts = true;
+        setShifts(serverState.shifts);
+        localStorage.setItem('shifts', JSON.stringify(serverState.shifts));
+      }
+      if (Array.isArray(serverState.securityShifts)) {
+        isRemoteUpdateRef.current.securityShifts = true;
+        setSecurityShifts(serverState.securityShifts);
+        localStorage.setItem('securityShifts', JSON.stringify(serverState.securityShifts));
+      }
+      if (Array.isArray(serverState.categories)) {
+        isRemoteUpdateRef.current.categories = true;
+        setCategories(serverState.categories);
+        localStorage.setItem('categories', JSON.stringify(serverState.categories));
+      }
+      if (Array.isArray(serverState.groups)) {
+        isRemoteUpdateRef.current.groups = true;
+        setGroups(serverState.groups);
+        localStorage.setItem('groups', JSON.stringify(serverState.groups));
+      }
+      if (Array.isArray(serverState.locations)) {
+        isRemoteUpdateRef.current.locations = true;
+        setLocations(serverState.locations);
+        localStorage.setItem('locations', JSON.stringify(serverState.locations));
+      }
+      if (Array.isArray(serverState.dirtySkyEvents)) {
+        isRemoteUpdateRef.current.dirtySkyEvents = true;
+        setDirtySkyEvents(serverState.dirtySkyEvents);
+        localStorage.setItem('dirtySkyEvents', JSON.stringify(serverState.dirtySkyEvents));
+      }
+      if (Array.isArray(serverState.dutyEvents)) {
+        isRemoteUpdateRef.current.dutyEvents = true;
+        setDutyEvents(serverState.dutyEvents);
+        localStorage.setItem('dutyEvents', JSON.stringify(serverState.dutyEvents));
+      }
+      if (Array.isArray(serverState.customIcons)) {
+        isRemoteUpdateRef.current.customIcons = true;
+        setCustomIcons(serverState.customIcons);
+        localStorage.setItem('customIcons', JSON.stringify(serverState.customIcons));
+      }
+      if (Array.isArray(serverState.stopList)) {
+        setStopList(serverState.stopList);
+        localStorage.setItem('stopList', JSON.stringify(serverState.stopList));
+      }
+      if (Array.isArray(serverState.checkpoints)) {
+        setCheckpoints(serverState.checkpoints);
+        localStorage.setItem('checkpoints', JSON.stringify(serverState.checkpoints));
+      }
+      if (Array.isArray(serverState.auditLogs)) {
+        setAuditLogs(serverState.auditLogs);
+      }
+      if (typeof serverState.reportRetentionHours === 'number') {
+        setReportRetentionHoursState(serverState.reportRetentionHours);
+      }
+
+      isHydratedRef.current = true;
+      console.log(`[DataContext] Authoritative database loaded. Total visitors: ${serverState.visitors?.length || 0}`);
+      return true;
+    } catch (err) {
+      console.error('[DataContext] Error reloading authoritative database:', err);
+      return false;
+    }
+  }, [setCategories]);
+
+  // For every login of users from the administrators list, reload latest database from server
+  useEffect(() => {
+    if (!currentUser) {
+      lastLoadedAdminUserIdRef.current = null;
+      return;
+    }
+
+    const isAdmin = currentUser.roleId === 'admin' || 
+                    currentUser.email.toLowerCase() === 'tonyreshua@gmail.com' || 
+                    currentUser.email.toLowerCase() === 'admin@skud.local';
+
+    if (isAdmin && lastLoadedAdminUserIdRef.current !== currentUser.id) {
+      lastLoadedAdminUserIdRef.current = currentUser.id;
+      console.log(`[DataContext] Administrator "${currentUser.name}" (${currentUser.email}) logged in: loading latest database from server`);
+      reloadAuthoritativeDatabase(true);
+    }
+  }, [currentUser, reloadAuthoritativeDatabase]);
+
+  // Stop-list, Checkpoints, Audit API operations
   const addToStopList = useCallback(async (item: Omit<StopListItem, 'id' | 'addedAt'>) => {
     try {
       const res = await fetch('/api/security/stoplist', {
@@ -382,36 +457,14 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Fetch initial audit logs and encryption status
+  // Real-time WebSocket connection and event synchronization
   useEffect(() => {
-    fetchEncryptionStatus();
-    fetch('/api/audit-logs?limit=150')
-      .then(r => r.json())
-      .then(d => { if (d.success && Array.isArray(d.logs)) setAuditLogs(d.logs); })
-      .catch(() => {});
-    fetch('/api/security/stoplist')
-      .then(r => r.json())
-      .then(d => { if (d.success && Array.isArray(d.stopList)) setStopList(d.stopList); })
-      .catch(() => {});
-    fetch('/api/security/checkpoints')
-      .then(r => r.json())
-      .then(d => { if (d.success && Array.isArray(d.checkpoints)) setCheckpoints(d.checkpoints); })
-      .catch(() => {});
-  }, [fetchEncryptionStatus]);
-
-  const [syncStatus, setSyncStatus] = useState<SyncStatus>(() => realtimeSync.getStatus());
-  const [onlineClientsCount, setOnlineClientsCount] = useState<number>(() => realtimeSync.getOnlineCount());
-  const isRemoteUpdateRef = useRef<Record<string, boolean>>({});
-
-  useEffect(() => {
-    // 1. Connect WebSocket
     realtimeSync.connect();
 
-    // 2. Subscribe to status & presence
     const unsubStatus = realtimeSync.onStatusChange(setSyncStatus);
     const unsubPresence = realtimeSync.onPresenceChange(setOnlineClientsCount);
 
-    // 3. Handle full sync init from server
+    // Initial full state hydration from server
     const unsubInit = realtimeSync.onInit((serverState) => {
       if (!serverState) return;
 
@@ -451,13 +504,92 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         isRemoteUpdateRef.current.customIcons = true;
         setCustomIcons(serverState.customIcons);
       }
+      if (Array.isArray(serverState.stopList)) {
+        setStopList(serverState.stopList);
+      }
+      if (Array.isArray(serverState.checkpoints)) {
+        setCheckpoints(serverState.checkpoints);
+      }
+      if (Array.isArray(serverState.auditLogs)) {
+        setAuditLogs(serverState.auditLogs);
+      }
       if (typeof serverState.reportRetentionHours === 'number') {
         isRemoteUpdateRef.current.reportRetentionHours = true;
         setReportRetentionHoursState(serverState.reportRetentionHours);
       }
+
+      isHydratedRef.current = true;
     });
 
-    // 4. Handle incoming incremental updates from other clients
+    // Handle real-time discrete events across all connected users
+    const unsubEvent = realtimeSync.onEvent((eventType, eventData, updatedBy) => {
+      console.log(`[RealtimeSync] Real-time event received from ${updatedBy}: ${eventType}`, eventData);
+
+      switch (eventType) {
+        case 'dirty_sky:start': {
+          isRemoteUpdateRef.current.dirtySkyEvents = true;
+          setDirtySkyEvents(prev => {
+            const id = eventData?.id || Date.now().toString();
+            if (prev.some(e => e.id === id || (!e.endTime && !eventData?.endTime))) return prev;
+            return [...prev, eventData];
+          });
+          break;
+        }
+
+        case 'dirty_sky:end': {
+          isRemoteUpdateRef.current.dirtySkyEvents = true;
+          setDirtySkyEvents(prev => {
+            const last = prev[prev.length - 1];
+            if (last && !last.endTime) {
+              const updated = [...prev];
+              updated[updated.length - 1] = {
+                ...last,
+                endTime: eventData?.endTime || new Date().toISOString()
+              };
+              return updated;
+            }
+            return prev;
+          });
+          break;
+        }
+
+        case 'duty:add': {
+          isRemoteUpdateRef.current.dutyEvents = true;
+          setDutyEvents(prev => {
+            const id = eventData?.id;
+            if (id && prev.some(e => e.id === id)) return prev;
+            return [...prev, eventData];
+          });
+          break;
+        }
+
+        case 'visitor:status': {
+          if (eventData?.visitorId) {
+            isRemoteUpdateRef.current.visitors = true;
+            setVisitors(prev => prev.map(v => {
+              if (v.id === eventData.visitorId) {
+                return {
+                  ...v,
+                  status: eventData.status,
+                  logs: eventData.logs || v.logs,
+                  lastEntry: eventData.lastEntry !== undefined ? eventData.lastEntry : v.lastEntry,
+                  totalTimeMinutes: typeof eventData.totalTimeMinutes === 'number' ? eventData.totalTimeMinutes : v.totalTimeMinutes
+                };
+              }
+              return v;
+            }));
+          }
+          break;
+        }
+
+        case 'database:reload': {
+          reloadAuthoritativeDatabase(true);
+          break;
+        }
+      }
+    });
+
+    // Handle incoming incremental updates from other clients
     const unsubUpdate = realtimeSync.onUpdate((key, data, updatedBy) => {
       if (updatedBy === realtimeSync.getClientId()) return;
 
@@ -473,11 +605,14 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         case 'dirtySkyEvents': setDirtySkyEvents(data); break;
         case 'dutyEvents': setDutyEvents(data); break;
         case 'customIcons': setCustomIcons(data); break;
+        case 'stopList': setStopList(data); break;
+        case 'checkpoints': setCheckpoints(data); break;
+        case 'auditLogs': setAuditLogs(data); break;
         case 'reportRetentionHours': setReportRetentionHoursState(data); break;
       }
     });
 
-    // 5. Handle patch updates
+    // Handle patch updates
     const unsubPatch = realtimeSync.onPatch((patch, updatedBy) => {
       if (updatedBy === realtimeSync.getClientId()) return;
 
@@ -494,63 +629,75 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
           case 'dirtySkyEvents': setDirtySkyEvents(val); break;
           case 'dutyEvents': setDutyEvents(val); break;
           case 'customIcons': setCustomIcons(val); break;
+          case 'stopList': setStopList(val); break;
+          case 'checkpoints': setCheckpoints(val); break;
+          case 'auditLogs': setAuditLogs(val); break;
           case 'reportRetentionHours': setReportRetentionHoursState(val); break;
         }
       });
     });
 
-    // 6. Fast HTTP bootstrap + seed if server has no visitors
-    realtimeSync.fetchStateViaHttp().then((serverState) => {
-      if (serverState) {
-        if (serverState.visitors && serverState.visitors.length > 0) {
-          isRemoteUpdateRef.current.visitors = true;
-          setVisitors(serverState.visitors);
-        } else {
-          // If server has no visitors, but this client has some in localStorage, seed server
-          try {
-            const localVis = localStorage.getItem('visitors');
-            if (localVis) {
-              const parsed = JSON.parse(localVis);
-              if (Array.isArray(parsed) && parsed.length > 0) {
-                realtimeSync.seedIfEmpty({ visitors: parsed });
-              }
-            }
-          } catch (e) {}
-        }
-      }
-    });
+    // Initial HTTP fetch
+    reloadAuthoritativeDatabase();
+    fetchEncryptionStatus();
 
     return () => {
       unsubStatus();
       unsubPresence();
       unsubInit();
+      unsubEvent();
       unsubUpdate();
       unsubPatch();
     };
-  }, []);
+  }, [reloadAuthoritativeDatabase, fetchEncryptionStatus, setCategories]);
 
+  // Event dispatchers for real-time synchronization
   const startDirtySky = () => {
     const newEvent: DirtySkyEvent = {
       id: Date.now().toString(),
       startTime: new Date().toISOString(),
     };
+    isRemoteUpdateRef.current.dirtySkyEvents = true;
     setDirtySkyEvents(prev => [...prev, newEvent]);
+
+    // Broadcast event to all users simultaneously
+    realtimeSync.sendEvent('dirty_sky:start', newEvent);
   };
 
   const endDirtySky = () => {
+    const now = new Date().toISOString();
+    isRemoteUpdateRef.current.dirtySkyEvents = true;
     setDirtySkyEvents(prev => {
       const lastEvent = prev[prev.length - 1];
       if (lastEvent && !lastEvent.endTime) {
         const updated = [...prev];
         updated[updated.length - 1] = {
           ...lastEvent,
-          endTime: new Date().toISOString(),
+          endTime: now,
         };
         return updated;
       }
       return prev;
     });
+
+    // Broadcast event to all users simultaneously
+    realtimeSync.sendEvent('dirty_sky:end', { endTime: now });
   };
+
+  const addDutyEvent = useCallback((shiftId: string, shiftName: string, type: 'start' | 'end', timestamp?: string) => {
+    const newEvent: DutyEvent = {
+      id: Date.now().toString() + '-' + Math.random().toString(36).substr(2, 6),
+      shiftId,
+      shiftName,
+      type,
+      timestamp: timestamp || new Date().toISOString()
+    };
+    isRemoteUpdateRef.current.dutyEvents = true;
+    setDutyEvents(prev => [...prev, newEvent]);
+
+    // Broadcast duty event to all users simultaneously
+    realtimeSync.sendEvent('duty:add', newEvent);
+  }, []);
 
   const performShiftBackupAndReset = () => {
     const now = new Date();
@@ -601,58 +748,28 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
           v.location || v.locationId || v.group,
           v.group,
           ...timeCols,
-          v.totalTimeMinutes || 0
+          v.totalTimeMinutes
         ].map(val => `"${val}"`).join(',');
       });
 
       const csvContent = [headers.map(h => `"${h}"`).join(','), ...rows].join('\n');
-      const blobReport = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
-      const urlReport = URL.createObjectURL(blobReport);
-      const aReport = document.createElement('a');
-      aReport.href = urlReport;
-      aReport.download = `report_visitors_${shiftDateString}.csv`;
-      document.body.appendChild(aReport);
-      aReport.click();
-      document.body.removeChild(aReport);
-    }, 500);
-
-    // Clean cells for new shift visibility while preserving history
-    setVisitors(prev => prev.map(v => {
-      const nowIso = now.toISOString();
-      if (v.status === 'in') {
-        // Close current log for the report but keep history
-        const logs = [...(v.logs || [])];
-        const lastLog = logs[logs.length - 1];
-        if (lastLog && !lastLog.out) {
-          lastLog.out = nowIso;
-        }
-        // Start new log segment for the new shift
-        logs.push({ in: nowIso });
-        
-        return { 
-          ...v, 
-          lastEntry: nowIso, 
-          logs, 
-          totalTimeMinutes: 0 // Reset daily counter
-        };
-      } else {
-        // Reset "Out" visitors status but keep their logs!
-        return { ...v, status: 'out' as const, totalTimeMinutes: 0 };
-      }
-    }));
-    
-    // Do NOT clear dirtySkyEvents anymore, they are filtered by date in reports and dashboard
+      const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.href = url;
+      link.setAttribute('download', `Звіт_чергування_${shiftDateString}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 100);
   };
-  
+
   const cleanLogsByPeriod = (minutes: number, groupIds?: string[]) => {
-    const cutOff = new Date();
-    cutOff.setMinutes(cutOff.getMinutes() - minutes);
+    const cutOff = new Date(Date.now() - minutes * 60000);
 
     setVisitors(prev => prev.map(v => {
-      // Only clean data for users who have status 'out'
       if (v.status !== 'out') return v;
 
-      // Filter by groups if provided
       if (groupIds && groupIds.length > 0) {
         const matchesGroupId = groupIds.includes(v.groupId);
         const matchesGroupName = groupIds.includes(v.group);
@@ -687,7 +804,6 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         lastEntry = undefined;
       }
 
-      // Recalculate totalTimeMinutes based on NEW logs
       const totalTime = updatedLogs.reduce((acc, log) => {
         if (log.in && log.out) {
           return acc + differenceInMinutes(new Date(log.out), new Date(log.in));
@@ -708,7 +824,6 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     shiftStart.setHours(8, 0, 0, 0);
 
     setVisitors(prev => prev.map(v => {
-      // Only clean data for users who have status 'out'
       if (v.status !== 'out') return v;
 
       if (groupIds && groupIds.length > 0) {
@@ -726,13 +841,11 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       let status = v.status;
       let lastEntry = v.lastEntry;
       
-      // If they were "in" during current shift, they should be "out" after cleaning
       if (lastEntry && new Date(lastEntry) >= shiftStart) {
         status = 'out';
         lastEntry = undefined;
       }
       
-      // Check last log of remaining logs
       if (updatedLogs.length > 0 && !updatedLogs[updatedLogs.length - 1].out) {
         status = 'in';
         lastEntry = updatedLogs[updatedLogs.length - 1].in;
@@ -752,8 +865,10 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
+  // Sync to server only when hydrated to prevent zeroing out server data on initial mount
   useEffect(() => {
     localStorage.setItem('visitors', JSON.stringify(visitors));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.visitors) {
       isRemoteUpdateRef.current.visitors = false;
       return;
@@ -763,6 +878,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('guards', JSON.stringify(guards));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.guards) {
       isRemoteUpdateRef.current.guards = false;
       return;
@@ -772,6 +888,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('shifts', JSON.stringify(shifts));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.shifts) {
       isRemoteUpdateRef.current.shifts = false;
       return;
@@ -781,6 +898,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('securityShifts', JSON.stringify(securityShifts));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.securityShifts) {
       isRemoteUpdateRef.current.securityShifts = false;
       return;
@@ -790,6 +908,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('categories', JSON.stringify(categories));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.categories) {
       isRemoteUpdateRef.current.categories = false;
       return;
@@ -798,16 +917,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   }, [categories]);
 
   useEffect(() => {
-    localStorage.setItem('locations', JSON.stringify(locations));
-    if (isRemoteUpdateRef.current.locations) {
-      isRemoteUpdateRef.current.locations = false;
-      return;
-    }
-    realtimeSync.sendUpdate('locations', locations);
-  }, [locations]);
-
-  useEffect(() => {
     localStorage.setItem('groups', JSON.stringify(groups));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.groups) {
       isRemoteUpdateRef.current.groups = false;
       return;
@@ -816,7 +927,18 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   }, [groups]);
 
   useEffect(() => {
+    localStorage.setItem('locations', JSON.stringify(locations));
+    if (!isHydratedRef.current) return;
+    if (isRemoteUpdateRef.current.locations) {
+      isRemoteUpdateRef.current.locations = false;
+      return;
+    }
+    realtimeSync.sendUpdate('locations', locations);
+  }, [locations]);
+
+  useEffect(() => {
     localStorage.setItem('dirtySkyEvents', JSON.stringify(dirtySkyEvents));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.dirtySkyEvents) {
       isRemoteUpdateRef.current.dirtySkyEvents = false;
       return;
@@ -826,6 +948,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('dutyEvents', JSON.stringify(dutyEvents));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.dutyEvents) {
       isRemoteUpdateRef.current.dutyEvents = false;
       return;
@@ -835,6 +958,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('customIcons', JSON.stringify(customIcons));
+    if (!isHydratedRef.current) return;
     if (isRemoteUpdateRef.current.customIcons) {
       isRemoteUpdateRef.current.customIcons = false;
       return;
@@ -859,7 +983,6 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('report_retention_hours', safe.toString());
     realtimeSync.sendUpdate('reportRetentionHours', safe);
 
-    // Immediately remove logs older than safe hours
     const cutoff = new Date(Date.now() - safe * 60 * 60 * 1000);
     let totalCleared = 0;
 
@@ -989,7 +1112,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     return { logsCleared, eventsCleared, dutyEventsCleared };
   }, []);
 
-  // Data retention: based on reportRetentionHours (default 1440 hours / 60 days)
+  // Data retention cleanup
   useEffect(() => {
     const cutoff = new Date(Date.now() - reportRetentionHours * 60 * 60 * 1000);
 
@@ -1039,28 +1162,10 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       return null;
     }
   });
-  const [isAutoUploading, setIsAutoUploading] = useState<boolean>(false);
-  const [isAutoUploadEnabled, setIsAutoUploadEnabledState] = useState<boolean>(() => {
-    try {
-      const saved = localStorage.getItem('auto_server_backup_enabled');
-      return saved !== null ? saved === 'true' : true;
-    } catch {
-      return true;
-    }
-  });
 
-  const setIsAutoUploadEnabled = useCallback((enabled: boolean) => {
-    setIsAutoUploadEnabledState(enabled);
-    try {
-      localStorage.setItem('auto_server_backup_enabled', String(enabled));
-    } catch {}
-  }, []);
-
-  const autoBackupDebounceRef = useRef<any>(null);
-
+  // Manual trigger for creating server snapshot (automatic background uploading removed per user request)
   const triggerServerDatabaseSync = useCallback(async (): Promise<boolean> => {
     try {
-      setIsAutoUploading(true);
       const payload = {
         visitors,
         guards,
@@ -1079,7 +1184,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           data: payload,
-          userEmail: 'auto-database-sync'
+          userEmail: currentUser?.email || 'operator'
         })
       });
       if (res.ok) {
@@ -1092,31 +1197,10 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       }
       return false;
     } catch (e) {
-      console.warn('[AutoBackup] Error syncing database to server:', e);
+      console.warn('[Backup] Error saving snapshot to server:', e);
       return false;
-    } finally {
-      setIsAutoUploading(false);
     }
-  }, [visitors, guards, shifts, securityShifts, categories, groups, locations, dirtySkyEvents, dutyEvents, customIcons, reportRetentionHours]);
-
-  // Automatic upload of updated database to server after ANY change in the database
-  useEffect(() => {
-    if (!isAutoUploadEnabled) return;
-
-    if (autoBackupDebounceRef.current) {
-      clearTimeout(autoBackupDebounceRef.current);
-    }
-
-    autoBackupDebounceRef.current = setTimeout(() => {
-      triggerServerDatabaseSync();
-    }, 1200);
-
-    return () => {
-      if (autoBackupDebounceRef.current) {
-        clearTimeout(autoBackupDebounceRef.current);
-      }
-    };
-  }, [visitors, guards, shifts, securityShifts, categories, groups, locations, dirtySkyEvents, dutyEvents, customIcons, reportRetentionHours, isAutoUploadEnabled, triggerServerDatabaseSync]);
+  }, [visitors, guards, shifts, securityShifts, categories, groups, locations, dirtySkyEvents, dutyEvents, customIcons, reportRetentionHours, currentUser]);
 
   return (
     <DataContext.Provider value={{ 
@@ -1133,7 +1217,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       performShiftBackupAndReset, cleanLogsByPeriod, cleanCurrentShiftLogs,
       reportRetentionHours, setReportRetentionHours, purgeReportsByDateRange, purgeAllReports,
       syncStatus, onlineClientsCount,
-      lastAutoBackupTime, isAutoUploading, isAutoUploadEnabled, setIsAutoUploadEnabled, triggerServerDatabaseSync,
+      lastAutoBackupTime, 
+      isAutoUploading: false, 
+      isAutoUploadEnabled: false, 
+      setIsAutoUploadEnabled: () => {}, 
+      triggerServerDatabaseSync,
+      reloadAuthoritativeDatabase,
       stopList, setStopList, addToStopList, removeFromStopList,
       checkpoints, setCheckpoints, updateCheckpointStatus,
       auditLogs, addAuditLog,

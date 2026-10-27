@@ -260,9 +260,13 @@ export default function Layout() {
                   fontSize: 'clamp(9.5px, 0.8vw, 12px)',
                   backgroundColor: currentUser?.avatarColor || '#3b82f6'
                 }}
-                className="rounded-lg flex items-center justify-center font-bold text-white shrink-0 shadow-xs"
+                className="rounded-lg flex items-center justify-center font-bold text-white shrink-0 shadow-xs overflow-hidden"
               >
-                {currentUser?.name.slice(0, 1).toUpperCase()}
+                {currentUser?.avatarUrl ? (
+                  <img src={currentUser.avatarUrl} alt={currentUser.name} className="w-full h-full object-cover" />
+                ) : (
+                  currentUser?.name.slice(0, 1).toUpperCase()
+                )}
               </div>
               <div className="hidden xl:flex flex-col text-left leading-tight">
                 <span
