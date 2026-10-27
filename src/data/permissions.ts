@@ -23,6 +23,12 @@ export const SYSTEM_PERMISSIONS: PermissionDefinition[] = [
     category: 'visitors'
   },
   {
+    key: 'visitors.check_in_out',
+    label: 'Облік входу / виходу відвідувачів',
+    description: 'Фіксація прибуття та відбуття (вхід/вихід) на дашборді, у списках та через голосові команди',
+    category: 'visitors'
+  },
+  {
     key: 'visitors.create',
     label: 'Реєстрація нових осіб',
     description: 'Можливість створювати нові картки відвідувачів та співробітників',
@@ -57,7 +63,7 @@ export const SYSTEM_PERMISSIONS: PermissionDefinition[] = [
   {
     key: 'security.dirty_sky',
     label: 'Режим «Брудне небо»',
-    description: 'Активація та деактивація тривожного режиму у шапці системи',
+    description: 'Активація та деактивація тривожного режиму у шапці системи та на дашборді',
     category: 'security'
   },
   {
@@ -154,13 +160,14 @@ export const DEFAULT_ROLES: UserRole[] = [
   {
     id: 'security',
     name: 'Служба безпеки / Охорона',
-    description: 'Оперативний контроль КПП: швидкі дії, графік змін, режим «Брудне небо» та друк звітів',
+    description: 'Оперативний контроль КПП: швидкі дії, облік входу/виходу, графік змін, режим «Брудне небо» та друк звітів',
     color: '#ef4444', // red
     isSystem: true,
     permissions: [
       'dashboard.view',
       'dashboard.actions',
       'visitors.view',
+      'visitors.check_in_out',
       'visitors.edit',
       'security.view',
       'security.manage_shifts',
@@ -173,13 +180,14 @@ export const DEFAULT_ROLES: UserRole[] = [
   {
     id: 'manager',
     name: 'Оператор обліку (КПП)',
-    description: 'Реєстрація та редагування карток відвідувачів, контроль присутності, експорт звітів',
+    description: 'Реєстрація та редагування карток відвідувачів, облік входу/виходу, контроль присутності, експорт звітів',
     color: '#10b981', // emerald
     isSystem: true,
     permissions: [
       'dashboard.view',
       'dashboard.actions',
       'visitors.view',
+      'visitors.check_in_out',
       'visitors.create',
       'visitors.edit',
       'visitors.delete',

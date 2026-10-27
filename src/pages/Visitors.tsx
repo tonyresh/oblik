@@ -12,11 +12,15 @@ import {
 import { Visitor } from '../types';
 import { isSpecialVisitor, compareVisitorsSpecialFirst, isSpecialGroup } from '../utils/visitorUtils';
 import VisitorCard from '../components/VisitorCard';
+import { useAuth } from '../store/AuthContext';
 
 export default function Visitors() {
   const { visitors, setVisitors, categories, groups, locations, shifts, customIcons, dirtySkyEvents, stopList, addAuditLog } = useData();
   const { visitorsColumns, setVisitorsColumns } = useTheme();
   const { showToast } = useToast();
+  const { hasPermission, currentRole } = useAuth();
+
+  const canCheckInOut = hasPermission('visitors.check_in_out') || hasPermission('dashboard.actions') || currentRole?.id === 'admin';
   const [search, setSearch] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -88,6 +92,10 @@ export default function Visitors() {
   };
 
   const markIn = (id: string | string[]) => {
+    if (!canCheckInOut) {
+      showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+      return;
+    }
     const ids = Array.isArray(id) ? id : [id];
     const now = new Date().toISOString();
     
@@ -138,6 +146,10 @@ export default function Visitors() {
   };
 
   const markOut = (id: string | string[]) => {
+    if (!canCheckInOut) {
+      showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+      return;
+    }
     const ids = Array.isArray(id) ? id : [id];
     const now = new Date().toISOString();
     
@@ -239,6 +251,11 @@ export default function Visitors() {
       } else {
         showToast('Спочатку назвіть прізвище або оберіть користувача, потім скажіть «ПЛЮС» чи «МІНУС»', 'info');
       }
+      return;
+    }
+
+    if (!canCheckInOut) {
+      showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
       return;
     }
 
@@ -585,16 +602,38 @@ export default function Visitors() {
                   Скажіть <strong>«ПЛЮС»</strong> чи <strong>«МІНУС»</strong>
                 </span>
                 <button 
-                  onClick={() => executeCommand('', 'in')}
-                  className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-1"
-                  title="Вхід на локацію (або скажіть «ПЛЮС»)"
+                  onClick={() => {
+                    if (!canCheckInOut) {
+                      showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+                      return;
+                    }
+                    executeCommand('', 'in');
+                  }}
+                  disabled={!canCheckInOut}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all shadow-sm flex items-center gap-1 ${
+                    !canCheckInOut
+                      ? 'bg-muted text-muted-foreground/40 cursor-not-allowed opacity-50'
+                      : 'bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer'
+                  }`}
+                  title={!canCheckInOut ? "У вашої ролі немає дозволу на облік входу" : "Вхід на локацію (або скажіть «ПЛЮС»)"}
                 >
                   + Вхід
                 </button>
                 <button 
-                  onClick={() => executeCommand('', 'out')}
-                  className="px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-1"
-                  title="Вихід з локації (або скажіть «МІНУС»)"
+                  onClick={() => {
+                    if (!canCheckInOut) {
+                      showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+                      return;
+                    }
+                    executeCommand('', 'out');
+                  }}
+                  disabled={!canCheckInOut}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all shadow-sm flex items-center gap-1 ${
+                    !canCheckInOut
+                      ? 'bg-muted text-muted-foreground/40 cursor-not-allowed opacity-50'
+                      : 'bg-red-600 hover:bg-red-700 text-white cursor-pointer'
+                  }`}
+                  title={!canCheckInOut ? "У вашої ролі немає дозволу на облік виходу" : "Вихід з локації (або скажіть «МІНУС»)"}
                 >
                   - Вихід
                 </button>

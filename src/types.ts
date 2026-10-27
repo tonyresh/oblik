@@ -87,6 +87,7 @@ export type PermissionKey =
   | 'dashboard.actions'
   // Visitors
   | 'visitors.view'
+  | 'visitors.check_in_out'
   | 'visitors.create'
   | 'visitors.edit'
   | 'visitors.delete'

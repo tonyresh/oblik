@@ -11,6 +11,7 @@ import {
 import { Visitor } from '../types';
 import { isSpecialVisitor, compareVisitorsSpecialFirst } from '../utils/visitorUtils';
 import VisitorCard from '../components/VisitorCard';
+import { useAuth } from '../store/AuthContext';
 
 export default function Dashboard() {
   const { 
@@ -18,6 +19,11 @@ export default function Dashboard() {
     dirtySkyEvents, startDirtySky, endDirtySky, customIcons, locations
   } = useData();
   const { showToast } = useToast();
+  const { hasPermission, currentRole } = useAuth();
+
+  const canCheckInOut = hasPermission('visitors.check_in_out') || hasPermission('dashboard.actions') || currentRole?.id === 'admin';
+  const canToggleDirtySky = hasPermission('security.dirty_sky') || currentRole?.id === 'admin';
+
   const [currentTime, setCurrentTime] = useState(new Date());
   const [modalType, setModalType] = useState<'entered' | 'exited' | 'on_location' | 'unique_visitors' | 'all_visits' | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -99,6 +105,11 @@ export default function Dashboard() {
       return;
     }
 
+    if (!canCheckInOut) {
+      showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+      return;
+    }
+
     // Execute the action
     if (action === 'in') {
       markIn(targetVisitor.id);
@@ -115,6 +126,10 @@ export default function Dashboard() {
   };
 
   const markIn = (id: string | string[]) => {
+    if (!canCheckInOut) {
+      showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+      return;
+    }
     const ids = Array.isArray(id) ? id : [id];
     const now = new Date().toISOString();
     
@@ -147,6 +162,10 @@ export default function Dashboard() {
   };
 
   const markOut = (id: string | string[]) => {
+    if (!canCheckInOut) {
+      showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+      return;
+    }
     const ids = Array.isArray(id) ? id : [id];
     const now = new Date().toISOString();
     
@@ -455,34 +474,48 @@ export default function Dashboard() {
             <div className="flex items-center gap-1 w-full">
               <button
                 onClick={() => {
+                  if (!canToggleDirtySky) {
+                    showToast('У вашої ролі немає дозволу на управління режимом «Брудне небо» у матриці прав', 'error');
+                    return;
+                  }
                   if (!activeDirtySky) {
                     startDirtySky();
                     showToast('РЕЖИМ БРУДНЕ НЕБО АКТИВОВАНО!', 'error');
                   }
                 }}
+                disabled={!canToggleDirtySky}
                 className={`flex-1 h-8 sm:h-9 md:h-10 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black uppercase transition-all flex flex-col items-center justify-center shrink-0 ${
-                  activeDirtySky 
-                    ? 'bg-red-500 text-white shadow-lg shadow-red-500/20 scale-[1.03]' 
-                    : 'bg-muted text-muted-foreground hover:bg-neutral-200 dark:hover:bg-neutral-800'
+                  !canToggleDirtySky
+                    ? 'bg-muted text-muted-foreground/40 cursor-not-allowed opacity-50'
+                    : activeDirtySky 
+                      ? 'bg-red-500 text-white shadow-lg shadow-red-500/20 scale-[1.03] cursor-pointer' 
+                      : 'bg-muted text-muted-foreground hover:bg-neutral-200 dark:hover:bg-neutral-800 cursor-pointer'
                 }`}
-                title="Увімкнути режим Брудне небо"
+                title={!canToggleDirtySky ? "У вашої ролі немає дозволу на управління режимом «Брудне небо»" : "Увімкнути режим Брудне небо"}
               >
                 <span>ON</span>
               </button>
               
               <button
                 onClick={() => {
+                  if (!canToggleDirtySky) {
+                    showToast('У вашої ролі немає дозволу на управління режимом «Брудне небо» у матриці прав', 'error');
+                    return;
+                  }
                   if (activeDirtySky) {
                     endDirtySky();
                     showToast('Режим Брудне небо завершено', 'success');
                   }
                 }}
+                disabled={!canToggleDirtySky}
                 className={`flex-1 h-8 sm:h-9 md:h-10 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black uppercase transition-all flex flex-col items-center justify-center shrink-0 ${
-                  !activeDirtySky 
-                    ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 scale-[1.03]' 
-                    : 'bg-muted text-muted-foreground hover:bg-neutral-200 dark:hover:bg-neutral-800'
+                  !canToggleDirtySky
+                    ? 'bg-muted text-muted-foreground/40 cursor-not-allowed opacity-50'
+                    : !activeDirtySky 
+                      ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 scale-[1.03] cursor-pointer' 
+                      : 'bg-muted text-muted-foreground hover:bg-neutral-200 dark:hover:bg-neutral-800 cursor-pointer'
                 }`}
-                title="Вимкнути режим Брудне небо"
+                title={!canToggleDirtySky ? "У вашої ролі немає дозволу на управління режимом «Брудне небо»" : "Вимкнути режим Брудне небо"}
               >
                 <span>OFF</span>
               </button>
@@ -620,16 +653,38 @@ export default function Dashboard() {
               Скажіть <strong>«ПЛЮС»</strong> чи <strong>«МІНУС»</strong>
             </span>
             <button 
-              onClick={() => executeCommand('', 'in')}
-              className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-1"
-              title="Вхід на локацію (або скажіть «ПЛЮС»)"
+              onClick={() => {
+                if (!canCheckInOut) {
+                  showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+                  return;
+                }
+                executeCommand('', 'in');
+              }}
+              disabled={!canCheckInOut}
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all shadow-sm flex items-center gap-1 ${
+                !canCheckInOut
+                  ? 'bg-muted text-muted-foreground/40 cursor-not-allowed opacity-50'
+                  : 'bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer'
+              }`}
+              title={!canCheckInOut ? "У вашої ролі немає дозволу на облік входу" : "Вхід на локацію (або скажіть «ПЛЮС»)"}
             >
               + Вхід
             </button>
             <button 
-              onClick={() => executeCommand('', 'out')}
-              className="px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-1"
-              title="Вихід з локації (або скажіть «МІНУС»)"
+              onClick={() => {
+                if (!canCheckInOut) {
+                  showToast('У вашої ролі немає дозволу на облік входу/виходу відвідувачів у матриці прав', 'error');
+                  return;
+                }
+                executeCommand('', 'out');
+              }}
+              disabled={!canCheckInOut}
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all shadow-sm flex items-center gap-1 ${
+                !canCheckInOut
+                  ? 'bg-muted text-muted-foreground/40 cursor-not-allowed opacity-50'
+                  : 'bg-red-600 hover:bg-red-700 text-white cursor-pointer'
+              }`}
+              title={!canCheckInOut ? "У вашої ролі немає дозволу на облік виходу" : "Вихід з локації (або скажіть «МІНУС»)"}
             >
               - Вихід
             </button>

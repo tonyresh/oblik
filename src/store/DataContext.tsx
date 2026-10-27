@@ -7,6 +7,7 @@ import {
 } from '../types';
 import { realtimeSync, SyncStatus } from '../services/realtimeSync';
 import { useAuth } from './AuthContext';
+import { useToast } from './ToastContext';
 
 interface DataContextType {
   visitors: Visitor[];
@@ -65,7 +66,8 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
-  const { currentUser } = useAuth();
+  const { currentUser, currentRole, hasPermission } = useAuth();
+  const { showToast } = useToast();
 
   // Core collections state
   const [visitors, setVisitors] = useState<Visitor[]>(() => {
@@ -653,6 +655,11 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   // Event dispatchers for real-time synchronization
   const startDirtySky = () => {
+    if (!hasPermission('security.dirty_sky') && currentRole?.id !== 'admin') {
+      console.warn('[DataContext] Unauthorized attempt to start Dirty Sky mode');
+      showToast('У вашої ролі немає дозволу на управління режимом «Брудне небо» у матриці прав', 'error');
+      return;
+    }
     const newEvent: DirtySkyEvent = {
       id: Date.now().toString(),
       startTime: new Date().toISOString(),
@@ -660,11 +667,20 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     isRemoteUpdateRef.current.dirtySkyEvents = true;
     setDirtySkyEvents(prev => [...prev, newEvent]);
 
-    // Broadcast event to all users simultaneously
-    realtimeSync.sendEvent('dirty_sky:start', newEvent);
+    // Broadcast event to all users simultaneously with user attribution
+    realtimeSync.sendEvent('dirty_sky:start', {
+      ...newEvent,
+      userEmail: currentUser?.email,
+      userName: currentUser?.name
+    });
   };
 
   const endDirtySky = () => {
+    if (!hasPermission('security.dirty_sky') && currentRole?.id !== 'admin') {
+      console.warn('[DataContext] Unauthorized attempt to end Dirty Sky mode');
+      showToast('У вашої ролі немає дозволу на управління режимом «Брудне небо» у матриці прав', 'error');
+      return;
+    }
     const now = new Date().toISOString();
     isRemoteUpdateRef.current.dirtySkyEvents = true;
     setDirtySkyEvents(prev => {
@@ -680,8 +696,12 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       return prev;
     });
 
-    // Broadcast event to all users simultaneously
-    realtimeSync.sendEvent('dirty_sky:end', { endTime: now });
+    // Broadcast event to all users simultaneously with user attribution
+    realtimeSync.sendEvent('dirty_sky:end', {
+      endTime: now,
+      userEmail: currentUser?.email,
+      userName: currentUser?.name
+    });
   };
 
   const addDutyEvent = useCallback((shiftId: string, shiftName: string, type: 'start' | 'end', timestamp?: string) => {

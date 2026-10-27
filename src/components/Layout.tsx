@@ -54,9 +54,11 @@ export default function Layout() {
     return canAccessRoute(item.to);
   });
 
+  const canToggleDirtySky = hasPermission('security.dirty_sky') || currentRole?.id === 'admin';
+
   const handleDirtySkyClick = (turnOn: boolean) => {
-    if (!hasPermission('security.dirty_sky') && currentRole?.id !== 'admin') {
-      showToast('У вашої ролі немає дозволу на управління режимом «Брудне небо»', 'error');
+    if (!canToggleDirtySky) {
+      showToast('У вашої ролі немає дозволу на управління режимом «Брудне небо» у матриці прав', 'error');
       return;
     }
 
@@ -131,13 +133,18 @@ export default function Layout() {
                 </span>
                 <button
                   onClick={() => handleDirtySkyClick(true)}
+                  disabled={!canToggleDirtySky}
                   style={{
                     height: 'clamp(28px, 2.5vw, 36px)',
                     width: 'clamp(44px, 4vw, 62px)',
                     fontSize: 'clamp(10px, 0.85vw, 13px)'
                   }}
-                  className="rounded-lg bg-red-500 hover:bg-red-600 active:scale-95 text-white font-black uppercase transition-all flex items-center justify-center cursor-pointer select-none shadow-sm shadow-red-500/10 font-sans"
-                  title="Увімкнути режим Брудне небо"
+                  className={`rounded-lg font-black uppercase transition-all flex items-center justify-center select-none shadow-sm font-sans ${
+                    !canToggleDirtySky
+                      ? 'bg-muted text-muted-foreground/40 cursor-not-allowed opacity-50'
+                      : 'bg-red-500 hover:bg-red-600 active:scale-95 text-white cursor-pointer shadow-red-500/10'
+                  }`}
+                  title={!canToggleDirtySky ? "У вашої ролі немає дозволу на управління режимом «Брудне небо»" : "Увімкнути режим Брудне небо"}
                 >
                   ON
                 </button>
@@ -156,13 +163,18 @@ export default function Layout() {
                 </div>
                 <button
                   onClick={() => handleDirtySkyClick(false)}
+                  disabled={!canToggleDirtySky}
                   style={{
                     height: 'clamp(28px, 2.5vw, 36px)',
                     width: 'clamp(44px, 4vw, 62px)',
                     fontSize: 'clamp(10px, 0.85vw, 13px)'
                   }}
-                  className="rounded-lg bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-black uppercase transition-all flex items-center justify-center cursor-pointer select-none shadow-sm shadow-emerald-500/10 font-sans shrink-0"
-                  title="Вимкнути режим Брудне небо"
+                  className={`rounded-lg font-black uppercase transition-all flex items-center justify-center select-none shadow-sm font-sans shrink-0 ${
+                    !canToggleDirtySky
+                      ? 'bg-muted text-muted-foreground/40 cursor-not-allowed opacity-50'
+                      : 'bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white cursor-pointer shadow-emerald-500/10'
+                  }`}
+                  title={!canToggleDirtySky ? "У вашої ролі немає дозволу на управління режимом «Брудне небо»" : "Вимкнути режим Брудне небо"}
                 >
                   OFF
                 </button>

@@ -2,6 +2,8 @@ import React from 'react';
 import { LogIn, LogOut, User } from 'lucide-react';
 import { Visitor, Group, Location, CustomIcon, Shift } from '../types';
 import { splitNameTwoLines } from '../utils/nameUtils';
+import { useAuth } from '../store/AuthContext';
+import { useToast } from '../store/ToastContext';
 
 export interface VisitorCardProps {
   key?: React.Key;
@@ -33,6 +35,10 @@ export default function VisitorCard({
   mode = 'visitor',
   activeWorkSession,
 }: VisitorCardProps) {
+  const { hasPermission, currentRole } = useAuth();
+  const { showToast } = useToast();
+  const canCheckInOut = hasPermission('visitors.check_in_out') || hasPermission('dashboard.actions') || currentRole?.id === 'admin';
+
   const isSecurity = mode === 'security';
   const bgColor = visitor.color || group?.color || 'transparent';
   const hasGroupColor = bgColor !== 'transparent';
@@ -43,7 +49,8 @@ export default function VisitorCard({
     borderColor: bgColor.startsWith('#') ? `${bgColor}40` : bgColor,
   } : {};
 
-  const isOutDisabled = isGuardOnDuty || !!activeDirtySky;
+  const isInDisabled = !canCheckInOut || !!activeDirtySky;
+  const isOutDisabled = !canCheckInOut || isGuardOnDuty || !!activeDirtySky;
 
   const effShiftStart = React.useMemo(() => {
     if (shiftStart) return shiftStart;
@@ -203,13 +210,27 @@ export default function VisitorCard({
           <div className="flex flex-col items-end justify-center shrink-0">
             {visitor.status !== 'in' && onMarkIn && (
               <button
-                onClick={() => !activeDirtySky && onMarkIn(visitor.id)}
-                disabled={!!activeDirtySky}
-                title={activeDirtySky ? "Вхід заблоковано режимом Брудне небо" : undefined}
+                onClick={() => {
+                  if (!canCheckInOut) {
+                    showToast('У вашої ролі немає дозволу на облік входу/виходу (згідно з матрицею прав)', 'error');
+                    return;
+                  }
+                  if (!activeDirtySky) {
+                    onMarkIn(visitor.id);
+                  }
+                }}
+                disabled={isInDisabled}
+                title={
+                  !canCheckInOut
+                    ? "У вашої ролі немає дозволу на облік входу/виходу (перевірте матрицю прав)"
+                    : activeDirtySky
+                      ? "Вхід заблоковано режимом Брудне небо"
+                      : "Зафіксувати вхід"
+                }
                 className={`visitor-btn border ${
-                  activeDirtySky
-                    ? 'border-muted bg-muted/50 text-muted-foreground cursor-not-allowed'
-                    : 'border-emerald-500/40 text-emerald-600 bg-emerald-500/10 hover:bg-emerald-500/20 active:bg-emerald-500/30 shadow-sm active:scale-95'
+                  isInDisabled
+                    ? 'border-muted bg-muted/40 text-muted-foreground/60 cursor-not-allowed opacity-60'
+                    : 'border-emerald-500/40 text-emerald-600 bg-emerald-500/10 hover:bg-emerald-500/20 active:bg-emerald-500/30 shadow-sm active:scale-95 cursor-pointer'
                 }`}
               >
                 <LogIn className="visitor-btn-icon" />
@@ -218,13 +239,29 @@ export default function VisitorCard({
             )}
             {visitor.status === 'in' && onMarkOut && (
               <button
-                onClick={() => !isOutDisabled && onMarkOut(visitor.id)}
+                onClick={() => {
+                  if (!canCheckInOut) {
+                    showToast('У вашої ролі немає дозволу на облік входу/виходу (згідно з матрицею прав)', 'error');
+                    return;
+                  }
+                  if (!isOutDisabled) {
+                    onMarkOut(visitor.id);
+                  }
+                }}
                 disabled={isOutDisabled}
-                title={isGuardOnDuty ? "Не можна вийти до передачі зміни" : activeDirtySky ? "Вихід заблоковано режимом Брудне небо" : undefined}
+                title={
+                  !canCheckInOut
+                    ? "У вашої ролі немає дозволу на облік входу/виходу (перевірте матрицю прав)"
+                    : isGuardOnDuty
+                      ? "Не можна вийти до передачі зміни"
+                      : activeDirtySky
+                        ? "Вихід заблоковано режимом Брудне небо"
+                        : "Зафіксувати вихід"
+                }
                 className={`visitor-btn border ${
                   isOutDisabled 
-                    ? 'border-muted bg-muted/50 text-muted-foreground cursor-not-allowed'
-                    : 'border-red-500/40 text-red-600 bg-red-500/10 hover:bg-red-500/20 active:bg-red-500/30 shadow-sm active:scale-95'
+                    ? 'border-muted bg-muted/40 text-muted-foreground/60 cursor-not-allowed opacity-60'
+                    : 'border-red-500/40 text-red-600 bg-red-500/10 hover:bg-red-500/20 active:bg-red-500/30 shadow-sm active:scale-95 cursor-pointer'
                 }`}
               >
                 <LogOut className="visitor-btn-icon" />

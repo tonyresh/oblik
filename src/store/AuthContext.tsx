@@ -92,7 +92,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          return parsed.map((r: UserRole) => {
+            if (r.id === 'admin') {
+              return { ...r, permissions: [...ALL_PERMISSIONS] };
+            }
+            if (r.permissions && r.permissions.includes('dashboard.actions') && !r.permissions.includes('visitors.check_in_out')) {
+              return { ...r, permissions: [...r.permissions, 'visitors.check_in_out'] };
+            }
+            return r;
+          });
         }
       }
     } catch (e) {

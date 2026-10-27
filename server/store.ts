@@ -122,6 +122,7 @@ const ALL_PERMISSION_KEYS = [
   'dashboard.view',
   'dashboard.actions',
   'visitors.view',
+  'visitors.check_in_out',
   'visitors.create',
   'visitors.edit',
   'visitors.delete',
@@ -154,12 +155,12 @@ const DEFAULT_ROLES = [
   {
     id: 'security',
     name: 'Служба безпеки / Охорона',
-    description: 'Оперативний контроль КПП: швидкі дії, графік змін, режим «Брудне небо» та друк звітів',
+    description: 'Оперативний контроль КПП: швидкі дії, облік входу/виходу, графік змін, режим «Брудне небо» та друк звітів',
     color: '#ef4444',
     isSystem: true,
     permissions: [
       'dashboard.view', 'dashboard.actions',
-      'visitors.view', 'visitors.create',
+      'visitors.view', 'visitors.check_in_out', 'visitors.create',
       'security.view', 'security.manage_shifts', 'security.dirty_sky', 'security.manage_guards',
       'reports.view', 'reports.export', 'reports.print',
       'settings.view'
@@ -168,13 +169,13 @@ const DEFAULT_ROLES = [
   {
     id: 'manager',
     name: 'Оператор КПП',
-    description: 'Базова робота на КПП: відмітка входу/виходу, створення та редагування карток відвідувачів',
+    description: 'Базова робота на КПП: облік входу/виходу, створення та редагування карток відвідувачів',
     color: '#10b981',
     isSystem: true,
     permissions: [
       'dashboard.view', 'dashboard.actions',
-      'visitors.view', 'visitors.create', 'visitors.edit',
-      'security.view', 'security.dirty_sky',
+      'visitors.view', 'visitors.check_in_out', 'visitors.create', 'visitors.edit',
+      'security.view',
       'settings.view'
     ]
   },
@@ -419,12 +420,45 @@ class StateStore {
   }
 
   /**
+   * Check if user email has a specific permission based on current server state
+   */
+  public canUserPerformAction(userEmail: string | undefined, requiredPermissions: string | string[]): boolean {
+    if (!userEmail) return true; // If anonymous/unspecified, allow fallback
+    const perms = Array.isArray(requiredPermissions) ? requiredPermissions : [requiredPermissions];
+    const users = Array.isArray(this.state.authorizedUsers) ? this.state.authorizedUsers : [];
+    const user = users.find((u: any) => u.email?.toLowerCase() === userEmail.toLowerCase().trim());
+    if (!user) return false;
+    if (user.roleId === 'admin') return true;
+
+    const roles = Array.isArray(this.state.roles) ? this.state.roles : [];
+    const role = roles.find((r: any) => r.id === user.roleId);
+    if (!role) return false;
+    if (role.id === 'admin') return true;
+
+    const userPerms = Array.isArray(role.permissions) ? role.permissions : [];
+    return perms.some(p => userPerms.includes(p));
+  }
+
+  /**
    * Handle real-time discrete events (Dirty Sky, Duty Events, Visitor Check-in/out, etc.)
    */
   public handleServerEvent(eventType: string, eventData: any): void {
     const now = new Date().toISOString();
     switch (eventType) {
       case 'dirty_sky:start': {
+        if (eventData?.userEmail && !this.canUserPerformAction(eventData.userEmail, 'security.dirty_sky')) {
+          console.warn(`[Store] Blocked unauthorized dirty_sky:start from ${eventData.userEmail}`);
+          this.addAuditLog({
+            action: 'Відхилено: Немає прав на «Брудне небо»',
+            category: 'security',
+            userEmail: eventData.userEmail,
+            userName: eventData.userName || 'Користувач',
+            details: 'Спроба активації режиму «Брудне небо» без відповідного дозволу в матриці прав',
+            status: 'error'
+          });
+          return;
+        }
+
         if (!Array.isArray(this.state.dirtySkyEvents)) this.state.dirtySkyEvents = [];
         const newEvent = eventData && eventData.id ? eventData : { id: Date.now().toString(), startTime: now };
         // Check if already open
@@ -445,6 +479,19 @@ class StateStore {
         break;
       }
       case 'dirty_sky:end': {
+        if (eventData?.userEmail && !this.canUserPerformAction(eventData.userEmail, 'security.dirty_sky')) {
+          console.warn(`[Store] Blocked unauthorized dirty_sky:end from ${eventData.userEmail}`);
+          this.addAuditLog({
+            action: 'Відхилено: Немає прав на «Брудне небо»',
+            category: 'security',
+            userEmail: eventData.userEmail,
+            userName: eventData.userName || 'Користувач',
+            details: 'Спроба вимкнення режиму «Брудне небо» без відповідного дозволу в матриці прав',
+            status: 'error'
+          });
+          return;
+        }
+
         if (Array.isArray(this.state.dirtySkyEvents)) {
           const lastEvent = this.state.dirtySkyEvents[this.state.dirtySkyEvents.length - 1];
           if (lastEvent && !lastEvent.endTime) {
@@ -478,6 +525,19 @@ class StateStore {
         break;
       }
       case 'visitor:status': {
+        if (eventData?.userEmail && !this.canUserPerformAction(eventData.userEmail, ['visitors.check_in_out', 'dashboard.actions'])) {
+          console.warn(`[Store] Blocked unauthorized visitor:status from ${eventData.userEmail}`);
+          this.addAuditLog({
+            action: 'Відхилено: Немає прав на облік входу/виходу',
+            category: 'security',
+            userEmail: eventData.userEmail,
+            userName: eventData.userName || 'Користувач',
+            details: 'Спроба зміни статусу відвідувача без відповідного дозволу в матриці прав',
+            status: 'error'
+          });
+          return;
+        }
+
         if (eventData?.visitorId && Array.isArray(this.state.visitors)) {
           const v = this.state.visitors.find((item: any) => item.id === eventData.visitorId);
           if (v) {
